@@ -1,9 +1,13 @@
-import { title } from "@/components/primitives";
+'use client'
+import 'iframe-resizer/js/iframeResizer.contentWindow'
+
+import { BlockEditor } from '@/extentions/tiptap/components/BlockEditor'
 
 export default function AboutPage() {
-	return (
-		<div>
-			<h1 className={title()}>About</h1>
-		</div>
-	);
+
+    return (
+        <>
+            <BlockEditor  />
+        </>
+    )
 }
