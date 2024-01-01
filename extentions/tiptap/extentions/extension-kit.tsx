@@ -1,148 +1,20 @@
 'use client'
-
-import {API} from '@/extentions/tiptap/lib/api'
-
 import {
-    BlockquoteFigure,
-    CharacterCount,
-    Color,
-    Document,
-    Dropcursor,
-    Emoji,
-    Figcaption,
-    FileHandler,
-    Focus,
-    FontFamily,
-    FontSize,
-    Heading,
-    Highlight,
-    HorizontalRule,
-    ImageBlock,
-    Link,
-    Placeholder,
-    Selection,
-    SlashCommand,
     StarterKit,
+    Highlight,
     Subscript,
     Superscript,
-    Table,
     TableOfContent,
-    TableCell,
-    TableHeader,
-    TableRow,
-    TextAlign,
-    TextStyle,
-    TrailingNode,
-    Typography,
-    Underline,
-    emojiSuggestion,
-    Columns,
-    Column,
-    TaskItem,
-    TaskList,
+    SlashCommand,
 } from '.'
-import {CodeBlockLowlight} from '@tiptap/extension-code-block-lowlight'
-import {ImageUpload} from './ImageUpload'
-import {TableOfContentNode} from './TableOfContentNode'
-import {lowlight} from 'lowlight'
-
 
 export const ExtensionKit = () => [
-    Document,
-    Columns,
-    TaskList,
-    TaskItem.configure({
-        nested: true,
-    }),
-    Column,
-    Selection,
-    Heading.configure({
-        levels: [1, 2, 3, 4, 5, 6],
-    }),
-    HorizontalRule,
-    StarterKit.configure({
-        document: false,
-        dropcursor: false,
-        heading: false,
-        horizontalRule: false,
-        blockquote: false,
-        history: false,
-        codeBlock: false,
-    }),
-    CodeBlockLowlight.configure({
-        lowlight,
-        defaultLanguage: null,
-    }),
-    TextStyle,
-    FontSize,
-    FontFamily,
-    Color,
-    TrailingNode,
-    Link.configure({
-        openOnClick: false,
-    }),
-    Highlight.configure({multicolor: true}),
-    Underline,
-    CharacterCount.configure({limit: 50000}),
-    TableOfContent,
-    TableOfContentNode,
-    ImageUpload.configure({
-        clientId: "1123123"
-    }),
-    ImageBlock,
-    FileHandler.configure({
-        allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
-        onDrop: (currentEditor, files, pos) => {
-            files.forEach(async () => {
-                const url = await API.uploadImage()
-
-                currentEditor.chain().setImageBlockAt({pos, src: url}).focus().run()
-            })
-        },
-        onPaste: (currentEditor, files) => {
-            files.forEach(async () => {
-                const url = await API.uploadImage()
-
-                return currentEditor
-                    .chain()
-                    .setImageBlockAt({pos: currentEditor.state.selection.anchor, src: url})
-                    .focus()
-                    .run()
-            })
-        },
-    }),
-    Emoji.configure({
-        enableEmoticons: true,
-        suggestion: emojiSuggestion,
-    }),
-    TextAlign.extend({
-        addKeyboardShortcuts() {
-            return {}
-        },
-    }).configure({
-        types: ['heading', 'paragraph'],
-    }),
+    StarterKit,
+    Highlight,
     Subscript,
     Superscript,
-    Table,
-    TableCell,
-    TableHeader,
-    TableRow,
-    SlashCommand,
-    Typography,
-    Placeholder.configure({
-        includeChildren: true,
-        showOnlyCurrent: false,
-        placeholder: () => '',
-    }),
-    // SlashCommand,
-    Focus,
-    Figcaption,
-    BlockquoteFigure,
-    Dropcursor.configure({
-        width: 2,
-        class: 'ProseMirror-dropcursor border-black',
-    }),
+    TableOfContent,
+    SlashCommand
 ]
 
 export default ExtensionKit

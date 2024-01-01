@@ -1,34 +1,25 @@
-
 import {useEditor} from '@tiptap/react'
-
-import {ExtensionKit} from '@/extentions/tiptap/extentions/extension-kit'
-import {useSidebar} from './useSidebar'
-
+import ExtensionKit from "@/extentions/tiptap/extentions/extension-kit";
 
 export const useBlockEditor = () => {
-    const leftSidebar = useSidebar()
-
-    const editor = useEditor(
-        {
-            autofocus: true,
-            extensions: [
-                ...ExtensionKit(),
-            ],
-            editorProps: {
-                attributes: {
-                    autocomplete: 'off',
-                    autocorrect: 'off',
-                    autocapitalize: 'off',
-                    class: 'min-h-full',
-                },
+    const editor = useEditor({
+        autofocus: true,
+        extensions: [
+            ...ExtensionKit()
+        ],
+        content:"<p>Hello World</p>",
+        editorProps: {
+            attributes: {
+                autocomplete: 'off',
+                autocorrect: 'off',
+                autocapitalize: 'off',
+                class: 'min-h-full',
             },
         },
-        [],
-    )
+    }, [])
 
     const characterCount = editor?.storage.characterCount || {characters: () => 0, words: () => 0}
 
-    window.editor = editor
-
-    return {editor, characterCount, leftSidebar}
+    return {editor, characterCount}
 }
+

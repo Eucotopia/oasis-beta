@@ -1,9 +1,9 @@
 "use client"
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Command, MenuListProps } from './types'
-import { Icon } from '@/extentions/tiptap/components/ui/Icon'
-import { DropdownButton } from '@/extentions/tiptap/components/ui/Dropdown'
-import {Surface} from "@/extentions/tiptap/components/ui/Surface";
+import React, {useCallback, useEffect, useRef, useState} from 'react'
+import {Command, MenuListProps} from './types'
+import {DropdownMenu, DropdownItem, Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
+import 'remixicon/fonts/remixicon.css'
+import {HeadphonesIcon} from "@nextui-org/shared-icons";
 
 export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     const scrollContainer = useRef<HTMLDivElement>(null)
@@ -27,7 +27,7 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     )
 
     React.useImperativeHandle(ref, () => ({
-        onKeyDown: ({ event }: { event: React.KeyboardEvent }) => {
+        onKeyDown: ({event}: { event: React.KeyboardEvent }) => {
             if (event.key === 'ArrowDown') {
                 if (!props.items.length) {
                     return false
@@ -114,30 +114,9 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     }
 
     return (
-        <Surface ref={scrollContainer} className="text-black max-h-[min(80vh,24rem)] overflow-auto flex-wrap mb-8 p-2">
-            <div className="grid grid-cols-1 gap-0.5">
-                {props.items.map((group, groupIndex: number) => (
-                    <React.Fragment key={`${group.title}-wrapper`}>
-                        <div
-                            className="text-neutral-500 text-[0.65rem] col-[1/-1] mx-2 mt-4 font-semibold tracking-wider select-none uppercase first:mt-0.5"
-                            key={`${group.title}`}
-                        >
-                            {group.title}
-                        </div>
-                        {group.commands.map((command: Command, commandIndex: number) => (
-                            <DropdownButton
-                                key={`${command.label}`}
-                                isActive={selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex}
-                                onClick={createCommandClickHandler(groupIndex, commandIndex)}
-                            >
-                                <Icon name={command.iconName} className="mr-1" />
-                                {command.label}
-                            </DropdownButton>
-                        ))}
-                    </React.Fragment>
-                ))}
-            </div>
-        </Surface>
+        <>
+
+        </>
     )
 })
 
