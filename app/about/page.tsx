@@ -1,13 +1,10 @@
-'use client'
-import 'iframe-resizer/js/iframeResizer.contentWindow'
-
-import { BlockEditor } from '@/extentions/tiptap/components/BlockEditor'
-
-export default function AboutPage() {
-
+import React from "react";
+import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
+import "@/styles/globals.css";
+export default function BlogPage() {
     return (
-        <>
-            <BlockEditor  />
-        </>
-    )
+        <div>
+            <BlockEditor/>
+        </div>
+    );
 }

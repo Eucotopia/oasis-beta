@@ -8,8 +8,8 @@ export { Highlight } from '@tiptap/extension-highlight'
 // export { Placeholder } from '@tiptap/extension-placeholder'
 // export { Emoji, gitHubEmojis } from '@tiptap-pro/extension-emoji'
 // export { TextAlign } from '@tiptap/extension-text-align'
-// export { TextStyle } from '@tiptap/extension-text-style'
-// export { FontFamily } from '@tiptap/extension-font-family'
+export { TextStyle } from '@tiptap/extension-text-style'
+export { FontFamily } from '@tiptap/extension-font-family'
 // export { Typography } from '@tiptap/extension-typography'
 // export { Color } from '@tiptap/extension-color'
 // export { FocusClasses as Focus } from '@tiptap/extension-focus'
@@ -27,4 +27,6 @@ export { FileHandler } from '@tiptap-pro/extension-file-handler'
 
 
 export { SlashCommand } from './SlashCommand'
+export { FontSize } from './FontSize'
+
 

@@ -6,7 +6,6 @@ import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-
 export const metadata: Metadata = {
 	title: {
 		default: siteConfig.name,

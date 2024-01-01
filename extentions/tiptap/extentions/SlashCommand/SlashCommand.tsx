@@ -1,6 +1,6 @@
 import {Editor, Extension} from '@tiptap/core'
 import {ReactRenderer} from '@tiptap/react'
-import Suggestion, {SuggestionProps, SuggestionKeyDownProps} from '@tiptap/suggestion'
+import Suggestion, {SuggestionKeyDownProps, SuggestionProps} from '@tiptap/suggestion'
 import {PluginKey} from '@tiptap/pm/state'
 import tippy from 'tippy.js'
 import {GROUPS} from './groups'
@@ -10,7 +10,6 @@ const extensionName = 'slashCommand'
 let popup: any
 export const SlashCommand = Extension.create({
     name: extensionName,
-    // 优先级，越大越早加载
     priority: 200,
     onCreate() {
         popup = tippy('body', {
@@ -90,22 +89,16 @@ export const SlashCommand = Extension.create({
                     }))
 
                     const withoutEmptyGroups = withFilteredCommands.filter(group => {
-                        if (group.commands.length > 0) {
-                            return true
-                        }
-
-                        return false
+                        return group.commands.length > 0;
                     })
 
-                    const withEnabledSettings = withoutEmptyGroups.map(group => ({
+                    return withoutEmptyGroups.map(group => ({
                         ...group,
                         commands: group.commands.map(command => ({
                             ...command,
                             isEnabled: true,
                         })),
                     }))
-
-                    return withEnabledSettings
                 }, render: () => {
                     let component: any
 

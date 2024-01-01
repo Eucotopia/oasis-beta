@@ -1,4 +1,4 @@
-import { Group } from './types'
+import {Group} from './types'
 
 // @ts-ignore
 export const GROUPS: Group[] = [
@@ -9,38 +9,38 @@ export const GROUPS: Group[] = [
             {
                 name: 'heading1',
                 label: 'Heading 1',
-                iconName: 'Heading1',
-                description: 'High priority section title',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: '22',
                 aliases: ['h1'],
                 action: editor => {
-                    editor.chain().focus().setHeading({ level: 1 }).run()
+                    editor.chain().focus().setHeading({level: 1}).run()
                 },
             },
             {
                 name: 'heading2',
                 label: 'Heading 2',
-                iconName: 'Heading2',
-                description: 'Medium priority section title',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: '##',
                 aliases: ['h2'],
                 action: editor => {
-                    editor.chain().focus().setHeading({ level: 2 }).run()
+                    editor.chain().focus().setHeading({level: 2}).run()
                 },
             },
             {
                 name: 'heading3',
                 label: 'Heading 3',
-                iconName: 'Heading3',
-                description: 'Low priority section title',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: '###',
                 aliases: ['h3'],
                 action: editor => {
-                    editor.chain().focus().setHeading({ level: 3 }).run()
+                    editor.chain().focus().setHeading({level: 3}).run()
                 },
             },
             {
                 name: 'bulletList',
                 label: 'Bullet List',
-                iconName: 'List',
-                description: 'Unordered list of items',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: '*',
                 aliases: ['ul'],
                 action: editor => {
                     editor.chain().focus().toggleBulletList().run()
@@ -49,8 +49,8 @@ export const GROUPS: Group[] = [
             {
                 name: 'numberedList',
                 label: 'Numbered List',
-                iconName: 'ListOrdered',
-                description: 'Ordered list of items',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: '1',
                 aliases: ['ol'],
                 action: editor => {
                     editor.chain().focus().toggleOrderedList().run()
@@ -59,8 +59,8 @@ export const GROUPS: Group[] = [
             {
                 name: 'taskList',
                 label: 'Task List',
-                iconName: 'ListTodo',
-                description: 'Task list with todo items',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: '-',
                 aliases: ['todo'],
                 action: editor => {
                     editor.chain().focus().toggleTaskList().run()
@@ -69,8 +69,8 @@ export const GROUPS: Group[] = [
             {
                 name: 'blockquote',
                 label: 'Blockquote',
-                iconName: 'Quote',
-                description: 'Element for quoting',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: '>',
                 action: editor => {
                     editor.chain().focus().setBlockquote().run()
                 },
@@ -78,8 +78,8 @@ export const GROUPS: Group[] = [
             {
                 name: 'codeBlock',
                 label: 'Code Block',
-                iconName: 'SquareCode',
-                description: 'Code block with syntax highlighting',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: '~~~',
                 shouldBeHidden: editor => editor.isActive('columns'),
                 action: editor => {
                     editor.chain().focus().setCodeBlock().run()
@@ -94,18 +94,18 @@ export const GROUPS: Group[] = [
             {
                 name: 'table',
                 label: 'Table',
-                iconName: 'Table',
-                description: 'Insert a table',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: 'Insert',
                 shouldBeHidden: editor => editor.isActive('columns'),
                 action: editor => {
-                    editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()
+                    editor.chain().focus().insertTable({rows: 3, cols: 3, withHeaderRow: false}).run()
                 },
             },
             {
                 name: 'image',
                 label: 'Image',
-                iconName: 'Image',
-                description: 'Insert an image',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: 'Insert',
                 aliases: ['img'],
                 action: editor => {
                     editor.chain().focus().setImageUpload().run()
@@ -114,8 +114,8 @@ export const GROUPS: Group[] = [
             {
                 name: 'columns',
                 label: 'Columns',
-                iconName: 'Columns',
-                description: 'Add two column content',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: 'Add',
                 aliases: ['cols'],
                 shouldBeHidden: editor => editor.isActive('columns'),
                 action: editor => {
@@ -130,8 +130,8 @@ export const GROUPS: Group[] = [
             {
                 name: 'horizontalRule',
                 label: 'Horizontal Rule',
-                iconName: 'Minus',
-                description: 'Insert a horizontal divider',
+                iconClass: 'fa-solid fa-bottle-water',
+                kbd: 'Insert',
                 aliases: ['hr'],
                 action: editor => {
                     editor.chain().focus().setHorizontalRule().run()
@@ -140,16 +140,16 @@ export const GROUPS: Group[] = [
             {
                 name: 'toc',
                 label: 'Table of Contents',
-                iconName: 'Book',
+                iconClass: 'fa-solid fa-bottle-water',
                 aliases: ['outline'],
-                description: 'Insert a table of contents',
+                kbd: 'Insert',
                 shouldBeHidden: editor => editor.isActive('columns'),
                 action: editor => {
                     editor.chain().focus().insertTableOfContent().run()
                 },
             },
         ],
-    },
+    }
 ]
 
 export default GROUPS

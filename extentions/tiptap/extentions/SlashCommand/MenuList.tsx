@@ -1,10 +1,16 @@
 "use client"
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {Command, MenuListProps} from './types'
-import {DropdownMenu, DropdownItem, Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
-import 'remixicon/fonts/remixicon.css'
-import {HeadphonesIcon} from "@nextui-org/shared-icons";
+import {cn, DropdownItem, Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
+import {AddNoteIcon, EditDocumentIcon} from "@/components/icons";
+import {Kbd} from "@nextui-org/kbd";
 
+export const ListboxWrapper = ({children}: { children: React.ReactNode }) => (
+    <div
+        className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-content1 max-w-[300px] overflow-visible shadow-small rounded-medium">
+        {children}
+    </div>
+);
 export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     const scrollContainer = useRef<HTMLDivElement>(null)
     const activeItem = useRef<HTMLButtonElement>(null)
@@ -112,10 +118,40 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     if (!props.items.length) {
         return null
     }
+    const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
 
     return (
         <>
-
+            <ListboxWrapper>
+                <Listbox
+                    variant="flat"
+                    aria-label="Listbox menu with sections"
+                    itemClasses={{
+                        base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-md gap-3 h-10 ",
+                    }}>
+                    {
+                        props.items.map((group, groupIndex: number) => (
+                            <ListboxSection
+                                title={group.title}
+                                key={group.title}
+                            >
+                                {
+                                    group.commands.map((command: Command, commandIndex: number) => (
+                                        <ListboxItem
+                                            key={command.label}
+                                            onClick={createCommandClickHandler(groupIndex, commandIndex)}
+                                            startContent={<AddNoteIcon className={iconClasses}/>}
+                                            endContent={<Kbd keys={["command"]}>{command.kbd}</Kbd>}
+                                        >
+                                            {command.label}
+                                        </ListboxItem>
+                                    ))
+                                }
+                            </ListboxSection>
+                        ))
+                    }
+                </Listbox>
+            </ListboxWrapper>
         </>
     )
 })
