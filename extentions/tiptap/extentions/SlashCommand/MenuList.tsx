@@ -4,8 +4,10 @@ import {Command, MenuListProps} from './types'
 import {Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
 import {AddNoteIcon, EditDocumentIcon} from "@/components/icons";
 import {Kbd} from "@nextui-org/kbd";
+
 export const ListboxWrapper = ({children}: { children: React.ReactNode }) => (
-    <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+    <div
+        className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
         {children}
     </div>
 );
@@ -56,6 +58,8 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
 
                 setSelectedCommandIndex(newCommandIndex)
                 setSelectedGroupIndex(newGroupIndex)
+                scrollIntoView(newGroupIndex,newCommandIndex)
+
 
                 return true
             }
@@ -80,6 +84,7 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
 
                 setSelectedCommandIndex(newCommandIndex)
                 setSelectedGroupIndex(newGroupIndex)
+                scrollIntoView(newGroupIndex,newCommandIndex)
 
                 return true
             }
@@ -120,7 +125,17 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
         return null
     }
     const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
+    const scrollIntoView = (groupIndex: number, index) => {
+        const items = props.items[groupIndex]
+        const item = items?.commands[index]
+        if (item) {
+            const node = document.querySelector(`[data-emoji-name="${item.name}"]`)
 
+            if (node) {
+                node.scrollIntoView({block: 'nearest'})
+            }
+        }
+    }
     return (
         <>
             <ListboxWrapper>
@@ -143,6 +158,8 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
                                 {
                                     group.commands.map((command: Command, commandIndex: number) => (
                                         <ListboxItem
+                                            data-emoji-name={command.name}
+                                            className={selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex ? "bg-default-100 dark:bg-default-800" : ""}
                                             key={command.label}
                                             onClick={createCommandClickHandler(groupIndex, commandIndex)}
                                             startContent={<AddNoteIcon className={iconClasses}/>}

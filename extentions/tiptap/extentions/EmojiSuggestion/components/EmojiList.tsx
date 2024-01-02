@@ -98,7 +98,9 @@ const EmojiList = forwardRef((props: EmojiListProps, ref) => {
                         props.items.map((item: EmojiItem, index: number) => (
                             <ListboxItem
                                 key={item.name}
+                                className={index == selectedIndex ? "bg-default-100 dark:bg-default-800" : ""}
                                 onClick={createClickHandler(index)}
+                                data-emoji-name={item.name}
                                 startContent={item.fallbackImage ?
                                     <Image src={item.fallbackImage} width={24} height={24} alt="emoji"/> : item.emoji}
                             >
