@@ -4,7 +4,7 @@
 export { StarterKit } from '@tiptap/starter-kit'
 export { Highlight } from '@tiptap/extension-highlight'
 // export { CharacterCount } from '@tiptap/extension-character-count'
-// export { Underline } from '@tiptap/extension-underline'
+export { Underline } from '@tiptap/extension-underline'
 // export { Placeholder } from '@tiptap/extension-placeholder'
 // export { Emoji, gitHubEmojis } from '@tiptap-pro/extension-emoji'
 // export { TextAlign } from '@tiptap/extension-text-align'
@@ -25,7 +25,7 @@ export { TaskItem } from '@tiptap/extension-task-item'
 export { TaskList } from '@tiptap/extension-task-list'
 export { FileHandler } from '@tiptap-pro/extension-file-handler'
 
-
+export { Link } from './Link'
 export { SlashCommand } from './SlashCommand'
 export { FontSize } from './FontSize'
 

@@ -11,11 +11,14 @@ import {
     FontFamily,
     Paragraph,
     TaskItem,
-    TaskList
+    TaskList,
+    Underline,
+    Link
 } from '.'
 
 export const ExtensionKit = () => [
     StarterKit,
+    Underline,
     Highlight,
     Subscript,
     FontFamily,
@@ -25,6 +28,7 @@ export const ExtensionKit = () => [
     FontSize,
     TextStyle,
     TaskItem,
+    Link,
     Paragraph,
     TaskList
 ]
