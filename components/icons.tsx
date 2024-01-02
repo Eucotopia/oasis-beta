@@ -265,7 +265,7 @@ export const EditDocumentIcon: React.FC<IconSvgProps> = (props) => (
     </svg>
 );
 export const PlusIcon: React.FC<IconSvgProps> = (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
+    <svg xmlns="http://www.w3.org/2000/svg" height="" width="12"
          viewBox="0 0 448 512">
         <path
 

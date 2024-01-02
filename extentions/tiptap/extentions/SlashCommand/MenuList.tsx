@@ -138,6 +138,7 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
                                 {
                                     group.commands.map((command: Command, commandIndex: number) => (
                                         <ListboxItem
+                                            isSelected={selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex}
                                             key={command.label}
                                             onClick={createCommandClickHandler(groupIndex, commandIndex)}
                                             startContent={<AddNoteIcon className={iconClasses}/>}
