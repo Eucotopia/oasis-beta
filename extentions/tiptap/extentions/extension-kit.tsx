@@ -9,6 +9,9 @@ import {
     FontSize,
     TextStyle,
     FontFamily,
+    Paragraph,
+    TaskItem,
+    TaskList
 } from '.'
 
 export const ExtensionKit = () => [
@@ -20,7 +23,10 @@ export const ExtensionKit = () => [
     TableOfContent,
     SlashCommand,
     FontSize,
-    TextStyle
+    TextStyle,
+    TaskItem,
+    Paragraph,
+    TaskList
 ]
 
 export default ExtensionKit
