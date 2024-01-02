@@ -6,6 +6,7 @@ import {
     Superscript,
     TableOfContent,
     SlashCommand,
+    TrailingNode,
     FontSize,
     TextStyle,
     FontFamily,
@@ -13,24 +14,74 @@ import {
     TaskItem,
     TaskList,
     Underline,
-    Link
+    Link,
+    CharacterCount,
+    Color,
+    Focus,
+    Dropcursor,
+    Typography,
+    TextAlign,
+    Placeholder,
+    Emoji,
+    emojiSuggestion,
+    Heading,
+    HorizontalRule
 } from '.'
-
+import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
+import { lowlight } from 'lowlight'
 export const ExtensionKit = () => [
+    Document,
+    HorizontalRule,
     StarterKit,
     Underline,
-    Highlight,
+    CodeBlockLowlight.configure({
+        lowlight,
+        defaultLanguage: null,
+    }),
+    Highlight.configure({ multicolor: true }),
+    TrailingNode,
     Subscript,
     FontFamily,
+    Placeholder.configure({
+        includeChildren: true,
+        showOnlyCurrent: false,
+        placeholder: () => '',
+    }),
+    Emoji.configure({
+        enableEmoticons: true,
+        suggestion: emojiSuggestion,
+    }),
+    TextAlign.extend({
+        addKeyboardShortcuts() {
+            return {}
+        },
+    }).configure({
+        types: ['heading', 'paragraph'],
+    }),
+    Heading.configure({
+        levels: [1, 2, 3, 4, 5, 6],
+    }),
     Superscript,
     TableOfContent,
     SlashCommand,
+    Typography,
     FontSize,
+    Dropcursor.configure({
+        width: 2,
+        class: 'ProseMirror-dropcursor border-black',
+    }),
     TextStyle,
-    TaskItem,
-    Link,
+    TaskItem.configure({
+        nested: true,
+    }),
+    Link.configure({
+        openOnClick: false,
+    }),
     Paragraph,
-    TaskList
+    Focus,
+    TaskList,
+    Color,
+    CharacterCount.configure({limit: 50000}),
 ]
 
 export default ExtensionKit

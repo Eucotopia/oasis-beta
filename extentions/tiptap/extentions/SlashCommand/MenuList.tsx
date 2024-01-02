@@ -1,16 +1,15 @@
 "use client"
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {Command, MenuListProps} from './types'
-import {cn, DropdownItem, Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
+import {Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
 import {AddNoteIcon, EditDocumentIcon} from "@/components/icons";
 import {Kbd} from "@nextui-org/kbd";
-
 export const ListboxWrapper = ({children}: { children: React.ReactNode }) => (
-    <div
-        className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-content1 max-w-[300px] overflow-visible shadow-small rounded-medium">
+    <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
         {children}
     </div>
 );
+
 export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     const scrollContainer = useRef<HTMLDivElement>(null)
     const activeItem = useRef<HTMLButtonElement>(null)
@@ -41,9 +40,11 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
 
                 const commands = props.items[selectedGroupIndex].commands
 
-                let newCommandIndex = selectedCommandIndex + 1
-                let newGroupIndex = selectedGroupIndex
 
+                let newCommandIndex = selectedCommandIndex + 1
+                console.log(newCommandIndex)
+                let newGroupIndex = selectedGroupIndex
+                console.log(newGroupIndex)
                 if (commands.length - 1 < newCommandIndex) {
                     newCommandIndex = 0
                     newGroupIndex = selectedGroupIndex + 1
@@ -124,11 +125,15 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
         <>
             <ListboxWrapper>
                 <Listbox
+                    classNames={{
+                        base: "max-w-xs",
+                        list: "max-h-[300px] overflow-scroll",
+                    }}
+                    defaultSelectedKeys={["1"]}
+                    label="Assigned to"
+                    selectionMode="single"
                     variant="flat"
-                    aria-label="Listbox menu with sections"
-                    itemClasses={{
-                        base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-md gap-3 h-10 ",
-                    }}>
+                >
                     {
                         props.items.map((group, groupIndex: number) => (
                             <ListboxSection
@@ -138,7 +143,6 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
                                 {
                                     group.commands.map((command: Command, commandIndex: number) => (
                                         <ListboxItem
-                                            isSelected={selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex}
                                             key={command.label}
                                             onClick={createCommandClickHandler(groupIndex, commandIndex)}
                                             startContent={<AddNoteIcon className={iconClasses}/>}

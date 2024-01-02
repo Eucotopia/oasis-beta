@@ -64,6 +64,7 @@ export const FontFamilyPicker = ({onChange, value}: FontFamilyPickerProps) => {
                     disallowEmptySelection
                     selectionMode="single"
                     selectedKeys={selectedKeys}
+                    // @ts-ignore
                     onSelectionChange={setSelectedKeys}
                 >
                     {

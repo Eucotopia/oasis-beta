@@ -44,6 +44,7 @@ export const FontSizePicker = ({onChange, value}: FontSizePickerProps) => {
                     disallowEmptySelection
                     selectionMode="single"
                     selectedKeys={selectedKeys}
+                    // @ts-ignore
                     onSelectionChange={setSelectedKeys}
                 >
                     {

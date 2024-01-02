@@ -50,6 +50,7 @@ export const ContentTypePicker = ({options}: ContentTypePickerProps) => {
                     variant={'faded'}
                     selectionMode="single"
                     selectedKeys={selectedKeys}
+                    // @ts-ignore
                     onSelectionChange={setSelectedKeys}
                     aria-label={"Dropdown menu with description"}
                 >
