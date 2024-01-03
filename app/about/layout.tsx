@@ -1,4 +1,3 @@
-import './editor.css'
 
 export default function AboutLayout({
                                         children,

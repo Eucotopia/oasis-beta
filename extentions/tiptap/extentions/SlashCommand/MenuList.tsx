@@ -58,7 +58,7 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
 
                 setSelectedCommandIndex(newCommandIndex)
                 setSelectedGroupIndex(newGroupIndex)
-                scrollIntoView(newGroupIndex,newCommandIndex)
+                scrollIntoView(newGroupIndex, newCommandIndex)
 
 
                 return true
@@ -84,7 +84,7 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
 
                 setSelectedCommandIndex(newCommandIndex)
                 setSelectedGroupIndex(newGroupIndex)
-                scrollIntoView(newGroupIndex,newCommandIndex)
+                scrollIntoView(newGroupIndex, newCommandIndex)
 
                 return true
             }
@@ -125,7 +125,7 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
         return null
     }
     const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
-    const scrollIntoView = (groupIndex: number, index) => {
+    const scrollIntoView = (groupIndex: number, index: number) => {
         const items = props.items[groupIndex]
         const item = items?.commands[index]
         if (item) {

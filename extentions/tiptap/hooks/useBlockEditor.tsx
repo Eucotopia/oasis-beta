@@ -7,7 +7,10 @@ export const useBlockEditor = () => {
         extensions: [
             ...ExtensionKit()
         ],
-        content: "<p>Hello World</p>",
+        content: "            <ul>\n" +
+            "                <li>asd</li>\n" +
+            "                <li>asd</li>\n" +
+            "            </ul>",
         editorProps: {
             attributes: {
                 autocomplete: 'off',

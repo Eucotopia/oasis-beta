@@ -3,7 +3,6 @@ import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
 import {EditorContent} from "@tiptap/react";
 import "@/extentions/tiptap/styles/index.css"
 import {ContentItemMenu} from "@/extentions/tiptap/components/menus/ContentItemMenu";
-import {useRef} from "react";
 import {TextMenu} from "@/extentions/tiptap/components/menus/TextMenu";
 
 export const BlockEditor = () => {
@@ -15,7 +14,7 @@ export const BlockEditor = () => {
         <>
             <EditorContent editor={editor}/>
             <ContentItemMenu editor={editor}/>
-            <TextMenu editor={editor} />
+            <TextMenu editor={editor}/>
         </>
     )
 }

@@ -25,10 +25,12 @@ import {
     Emoji,
     emojiSuggestion,
     Heading,
+    Document,
     HorizontalRule
 } from '.'
-import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
-import { lowlight } from 'lowlight'
+import {CodeBlockLowlight} from '@tiptap/extension-code-block-lowlight'
+import {lowlight} from 'lowlight'
+
 export const ExtensionKit = () => [
     Document,
     HorizontalRule,
@@ -38,7 +40,7 @@ export const ExtensionKit = () => [
         lowlight,
         defaultLanguage: null,
     }),
-    Highlight.configure({ multicolor: true }),
+    Highlight.configure({multicolor: true}),
     TrailingNode,
     Subscript,
     FontFamily,
