@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react'
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
-import {Button} from "@nextui-org/button";
+import {Link} from "@nextui-org/link";
 
 const FONT_SIZES = [
     {label: 'Smaller', value: '12px'},
@@ -31,12 +31,12 @@ export const FontSizePicker = ({onChange, value}: FontSizePickerProps) => {
         <>
             <Dropdown>
                 <DropdownTrigger>
-                    <Button
-                        variant="bordered"
+                    <Link
+                        size={"md"}
                         className="capitalize"
                     >
                         {selectedValue}
-                    </Button>
+                    </Link>
                 </DropdownTrigger>
                 <DropdownMenu
                     aria-label="Single selection example"

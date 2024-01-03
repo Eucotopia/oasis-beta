@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react'
 import {Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger} from "@nextui-org/react";
 import {Button} from "@nextui-org/button";
+import {Link} from "@nextui-org/link";
 
 const FONT_FAMILY_GROUPS = [
     {
@@ -51,12 +52,12 @@ export const FontFamilyPicker = ({onChange, value}: FontFamilyPickerProps) => {
         <>
             <Dropdown>
                 <DropdownTrigger>
-                    <Button
-                        variant="bordered"
+                    <Link
+                        color={"primary"}
                         className="capitalize"
                     >
                         {selectedValue}
-                    </Button>
+                    </Link>
                 </DropdownTrigger>
                 <DropdownMenu
                     aria-label="Single selection example"
@@ -69,7 +70,7 @@ export const FontFamilyPicker = ({onChange, value}: FontFamilyPickerProps) => {
                 >
                     {
                         FONT_FAMILY_GROUPS.map(group => (
-                            <DropdownSection title={group.label}  key={group.label}>
+                            <DropdownSection title={group.label} key={group.label}>
                                 {
                                     group.options.map(font => (
                                         <DropdownItem

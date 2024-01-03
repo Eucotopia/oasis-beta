@@ -11,7 +11,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                 id: 'hierarchy',
                 children: [
                     {
-                        iconClass: 'Pilcrow',
+                        iconClass: 'fa-solid fa-paragraph',
                         onClick: () => editor.chain().focus().lift('taskItem').liftListItem('listItem').setParagraph().run(),
                         id: 'paragraph',
                         disabled: () => !editor.can().setParagraph(),
@@ -24,7 +24,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                         type: 'option',
                     },
                     {
-                        iconClass: 'Heading1',
+                        iconClass: 'fa-solid fa-h',
                         onClick: () => editor.chain().focus().lift('taskItem').liftListItem('listItem').setHeading({level: 1}).run(),
                         id: 'heading1',
                         disabled: () => !editor.can().setHeading({level: 1}),
@@ -33,7 +33,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                         type: 'option',
                     },
                     {
-                        iconClass: 'Heading2',
+                        iconClass: 'fa-solid fa-hands',
                         onClick: () => editor.chain().focus().lift('taskItem').liftListItem('listItem').setHeading({level: 2}).run(),
                         id: 'heading2',
                         disabled: () => !editor.can().setHeading({level: 2}),
@@ -42,7 +42,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                         type: 'option',
                     },
                     {
-                        iconClass: 'Heading3',
+                        iconClass: 'fa-solid fa-hammer',
                         onClick: () => editor.chain().focus().lift('taskItem').liftListItem('listItem').setHeading({level: 3}).run(),
                         id: 'heading3',
                         disabled: () => !editor.can().setHeading({level: 3}),
@@ -58,7 +58,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                 id: 'lists',
                 children: [
                     {
-                        iconClass: 'List',
+                        iconClass: 'fa-solid fa-list-ul',
                         onClick: () => editor.chain().focus().toggleBulletList().run(),
                         id: 'bulletList',
                         disabled: () => !editor.can().toggleBulletList(),
@@ -67,7 +67,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                         type: 'option',
                     },
                     {
-                        iconClass: 'ListOrdered',
+                        iconClass: 'fa-solid fa-list-ol',
                         onClick: () => editor.chain().focus().toggleOrderedList().run(),
                         id: 'orderedList',
                         disabled: () => !editor.can().toggleOrderedList(),
@@ -76,7 +76,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                         type: 'option',
                     },
                     {
-                        iconClass: 'ListTodo',
+                        iconClass: 'fa-solid fa-list-check',
                         onClick: () => editor.chain().focus().toggleTaskList().run(),
                         id: 'todoList',
                         disabled: () => !editor.can().toggleTaskList(),

@@ -1,7 +1,12 @@
-import React, {useCallback, useMemo} from 'react'
+import React, {useCallback} from 'react'
 import {Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger} from "@nextui-org/react";
 import {Button} from "@nextui-org/button";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {fas} from '@fortawesome/free-solid-svg-icons'
+import {Link} from "@nextui-org/link";
 
+library.add(fas)
 export type ContentTypePickerOption = {
     label: string
     id: string
@@ -33,7 +38,7 @@ export const ContentTypePicker = ({options}: ContentTypePickerProps) => {
                 if (activeChild === null || activeChild === undefined) {
                     continue
                 }
-                return activeChild?.label
+                return activeChild?.iconClass
             }
         }
         return undefined
@@ -53,8 +58,14 @@ export const ContentTypePicker = ({options}: ContentTypePickerProps) => {
         <>
             <Dropdown>
                 <DropdownTrigger>
-                    <Button variant={"bordered"}>
-                        {selectedValue}
+                    <Button
+                        variant={"solid"}
+                        size={"sm"}
+                        // @ts-ignore
+                        endContent={<FontAwesomeIcon icon="fa-solid fa-arrow-down-long"/>}
+                    >
+                        {/*@ts-ignore*/}
+                        <FontAwesomeIcon icon={selectedValue}/>
                     </Button>
                 </DropdownTrigger>
                 <DropdownMenu
@@ -71,9 +82,12 @@ export const ContentTypePicker = ({options}: ContentTypePickerProps) => {
                                 {
                                     option.children?.map(pre => (
                                         <DropdownItem
-                                            key={pre.label}
+                                            key={pre.iconClass}
                                             onClick={pre.onClick}
-                                            className={pre.isActive() ? "bg-default-100 dark:bg-default-800" : ""}>
+                                            className={pre.isActive() ? "bg-default-100 dark:bg-default-800" : ""}
+                                            // @ts-ignore
+                                            startContent={<FontAwesomeIcon icon={pre.iconClass}/>}
+                                        >
                                             {pre.label}
                                         </DropdownItem>
                                     ))

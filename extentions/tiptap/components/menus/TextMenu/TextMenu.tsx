@@ -9,11 +9,10 @@ import {ContentTypePicker} from "@/extentions/tiptap/components/menus/TextMenu/c
 import {Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip} from "@nextui-org/react";
 import {Button} from "@nextui-org/button";
 import {Kbd} from "@nextui-org/kbd";
-import NextLink from "next/link";
-import {Link} from "@nextui-org/link";
-import {Bold} from "@tiptap/extension-bold";
 import {EditLinkPopover} from "@/extentions/tiptap/components/menus/TextMenu/components/EditLinkPopover";
 import {ColorPicker} from "@/extentions/tiptap/components/menus/TextMenu/components/ColorPicker";
+import {Link} from "@nextui-org/link";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export type TextMenuProps = {
     editor: Editor
@@ -31,46 +30,51 @@ export const TextMenu = ({editor}: TextMenuProps) => {
             tippyOptions={{popperOptions: {placement: 'top-start'}}}
             editor={editor}
             pluginKey="textMenu"
+            className="flex flex-row gap-2"
             shouldShow={states.shouldShow}
             updateDelay={100}
         >
             <MemoContentTypePicker options={blockOptions}/>
-            <MemoFontSizePicker onChange={commands.onSetFontSize} value={states.currentSize || ''}/>
-            <MemoFontFamilyPicker onChange={commands.onSetFont} value={states.currentFont || ''}/>
-            <Divider orientation={"vertical"}/>
-            <Tooltip showArrow={true} content="command b">
-                <Button onClick={commands.onBold}>Bold</Button>
-            </Tooltip>
-            <Tooltip showArrow={true} content={<Kbd keys={["command"]}>i</Kbd>}>
-                <Button onClick={commands.onItalic}>Italic</Button>
-            </Tooltip>
-            <Tooltip showArrow={true} content={<Kbd keys={["command"]}>u</Kbd>}>
-                <Button onClick={commands.onUnderline}>Underline</Button>
-            </Tooltip>
-            <Tooltip showArrow={true} content={<Kbd keys={["command"]}>X</Kbd>}>
-                <Button onClick={commands.onStrike}>Strike</Button>
-            </Tooltip>
-            <Tooltip showArrow={true} content={<Kbd keys={["command"]}>e</Kbd>}>
-                <Button onClick={commands.onCode}>Code</Button>
-            </Tooltip>
-            <Tooltip showArrow={true} content={<Kbd keys={["command"]}>null</Kbd>}>
-                <Button onClick={commands.onCodeBlock}>CodeBlock</Button>
-            </Tooltip>
-            <EditLinkPopover onSetLink={commands.onLink}/>
-            <Dropdown>
-                <DropdownTrigger>
-                    <Button>Highlighter</Button>
-                </DropdownTrigger>
-                <DropdownMenu>
-                    <DropdownItem isReadOnly>
-                        <MemoColorPicker
-                            color={states.currentHighlight}
-                            onChange={commands.onChangeHighlight}
-                            onClear={commands.onClearHighlight}
-                        />
-                    </DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
+            <Link onClick={commands.onBold} className={"hover:bg-pink-500"}>
+                {/*@ts-ignore*/}
+                <FontAwesomeIcon icon={"fa-solid fa-hands"}/>
+            </Link>
+            {/*<MemoFontSizePicker onChange={commands.onSetFontSize} value={states.currentSize || ''}/>*/}
+            {/*<MemoFontFamilyPicker onChange={commands.onSetFont} value={states.currentFont || ''}/>*/}
+            {/*<Divider orientation={"vertical"}/>*/}
+            {/*<Tooltip showArrow={true} content="command b">*/}
+            {/*    <Button onClick={commands.onBold}>Bold</Button>*/}
+            {/*</Tooltip>*/}
+            {/*<Tooltip showArrow={true} content={<Kbd keys={["command"]}>i</Kbd>}>*/}
+            {/*    <Button onClick={commands.onItalic}>Italic</Button>*/}
+            {/*</Tooltip>*/}
+            {/*<Tooltip showArrow={true} content={<Kbd keys={["command"]}>u</Kbd>}>*/}
+            {/*    <Button onClick={commands.onUnderline}>Underline</Button>*/}
+            {/*</Tooltip>*/}
+            {/*<Tooltip showArrow={true} content={<Kbd keys={["command"]}>X</Kbd>}>*/}
+            {/*    <Button onClick={commands.onStrike}>Strike</Button>*/}
+            {/*</Tooltip>*/}
+            {/*<Tooltip showArrow={true} content={<Kbd keys={["command"]}>e</Kbd>}>*/}
+            {/*    <Button onClick={commands.onCode}>Code</Button>*/}
+            {/*</Tooltip>*/}
+            {/*<Tooltip showArrow={true} content={<Kbd keys={["command"]}>null</Kbd>}>*/}
+            {/*    <Button onClick={commands.onCodeBlock}>CodeBlock</Button>*/}
+            {/*</Tooltip>*/}
+            {/*<EditLinkPopover onSetLink={commands.onLink}/>*/}
+            {/*<Dropdown>*/}
+            {/*    <DropdownTrigger>*/}
+            {/*        <Button>Highlighter</Button>*/}
+            {/*    </DropdownTrigger>*/}
+            {/*    <DropdownMenu>*/}
+            {/*        <DropdownItem isReadOnly>*/}
+            {/*            <MemoColorPicker*/}
+            {/*                color={states.currentHighlight}*/}
+            {/*                onChange={commands.onChangeHighlight}*/}
+            {/*                onClear={commands.onClearHighlight}*/}
+            {/*            />*/}
+            {/*        </DropdownItem>*/}
+            {/*    </DropdownMenu>*/}
+            {/*</Dropdown>*/}
         </BubbleMenu>
     )
 }

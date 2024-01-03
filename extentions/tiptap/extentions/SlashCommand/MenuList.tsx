@@ -2,7 +2,7 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {Command, MenuListProps} from './types'
 import {Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
-import {AddNoteIcon, EditDocumentIcon} from "@/components/icons";
+import {AddNoteIcon} from "@/components/icons";
 import {Kbd} from "@nextui-org/kbd";
 
 export const ListboxWrapper = ({children}: { children: React.ReactNode }) => (
