@@ -24,10 +24,13 @@ export {OrderedList} from '@tiptap/extension-ordered-list'
 export {TaskItem} from '@tiptap/extension-task-item'
 export {TaskList} from '@tiptap/extension-task-list'
 export {FileHandler} from '@tiptap-pro/extension-file-handler'
-export {Link} from './Link'
+import { Mathematics } from '@tiptap-pro/extension-mathematics'
+
+
 
 export {Document} from './Document'
 export {SlashCommand} from './SlashCommand'
+export {Link} from './Link'
 export {FontSize} from './FontSize'
 export {emojiSuggestion} from './EmojiSuggestion'
 export {Heading} from './Heading'

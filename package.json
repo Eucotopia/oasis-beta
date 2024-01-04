@@ -30,6 +30,7 @@
     "@tiptap-pro/extension-drag-handle-react": "^2.5.1",
     "@tiptap-pro/extension-emoji": "^2.5.1",
     "@tiptap-pro/extension-file-handler": "^2.5.1",
+    "@tiptap-pro/extension-mathematics": "^2.5.1",
     "@tiptap-pro/extension-table-of-content": "^2.4.1",
     "@tiptap/extension-character-count": "^2.1.13",
     "@tiptap/extension-code-block-lowlight": "^2.0.4",

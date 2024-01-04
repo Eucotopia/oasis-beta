@@ -1,10 +1,9 @@
 import React, {useCallback} from 'react'
 import {Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger} from "@nextui-org/react";
 import {Button} from "@nextui-org/button";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fas} from '@fortawesome/free-solid-svg-icons'
-import {Link} from "@nextui-org/link";
+import IconComponentsMap from "@/extentions/tiptap/lib/svg/IconComponents";
 
 library.add(fas)
 export type ContentTypePickerOption = {
@@ -59,19 +58,17 @@ export const ContentTypePicker = ({options}: ContentTypePickerProps) => {
             <Dropdown>
                 <DropdownTrigger>
                     <Button
-                        variant={"solid"}
+                        variant={"light"}
                         size={"sm"}
-                        // @ts-ignore
-                        endContent={<FontAwesomeIcon icon="fa-solid fa-arrow-down-long"/>}
                     >
-                        {/*@ts-ignore*/}
-                        <FontAwesomeIcon icon={selectedValue}/>
+                        {IconComponentsMap[selectedValue]}
                     </Button>
                 </DropdownTrigger>
                 <DropdownMenu
                     variant={'faded'}
                     defaultSelectedKeys={activeItem()}
                     selectedKeys={selectedKeys}
+                    selectionMode="single"
                     // @ts-ignore
                     onSelectionChange={setSelectedKeys}
                     aria-label={"Dropdown menu with description"}
@@ -85,8 +82,7 @@ export const ContentTypePicker = ({options}: ContentTypePickerProps) => {
                                             key={pre.iconClass}
                                             onClick={pre.onClick}
                                             className={pre.isActive() ? "bg-default-100 dark:bg-default-800" : ""}
-                                            // @ts-ignore
-                                            startContent={<FontAwesomeIcon icon={pre.iconClass}/>}
+                                            startContent={IconComponentsMap[pre.iconClass]}
                                         >
                                             {pre.label}
                                         </DropdownItem>

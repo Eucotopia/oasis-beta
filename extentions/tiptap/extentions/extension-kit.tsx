@@ -12,6 +12,7 @@ import {
     FontFamily,
     Paragraph,
     TaskItem,
+    Mathematics,
     TaskList,
     Underline,
     Link,
@@ -43,6 +44,7 @@ export const ExtensionKit = () => [
     Highlight.configure({multicolor: true}),
     TrailingNode,
     Subscript,
+    Mathematics,
     FontFamily,
     Placeholder.configure({
         includeChildren: true,
