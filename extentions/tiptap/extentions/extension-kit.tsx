@@ -12,7 +12,10 @@ import {
     FontFamily,
     Paragraph,
     TaskItem,
-    Mathematics,
+    Table,
+    TableCell,
+    TableHeader,
+    TableRow,
     TaskList,
     Underline,
     Link,
@@ -27,7 +30,8 @@ import {
     emojiSuggestion,
     Heading,
     Document,
-    HorizontalRule
+    HorizontalRule,
+    Mathematics
 } from '.'
 import {CodeBlockLowlight} from '@tiptap/extension-code-block-lowlight'
 import {lowlight} from 'lowlight'
@@ -35,6 +39,10 @@ import {lowlight} from 'lowlight'
 export const ExtensionKit = () => [
     Document,
     HorizontalRule,
+    Table,
+    TableCell,
+    TableHeader,
+    TableRow,
     StarterKit,
     Underline,
     CodeBlockLowlight.configure({
