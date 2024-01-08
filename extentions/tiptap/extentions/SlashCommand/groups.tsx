@@ -1,4 +1,5 @@
 import {Group} from './types'
+import {Columns} from "@/extentions/tiptap/lib/svg/icon";
 
 // @ts-ignore
 export const GROUPS: Group[] = [
@@ -9,7 +10,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'heading1',
                 label: 'Heading 1',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'H1',
                 kbd: '22',
                 aliases: ['h1'],
                 action: editor => {
@@ -19,7 +20,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'heading2',
                 label: 'Heading 2',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'H2',
                 kbd: '##',
                 aliases: ['h2'],
                 action: editor => {
@@ -29,7 +30,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'heading3',
                 label: 'Heading 3',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'H3',
                 kbd: '###',
                 aliases: ['h3'],
                 action: editor => {
@@ -39,7 +40,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'bulletList',
                 label: 'Bullet List',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'BulletList',
                 kbd: '*',
                 aliases: ['ul'],
                 action: editor => {
@@ -47,9 +48,9 @@ export const GROUPS: Group[] = [
                 },
             },
             {
-                name: 'numberedList',
+                name: 'numberList',
                 label: 'Numbered List',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'NumberList',
                 kbd: '1',
                 aliases: ['ol'],
                 action: editor => {
@@ -57,9 +58,9 @@ export const GROUPS: Group[] = [
                 },
             },
             {
-                name: 'taskList',
+                name: 'TaskList',
                 label: 'Task List',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'TaskList',
                 kbd: '-',
                 aliases: ['todo'],
                 action: editor => {
@@ -69,7 +70,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'blockquote',
                 label: 'Blockquote',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'QuoteLeft',
                 kbd: '>',
                 action: editor => {
                     editor.chain().focus().setBlockquote().run()
@@ -78,7 +79,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'codeBlock',
                 label: 'Code Block',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'CodeBlock',
                 kbd: '~~~',
                 shouldBeHidden: editor => editor.isActive('columns'),
                 action: editor => {
@@ -94,7 +95,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'table',
                 label: 'Table',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'Table',
                 kbd: 'Insert',
                 shouldBeHidden: editor => editor.isActive('columns'),
                 action: editor => {
@@ -104,7 +105,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'image',
                 label: 'Image',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'Image',
                 kbd: 'Insert',
                 aliases: ['img'],
                 action: editor => {
@@ -114,7 +115,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'columns',
                 label: 'Columns',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'Columns',
                 kbd: 'Add',
                 aliases: ['cols'],
                 shouldBeHidden: editor => editor.isActive('columns'),
@@ -130,7 +131,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'horizontalRule',
                 label: 'Horizontal Rule',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'Horizontal',
                 kbd: 'Insert',
                 aliases: ['hr'],
                 action: editor => {
@@ -140,7 +141,7 @@ export const GROUPS: Group[] = [
             {
                 name: 'toc',
                 label: 'Table of Contents',
-                iconClass: 'fa-solid fa-bottle-water',
+                iconClass: 'TableOfContent',
                 aliases: ['outline'],
                 kbd: 'Insert',
                 shouldBeHidden: editor => editor.isActive('columns'),

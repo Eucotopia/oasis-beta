@@ -58,7 +58,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                 id: 'lists',
                 children: [
                     {
-                        iconClass: 'bulletList',
+                        iconClass: 'BulletList',
                         onClick: () => editor.chain().focus().toggleBulletList().run(),
                         id: 'bulletList',
                         disabled: () => !editor.can().toggleBulletList(),

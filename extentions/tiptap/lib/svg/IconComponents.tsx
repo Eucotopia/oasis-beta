@@ -1,4 +1,15 @@
-import {BulletList, H1, H2, H3, NumberList, Paragraph, TaskList} from "@/extentions/tiptap/lib/svg/icon";
+import {
+    Bold,
+    BulletList,
+    CodeBlock, Columns,
+    H1,
+    H2,
+    H3, Horizontal, Image_User,
+    NumberList,
+    Paragraph,
+    QuoteLeft, Table, TableOfContent,
+    TaskList
+} from "@/extentions/tiptap/lib/svg/icon";
 import React from "react";
 
 interface IconComponentsMapType {
@@ -10,9 +21,17 @@ const IconComponentsMap: IconComponentsMapType = {
     "H2": <H2/>,
     "H3": <H3/>,
     "Paragraph": <Paragraph/>,
-    "bulletList": <BulletList/>,
+    "BulletList": <BulletList/>,
     "TaskList": <TaskList/>,
-    "NumberList": <NumberList/>
+    "NumberList": <NumberList/>,
+    "QuoteLeft": <QuoteLeft/>,
+    "CodeBlock": <CodeBlock/>,
+    "Table": <Table/>,
+    "Image": <Image_User/>,
+    "Columns": <Columns/>,
+    "Horizontal": <Horizontal/>,
+    "TableOfContent": <TableOfContent/>,
+    "Bold": <Bold/>
 };
 
 export default IconComponentsMap;

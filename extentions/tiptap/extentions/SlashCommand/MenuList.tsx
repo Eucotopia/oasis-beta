@@ -4,6 +4,7 @@ import {Command, MenuListProps} from './types'
 import {Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
 import {AddNoteIcon} from "@/components/icons";
 import {Kbd} from "@nextui-org/kbd";
+import IconComponentsMap from "@/extentions/tiptap/lib/svg/IconComponents";
 
 export const ListboxWrapper = ({children}: { children: React.ReactNode }) => (
     <div
@@ -162,7 +163,8 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
                                             className={selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex ? "bg-default-100 dark:bg-default-800" : ""}
                                             key={command.label}
                                             onClick={createCommandClickHandler(groupIndex, commandIndex)}
-                                            startContent={<AddNoteIcon className={iconClasses}/>}
+                                            // startContent={<AddNoteIcon className={iconClasses}/>}
+                                            startContent={IconComponentsMap[command.iconClass]}
                                             endContent={<Kbd keys={["command"]}>{command.kbd}</Kbd>}
                                         >
                                             {command.label}
