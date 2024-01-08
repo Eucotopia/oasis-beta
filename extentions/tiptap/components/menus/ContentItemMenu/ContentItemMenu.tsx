@@ -6,13 +6,12 @@ import useContentItemActions from './hooks/useContentItemActions'
 import {useData} from './hooks/useData'
 import {useEffect, useState} from 'react'
 import {
-    DeleteNodeIcon,
-    DuplicateNodeIcon,
     GripVerticalIcon,
     PlusIcon
 } from "@/components/icons";
-import {cn, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
+import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
 import {Button} from "@nextui-org/button";
+import {ClearFormat, Clipboard, Copy, Trash} from "@/extentions/tiptap/lib/svg/icon";
 
 export type ContentItemMenuProps = {
     editor: Editor
@@ -23,7 +22,6 @@ export const ContentItemMenu = ({editor}: ContentItemMenuProps) => {
     const [menuOpen, setMenuOpen] = useState(false)
     const data = useData()
     const actions = useContentItemActions(editor, data.currentNode, data.currentNodePos)
-
     useEffect(() => {
         if (menuOpen) {
             editor.commands.setMeta('lockDragHandle', true)
@@ -31,8 +29,6 @@ export const ContentItemMenu = ({editor}: ContentItemMenuProps) => {
             editor.commands.setMeta('lockDragHandle', false)
         }
     }, [editor, menuOpen])
-
-    const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
 
 
     return (
@@ -49,7 +45,7 @@ export const ContentItemMenu = ({editor}: ContentItemMenuProps) => {
                 <Button
                     onClick={actions.handleAdd}
                     isIconOnly
-                    variant={"flat"}
+                    variant={"light"}
                     size={"sm"}
                 >
                     <PlusIcon/>
@@ -59,25 +55,24 @@ export const ContentItemMenu = ({editor}: ContentItemMenuProps) => {
                         base: "before:bg-default-200", // change arrow background
                         content: "py-1 px-1 border border-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black",
                     }}
+                    isOpen={menuOpen}
+                    onOpenChange={setMenuOpen}
                 >
                     <DropdownTrigger>
                         <Button
                             isIconOnly
-                            variant={"flat"}
+                            variant={"light"}
                             size={"sm"}
                         >
                             <GripVerticalIcon/>
                         </Button>
                     </DropdownTrigger>
-                    <DropdownMenu variant="faded"
-                                  selectedKeys={"Duplicate"}
-                                  disabledKeys={"Duplicate"}
-                    >
+                    <DropdownMenu>
                         <DropdownItem
                             key="Clear formatting"
                             onPress={actions.resetTextFormatting}
                             shortcut="⌘C"
-                            startContent={<DuplicateNodeIcon className={iconClasses}/>}
+                            startContent={<ClearFormat/>}
                         >
                             Clear formatting
                         </DropdownItem>
@@ -85,7 +80,7 @@ export const ContentItemMenu = ({editor}: ContentItemMenuProps) => {
                             key="Copy to clipboard"
                             shortcut="⌘C"
                             onPress={actions.copyNodeToClipboard}
-                            startContent={<DuplicateNodeIcon className={iconClasses}/>}
+                            startContent={<Copy/>}
                         >
                             Copy to clipboard
                         </DropdownItem>
@@ -93,7 +88,7 @@ export const ContentItemMenu = ({editor}: ContentItemMenuProps) => {
                             key="Duplicate"
                             shortcut="⌘D"
                             onPress={actions.duplicateNode}
-                            startContent={<DuplicateNodeIcon className={iconClasses}/>}
+                            startContent={<Clipboard/>}
                         >
                             Duplicate
                         </DropdownItem>
@@ -103,7 +98,7 @@ export const ContentItemMenu = ({editor}: ContentItemMenuProps) => {
                             color="danger"
                             shortcut="⌘⇧X"
                             onPress={actions.deleteNode}
-                            startContent={<DeleteNodeIcon className={cn(iconClasses, "text-danger")}/>}
+                            startContent={<Trash/>}
                         >
                             Delete
                         </DropdownItem>
