@@ -1,100 +1,101 @@
-import { DragEvent, useCallback, useEffect, useRef, useState } from 'react'
+import {DragEvent, useCallback, useEffect, useRef, useState} from 'react'
 import toast from 'react-hot-toast'
 import API from "@/extentions/tiptap/lib/api";
 
-export const useUploader = ({ onUpload }: { onUpload: (url: string) => void }) => {
-  const [loading, setLoading] = useState(false)
+export const useUploader = ({onUpload}: { onUpload: (url: string) => void }) => {
+    const [loading, setLoading] = useState(false)
 
-  const uploadFile = useCallback(async () => {
-    setLoading(true)
-    try {
-      const url = await API.uploadImage()
+    const uploadFile = useCallback(async () => {
+        setLoading(true)
+        try {
+            //TODO 修改这里的地址即可
+            const url = await API.uploadImage()
 
-      onUpload(url)
-    } catch (errPayload: any) {
-      const error = errPayload?.response?.data?.error || 'Something went wrong'
-      toast.error(error)
-    }
-    setLoading(false)
-  }, [onUpload])
+            onUpload(url)
+        } catch (errPayload: any) {
+            const error = errPayload?.response?.data?.error || 'Something went wrong'
+            toast.error(error)
+        }
+        setLoading(false)
+    }, [onUpload])
 
-  return { loading, uploadFile }
+    return {loading, uploadFile}
 }
 
 export const useFileUpload = () => {
-  const fileInput = useRef<HTMLInputElement>(null)
+    const fileInput = useRef<HTMLInputElement>(null)
 
-  const handleUploadClick = useCallback(() => {
-    fileInput.current?.click()
-  }, [])
+    const handleUploadClick = useCallback(() => {
+        fileInput.current?.click()
+    }, [])
 
-  return { ref: fileInput, handleUploadClick }
+    return {ref: fileInput, handleUploadClick}
 }
 
-export const useDropZone = ({ uploader }: { uploader: (file: File) => void }) => {
-  const [isDragging, setIsDragging] = useState<boolean>(false)
-  const [draggedInside, setDraggedInside] = useState<boolean>(false)
+export const useDropZone = ({uploader}: { uploader: (file: File) => void }) => {
+    const [isDragging, setIsDragging] = useState<boolean>(false)
+    const [draggedInside, setDraggedInside] = useState<boolean>(false)
 
-  useEffect(() => {
-    const dragStartHandler = () => {
-      setIsDragging(true)
-    }
-
-    const dragEndHandler = () => {
-      setIsDragging(false)
-    }
-
-    document.body.addEventListener('dragstart', dragStartHandler)
-    document.body.addEventListener('dragend', dragEndHandler)
-
-    return () => {
-      document.body.removeEventListener('dragstart', dragStartHandler)
-      document.body.removeEventListener('dragend', dragEndHandler)
-    }
-  }, [])
-
-  const onDrop = useCallback(
-    (e: DragEvent<HTMLDivElement>) => {
-      setDraggedInside(false)
-      if (e.dataTransfer.files.length === 0) {
-        return
-      }
-
-      const fileList = e.dataTransfer.files
-
-      const files: File[] = []
-
-      for (let i = 0; i < fileList.length; i += 1) {
-        const item = fileList.item(i)
-        if (item) {
-          files.push(item)
+    useEffect(() => {
+        const dragStartHandler = () => {
+            setIsDragging(true)
         }
-      }
 
-      if (files.some(file => file.type.indexOf('image') === -1)) {
-        return
-      }
+        const dragEndHandler = () => {
+            setIsDragging(false)
+        }
 
-      e.preventDefault()
+        document.body.addEventListener('dragstart', dragStartHandler)
+        document.body.addEventListener('dragend', dragEndHandler)
 
-      const filteredFiles = files.filter(f => f.type.indexOf('image') !== -1)
+        return () => {
+            document.body.removeEventListener('dragstart', dragStartHandler)
+            document.body.removeEventListener('dragend', dragEndHandler)
+        }
+    }, [])
 
-      const file = filteredFiles.length > 0 ? filteredFiles[0] : undefined
+    const onDrop = useCallback(
+        (e: DragEvent<HTMLDivElement>) => {
+            setDraggedInside(false)
+            if (e.dataTransfer.files.length === 0) {
+                return
+            }
 
-      if (file) {
-        uploader(file)
-      }
-    },
-    [uploader],
-  )
+            const fileList = e.dataTransfer.files
 
-  const onDragEnter = () => {
-    setDraggedInside(true)
-  }
+            const files: File[] = []
 
-  const onDragLeave = () => {
-    setDraggedInside(false)
-  }
+            for (let i = 0; i < fileList.length; i += 1) {
+                const item = fileList.item(i)
+                if (item) {
+                    files.push(item)
+                }
+            }
 
-  return { isDragging, draggedInside, onDragEnter, onDragLeave, onDrop }
+            if (files.some(file => file.type.indexOf('image') === -1)) {
+                return
+            }
+
+            e.preventDefault()
+
+            const filteredFiles = files.filter(f => f.type.indexOf('image') !== -1)
+
+            const file = filteredFiles.length > 0 ? filteredFiles[0] : undefined
+
+            if (file) {
+                uploader(file)
+            }
+        },
+        [uploader],
+    )
+
+    const onDragEnter = () => {
+        setDraggedInside(true)
+    }
+
+    const onDragLeave = () => {
+        setDraggedInside(false)
+    }
+
+    return {isDragging, draggedInside, onDragEnter, onDragLeave, onDrop}
 }
