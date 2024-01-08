@@ -5,6 +5,7 @@ import "@/extentions/tiptap/styles/index.css"
 import {ContentItemMenu} from "@/extentions/tiptap/components/menus/ContentItemMenu";
 import {TextMenu} from "@/extentions/tiptap/components/menus/TextMenu";
 import {TableColumnMenu, TableRowMenu} from "@/extentions/tiptap/extentions/Table/menus";
+import ColumnsMenu from "@/extentions/tiptap/extentions/MultiColumn/menus/ColumnsMenu";
 
 export const BlockEditor = () => {
     const {editor, characterCount} = useBlockEditor()
@@ -18,6 +19,7 @@ export const BlockEditor = () => {
             <TextMenu editor={editor}/>
             <TableRowMenu editor={editor}/>
             <TableColumnMenu editor={editor}/>
+            <ColumnsMenu editor={editor}/>
         </>
     )
 }

@@ -2,6 +2,8 @@ import { BubbleMenu as BaseBubbleMenu } from '@tiptap/react'
 import React, { useCallback } from 'react'
 import { isRowGripSelected } from './utils'
 import {MenuProps, ShouldShowProps} from "@/extentions/tiptap/components/menus/types";
+import {ListboxWrapper} from "@/extentions/tiptap/extentions/SlashCommand/MenuList";
+import {Listbox, ListboxItem} from "@nextui-org/react";
 
 export const TableRowMenu = React.memo(({ editor, appendTo }: MenuProps): JSX.Element => {
   const shouldShow = useCallback(
@@ -44,9 +46,17 @@ export const TableRowMenu = React.memo(({ editor, appendTo }: MenuProps): JSX.El
       }}
       shouldShow={shouldShow}
     >
-        <div onClick={onAddRowBefore}>向后添加</div>
-        <div onClick={onAddRowAfter}>向前添加</div>
-        <div onClick={onDeleteRow}>删除</div>
+        <ListboxWrapper>
+            <Listbox
+                aria-label="Actions"
+            >
+                <ListboxItem key="new" onClick={onAddRowBefore}>New file</ListboxItem>
+                <ListboxItem key="copy" onClick={onAddRowAfter}>Copy link</ListboxItem>
+                <ListboxItem key="delete" className="text-danger" color="danger" onClick={onDeleteRow}>
+                    Delete file
+                </ListboxItem>
+            </Listbox>
+        </ListboxWrapper>
       {/*<Toolbar.Wrapper isVertical>*/}
       {/*  <PopoverMenu.Item*/}
       {/*    iconComponent={<Icon name="ArrowUpToLine" />}*/}

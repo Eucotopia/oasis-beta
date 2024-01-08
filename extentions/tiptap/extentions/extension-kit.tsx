@@ -4,7 +4,10 @@ import {
     Highlight,
     Subscript,
     Superscript,
+    Columns,
+    Column,
     TableOfContent,
+    Selection,
     SlashCommand,
     TrailingNode,
     FontSize,
@@ -31,10 +34,11 @@ import {
     Heading,
     Document,
     HorizontalRule,
-    Mathematics
+    Mathematics, ImageUpload, ImageBlock
 } from '.'
 import {CodeBlockLowlight} from '@tiptap/extension-code-block-lowlight'
 import {lowlight} from 'lowlight'
+import {TableOfContentNode} from "@/extentions/tiptap/extentions/TableOfContentNode";
 
 export const ExtensionKit = () => [
     Document,
@@ -42,6 +46,9 @@ export const ExtensionKit = () => [
     Table,
     TableCell,
     TableHeader,
+    Columns,
+    Column,
+    Selection,
     TableRow,
     StarterKit,
     Underline,
@@ -51,6 +58,7 @@ export const ExtensionKit = () => [
     }),
     Highlight.configure({multicolor: true}),
     TrailingNode,
+    TableOfContent,
     Subscript,
     Mathematics,
     FontFamily,
@@ -74,6 +82,10 @@ export const ExtensionKit = () => [
         levels: [1, 2, 3, 4, 5, 6],
     }),
     Superscript,
+    ImageUpload.configure({
+        // clientId: provider?.document?.clientID,
+    }),
+    ImageBlock,
     TableOfContent,
     SlashCommand,
     Typography,
@@ -83,6 +95,7 @@ export const ExtensionKit = () => [
         class: 'ProseMirror-dropcursor border-black',
     }),
     TextStyle,
+    TableOfContentNode,
     TaskItem.configure({
         nested: true,
     }),

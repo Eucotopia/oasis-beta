@@ -27,7 +27,10 @@ export {FileHandler} from '@tiptap-pro/extension-file-handler'
 export { Mathematics } from '@tiptap-pro/extension-mathematics'
 
 
-
+export { Columns, Column } from './MultiColumn'
+export { Selection } from './Selection'
+export { ImageUpload } from './ImageUpload'
+export { ImageBlock } from './ImageBlock'
 export {Document} from './Document'
 export {SlashCommand} from './SlashCommand'
 export { Table, TableCell, TableHeader, TableRow } from './Table'
