@@ -3,13 +3,13 @@ import React, {useCallback} from 'react'
 import {isColumnGripSelected} from './utils'
 import {MenuProps, ShouldShowProps} from "@/extentions/tiptap/components/menus/types";
 
-export const TableColumnMenu = React.memo(({editor, appendTo}: MenuProps): JSX.Element => {
+export const TableColumnMenu = React.memo(({editor}: MenuProps): JSX.Element => {
     const shouldShow = useCallback(
         ({view, state, from}: ShouldShowProps) => {
             if (!state) {
                 return false
             }
-            console.log("进来了")
+            console.log(isColumnGripSelected({editor, view, state, from: from || 0}))
             return isColumnGripSelected({editor, view, state, from: from || 0})
         },
         [editor],
@@ -33,9 +33,6 @@ export const TableColumnMenu = React.memo(({editor, appendTo}: MenuProps): JSX.E
             pluginKey="tableColumnMenu"
             updateDelay={0}
             tippyOptions={{
-                appendTo: () => {
-                    return appendTo?.current
-                },
                 offset: [0, 15],
                 popperOptions: {
                     modifiers: [{name: 'flip', enabled: false}],
@@ -43,7 +40,9 @@ export const TableColumnMenu = React.memo(({editor, appendTo}: MenuProps): JSX.E
             }}
             shouldShow={shouldShow}
         >
-            wqewqewe
+            <div onClick={onAddColumnAfter}>向后添加</div>
+            <div onClick={onAddColumnBefore}>向前添加</div>
+            <div onClick={onDeleteColumn}>删除</div>
             {/*<Toolbar.Wrapper isVertical>*/}
             {/*  <PopoverMenu.Item*/}
             {/*    iconComponent={<Icon name="ArrowLeftToLine" />}*/}

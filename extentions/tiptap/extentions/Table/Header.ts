@@ -68,7 +68,6 @@ export const TableHeader = TiptapTableHeader.extend({
                     grip.addEventListener('mousedown', event => {
                       event.preventDefault()
                       event.stopImmediatePropagation()
-
                       this.editor.view.dispatch(selectColumn(index)(this.editor.state.tr))
                     })
                     return grip

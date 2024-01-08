@@ -33,9 +33,9 @@ export const TableRowMenu = React.memo(({ editor, appendTo }: MenuProps): JSX.El
       pluginKey="tableRowMenu"
       updateDelay={0}
       tippyOptions={{
-        appendTo: () => {
-          return appendTo?.current
-        },
+        // appendTo: () => {
+        //   return appendTo?.current
+        // },
         placement: 'left',
         offset: [0, 15],
         popperOptions: {
@@ -44,8 +44,9 @@ export const TableRowMenu = React.memo(({ editor, appendTo }: MenuProps): JSX.El
       }}
       shouldShow={shouldShow}
     >
-
-        asdasdasd
+        <div onClick={onAddRowBefore}>向后添加</div>
+        <div onClick={onAddRowAfter}>向前添加</div>
+        <div onClick={onDeleteRow}>删除</div>
       {/*<Toolbar.Wrapper isVertical>*/}
       {/*  <PopoverMenu.Item*/}
       {/*    iconComponent={<Icon name="ArrowUpToLine" />}*/}
