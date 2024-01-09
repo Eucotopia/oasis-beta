@@ -2,7 +2,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {Command, MenuListProps} from './types'
 import {Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
-import {AddNoteIcon} from "@/components/icons";
 import {Kbd} from "@nextui-org/kbd";
 import IconComponentsMap from "@/extentions/tiptap/lib/svg/IconComponents";
 
@@ -19,8 +18,6 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     const [selectedGroupIndex, setSelectedGroupIndex] = useState(0)
     const [selectedCommandIndex, setSelectedCommandIndex] = useState(0)
 
-    // Anytime the groups change, i.e. the user types to narrow it down, we want to
-    // reset the current selection to the first menu item
     useEffect(() => {
         setSelectedGroupIndex(0)
         setSelectedCommandIndex(0)
@@ -125,7 +122,6 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     if (!props.items.length) {
         return null
     }
-    const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
     const scrollIntoView = (groupIndex: number, index: number) => {
         const items = props.items[groupIndex]
         const item = items?.commands[index]
@@ -139,15 +135,16 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
     }
     return (
         <>
-            <ListboxWrapper>
+            <div
+                className={"w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100"}
+                ref={scrollContainer}
+            >
                 <Listbox
                     classNames={{
                         base: "max-w-xs",
                         list: "max-h-[300px] overflow-scroll",
                     }}
-                    defaultSelectedKeys={["1"]}
                     label="Assigned to"
-                    selectionMode="single"
                     variant="flat"
                 >
                     {
@@ -159,13 +156,12 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
                                 {
                                     group.commands.map((command: Command, commandIndex: number) => (
                                         <ListboxItem
+                                            textValue={command.label}
                                             data-emoji-name={command.name}
                                             className={selectedGroupIndex === groupIndex && selectedCommandIndex === commandIndex ? "bg-default-100 dark:bg-default-800" : ""}
                                             key={command.label}
                                             onClick={createCommandClickHandler(groupIndex, commandIndex)}
-                                            // startContent={<AddNoteIcon className={iconClasses}/>}
                                             startContent={IconComponentsMap[command.iconClass]}
-                                            endContent={<Kbd keys={["command"]}>{command.kbd}</Kbd>}
                                         >
                                             {command.label}
                                         </ListboxItem>
@@ -175,7 +171,7 @@ export const MenuList = React.forwardRef((props: MenuListProps, ref) => {
                         ))
                     }
                 </Listbox>
-            </ListboxWrapper>
+            </div>
         </>
     )
 })

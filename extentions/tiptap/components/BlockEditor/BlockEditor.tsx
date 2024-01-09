@@ -6,20 +6,26 @@ import {ContentItemMenu} from "@/extentions/tiptap/components/menus/ContentItemM
 import {TextMenu} from "@/extentions/tiptap/components/menus/TextMenu";
 import {TableColumnMenu, TableRowMenu} from "@/extentions/tiptap/extentions/Table/menus";
 import ColumnsMenu from "@/extentions/tiptap/extentions/MultiColumn/menus/ColumnsMenu";
+import {useRef} from "react";
 
 export const BlockEditor = () => {
     const {editor, characterCount} = useBlockEditor()
+    const menuContainerRef = useRef(null)
     if (!editor) {
         return null
     }
     return (
         <>
-            <EditorContent editor={editor}/>
-            <ContentItemMenu editor={editor}/>
-            <TextMenu editor={editor}/>
-            <TableRowMenu editor={editor}/>
-            <TableColumnMenu editor={editor}/>
-            <ColumnsMenu editor={editor}/>
+            <div className="flex h-full" ref={menuContainerRef}>
+                <div className="relative flex flex-col flex-1 h-full overflow-hidden">
+                    <EditorContent editor={editor}/>
+                    <ContentItemMenu editor={editor}/>
+                    <TextMenu editor={editor}/>
+                    <TableRowMenu editor={editor} appendTo={menuContainerRef}/>
+                    <TableColumnMenu editor={editor} appendTo={menuContainerRef}/>
+                    <ColumnsMenu editor={editor} appendTo={menuContainerRef}/>
+                </div>
+            </div>
         </>
     )
 }
