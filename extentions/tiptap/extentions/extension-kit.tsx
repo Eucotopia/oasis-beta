@@ -25,6 +25,7 @@ import {
     CharacterCount,
     Color,
     Focus,
+    BlockquoteFigure,
     Dropcursor,
     Typography,
     TextAlign,
@@ -95,6 +96,7 @@ export const ExtensionKit = () => [
         class: 'ProseMirror-dropcursor border-black',
     }),
     TextStyle,
+    BlockquoteFigure,
     TableOfContentNode,
     TaskItem.configure({
         nested: true,

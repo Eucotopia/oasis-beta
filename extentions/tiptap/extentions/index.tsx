@@ -26,7 +26,7 @@ export {TaskList} from '@tiptap/extension-task-list'
 export {FileHandler} from '@tiptap-pro/extension-file-handler'
 export { Mathematics } from '@tiptap-pro/extension-mathematics'
 
-
+export { BlockquoteFigure } from './BlockquoteFigure'
 export { Columns, Column } from './MultiColumn'
 export { Selection } from './Selection'
 export { ImageUpload } from './ImageUpload'
