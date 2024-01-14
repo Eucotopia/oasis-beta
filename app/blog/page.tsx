@@ -1,9 +1,11 @@
+'use client'
 import React from "react";
 
-export default function BlogPage() {
+
+export default function App() {
     return (
-        <div>
-            adsf
-        </div>
+        <>
+            asdf
+        </>
     );
 }

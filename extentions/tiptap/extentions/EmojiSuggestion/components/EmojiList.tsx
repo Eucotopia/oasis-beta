@@ -98,6 +98,7 @@ const EmojiList = forwardRef((props: EmojiListProps, ref) => {
                         props.items.map((item: EmojiItem, index: number) => (
                             <ListboxItem
                                 key={item.name}
+                                textValue={item.name}
                                 className={index == selectedIndex ? "bg-default-100 dark:bg-default-800" : ""}
                                 onClick={createClickHandler(index)}
                                 data-emoji-name={item.name}
