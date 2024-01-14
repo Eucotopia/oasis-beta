@@ -2,6 +2,7 @@ import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Switch} from "@ne
 import {Button} from "@nextui-org/button";
 import {Input} from "@nextui-org/input";
 import React, {useCallback, useMemo, useState} from "react";
+import {Link} from "@nextui-org/link";
 
 export type EditLinkPopoverProps = {
     onSetLink: (link: string, openInNewTab?: boolean) => void
@@ -33,9 +34,9 @@ export const EditLinkPopover = ({onSetLink}: EditLinkPopoverProps) => {
         <>
             <Dropdown closeOnSelect={false}>
                 <DropdownTrigger>
-                    <Button>
+                    <Link size={"sm"}>
                         Link
-                    </Button>
+                    </Link>
                 </DropdownTrigger>
                 <DropdownMenu>
                     <DropdownItem isReadOnly>

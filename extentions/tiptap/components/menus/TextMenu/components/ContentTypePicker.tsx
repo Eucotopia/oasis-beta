@@ -4,6 +4,7 @@ import {Button} from "@nextui-org/button";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fas} from '@fortawesome/free-solid-svg-icons'
 import IconComponentsMap from "@/extentions/tiptap/lib/svg/IconComponents";
+import {Link} from "@nextui-org/link";
 
 library.add(fas)
 export type ContentTypePickerOption = {
@@ -57,12 +58,11 @@ export const ContentTypePicker = ({options}: ContentTypePickerProps) => {
         <>
             <Dropdown>
                 <DropdownTrigger>
-                    <Button
-                        variant={"light"}
+                    <Link
                         size={"sm"}
                     >
                         {IconComponentsMap[selectedValue]}
-                    </Button>
+                    </Link>
                 </DropdownTrigger>
                 <DropdownMenu
                     variant={'faded'}

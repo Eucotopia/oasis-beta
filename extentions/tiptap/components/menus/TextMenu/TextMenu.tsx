@@ -37,22 +37,22 @@ export const TextMenu = ({editor}: TextMenuProps) => {
             updateDelay={100}
         >
             <MemoContentTypePicker options={blockOptions}/>
-            <Link onClick={commands.onBold}>
-                {IconComponentsMap["Bold"]}
-            </Link>
+
             <MemoFontSizePicker onChange={commands.onSetFontSize} value={states.currentSize || ''}/>
             <MemoFontFamilyPicker onChange={commands.onSetFont} value={states.currentFont || ''}/>
             <Divider orientation={"vertical"}/>
-            <Button onClick={commands.onBold}>Bold</Button>
-            <Button onClick={commands.onItalic}>Italic</Button>
-            <Button onClick={commands.onUnderline}>Underline</Button>
-            <Button onClick={commands.onStrike}>Strike</Button>
-            <Button onClick={commands.onCode}>Code</Button>
-            <Button onClick={commands.onCodeBlock}>CodeBlock</Button>
+            <Link onClick={commands.onBold}>
+                {IconComponentsMap["Bold"]}
+            </Link>
+            <Link onClick={commands.onItalic}>Italic</Link>
+            <Link onClick={commands.onUnderline}>Underline</Link>
+            <Link onClick={commands.onStrike}>Strike</Link>
+            <Link onClick={commands.onCode}>Code</Link>
+            <Link onClick={commands.onCodeBlock}>CodeBlock</Link>
             <EditLinkPopover onSetLink={commands.onLink}/>
             <Dropdown>
                 <DropdownTrigger>
-                    <Button>Highlighter</Button>
+                    <Link>Highlighter</Link>
                 </DropdownTrigger>
                 <DropdownMenu>
                     <DropdownItem isReadOnly>
