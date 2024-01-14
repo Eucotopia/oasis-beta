@@ -3,6 +3,8 @@ import {Button} from "@nextui-org/button";
 import {Input} from "@nextui-org/input";
 import React, {useCallback, useMemo, useState} from "react";
 import {Link} from "@nextui-org/link";
+import IconComponents from "@/extentions/tiptap/lib/svg/IconComponents";
+import IconComponentsMap from "@/extentions/tiptap/lib/svg/IconComponents";
 
 export type EditLinkPopoverProps = {
     onSetLink: (link: string, openInNewTab?: boolean) => void
@@ -35,7 +37,7 @@ export const EditLinkPopover = ({onSetLink}: EditLinkPopoverProps) => {
             <Dropdown closeOnSelect={false}>
                 <DropdownTrigger>
                     <Link size={"sm"}>
-                        Link
+                        {IconComponentsMap["Link"]}
                     </Link>
                 </DropdownTrigger>
                 <DropdownMenu>

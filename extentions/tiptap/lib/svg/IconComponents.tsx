@@ -4,11 +4,11 @@ import {
     CodeBlock, Columns,
     H1,
     H2,
-    H3, Horizontal, Image_User,
+    H3, Highlighter, Horizontal, Image_User, Italic, Link,
     NumberList,
     Paragraph,
-    QuoteLeft, Table, TableOfContent,
-    TaskList
+    QuoteLeft, Strikethrough, Table, TableOfContent,
+    TaskList, Underline
 } from "@/extentions/tiptap/lib/svg/icon";
 import React from "react";
 
@@ -31,7 +31,12 @@ const IconComponentsMap: IconComponentsMapType = {
     "Columns": <Columns/>,
     "Horizontal": <Horizontal/>,
     "TableOfContent": <TableOfContent/>,
-    "Bold": <Bold/>
+    "Bold": <Bold/>,
+    "Italic": <Italic/>,
+    "Underline": <Underline/>,
+    "Strikethrough": <Strikethrough/>,
+    "Link": <Link/>,
+    "Highlighter": <Highlighter/>
 };
 
 export default IconComponentsMap;

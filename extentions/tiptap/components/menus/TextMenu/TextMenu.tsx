@@ -6,15 +6,12 @@ import {useTextmenuStates} from "@/extentions/tiptap/components/menus/TextMenu/h
 import {FontFamilyPicker} from "@/extentions/tiptap/components/menus/TextMenu/components/FontFamilyPicker";
 import {useTextmenuContentTypes} from "@/extentions/tiptap/components/menus/TextMenu/hooks/useTextmenuContentTypes";
 import {ContentTypePicker} from "@/extentions/tiptap/components/menus/TextMenu/components/ContentTypePicker";
-import {Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Tooltip} from "@nextui-org/react";
-import {Button} from "@nextui-org/button";
-import {Kbd} from "@nextui-org/kbd";
+import {Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
 import {EditLinkPopover} from "@/extentions/tiptap/components/menus/TextMenu/components/EditLinkPopover";
 import {ColorPicker} from "@/extentions/tiptap/components/menus/TextMenu/components/ColorPicker";
 import {Link} from "@nextui-org/link";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import IconComponentsMap from "@/extentions/tiptap/lib/svg/IconComponents";
-import {Bold} from "@/extentions/tiptap/lib/svg/icon";
+import "../MenuItem.css"
 
 export type TextMenuProps = {
     editor: Editor
@@ -32,27 +29,46 @@ export const TextMenu = ({editor}: TextMenuProps) => {
             tippyOptions={{popperOptions: {placement: 'top-start'}}}
             editor={editor}
             pluginKey="textMenu"
-            className="flex flex-row gap-2"
+            className="flex flex-row gap-2 items-center p-1"
             shouldShow={states.shouldShow}
             updateDelay={100}
         >
             <MemoContentTypePicker options={blockOptions}/>
-
             <MemoFontSizePicker onChange={commands.onSetFontSize} value={states.currentSize || ''}/>
             <MemoFontFamilyPicker onChange={commands.onSetFont} value={states.currentFont || ''}/>
             <Divider orientation={"vertical"}/>
-            <Link onClick={commands.onBold}>
+            <Link
+                onClick={commands.onBold}
+                className={`menu-item${states.isBold && states.isBold ? ' is-active' : ''}`}
+            >
                 {IconComponentsMap["Bold"]}
             </Link>
-            <Link onClick={commands.onItalic}>Italic</Link>
-            <Link onClick={commands.onUnderline}>Underline</Link>
-            <Link onClick={commands.onStrike}>Strike</Link>
-            <Link onClick={commands.onCode}>Code</Link>
-            <Link onClick={commands.onCodeBlock}>CodeBlock</Link>
+            <Link
+                onClick={commands.onItalic}
+                className={`menu-item${states.isItalic && states.isItalic ? ' is-active' : ''}`}
+            >
+                {IconComponentsMap["Italic"]}
+            </Link>
+            <Link
+                onClick={commands.onUnderline}
+                className={`menu-item${states.isUnderline && states.isUnderline ? ' is-active' : ''}`}
+            >{IconComponentsMap["Underline"]}</Link>
+            <Link
+                onClick={commands.onStrike}
+                className={`menu-item${states.isStrike && states.isStrike ? ' is-active' : ''}`}
+            >
+                {IconComponentsMap["Strikethrough"]}
+            </Link>
+            <Link
+                onClick={commands.onCodeBlock}
+                className={`menu-item${states.isCode && states.isCode ? ' is-active' : ''}`}
+            >
+                {IconComponentsMap["CodeBlock"]}
+            </Link>
             <EditLinkPopover onSetLink={commands.onLink}/>
             <Dropdown>
                 <DropdownTrigger>
-                    <Link>Highlighter</Link>
+                    <Link>{IconComponentsMap["Highlighter"]}</Link>
                 </DropdownTrigger>
                 <DropdownMenu>
                     <DropdownItem isReadOnly>
