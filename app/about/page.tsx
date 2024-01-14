@@ -4,7 +4,9 @@ import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEdito
 export default function BlogPage() {
     return (
         <>
-            <BlockEditor/>
+            <div>
+                <BlockEditor/>
+            </div>
         </>
     );
 }

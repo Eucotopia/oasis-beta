@@ -32,6 +32,7 @@ export const FontSizePicker = ({onChange, value}: FontSizePickerProps) => {
             <Dropdown>
                 <DropdownTrigger>
                     <Link
+                        color={"primary"}
                         size={"md"}
                         className="capitalize"
                     >

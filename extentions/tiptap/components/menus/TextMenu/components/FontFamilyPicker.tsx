@@ -53,7 +53,7 @@ export const FontFamilyPicker = ({onChange, value}: FontFamilyPickerProps) => {
             <Dropdown>
                 <DropdownTrigger>
                     <Link
-                        color={"primary"}
+                        color={"foreground"}
                         className="capitalize"
                     >
                         {selectedValue}

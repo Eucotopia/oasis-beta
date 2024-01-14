@@ -16,6 +16,7 @@ import "../MenuItem.css"
 export type TextMenuProps = {
     editor: Editor
 }
+
 const MemoFontSizePicker = memo(FontSizePicker)
 const MemoFontFamilyPicker = memo(FontFamilyPicker)
 const MemoContentTypePicker = memo(ContentTypePicker)
@@ -39,28 +40,33 @@ export const TextMenu = ({editor}: TextMenuProps) => {
             <Divider orientation={"vertical"}/>
             <Link
                 onClick={commands.onBold}
+                color={"foreground"}
                 className={`menu-item${states.isBold && states.isBold ? ' is-active' : ''}`}
             >
                 {IconComponentsMap["Bold"]}
             </Link>
             <Link
                 onClick={commands.onItalic}
+                color={"foreground"}
                 className={`menu-item${states.isItalic && states.isItalic ? ' is-active' : ''}`}
             >
                 {IconComponentsMap["Italic"]}
             </Link>
             <Link
                 onClick={commands.onUnderline}
+                color={"foreground"}
                 className={`menu-item${states.isUnderline && states.isUnderline ? ' is-active' : ''}`}
             >{IconComponentsMap["Underline"]}</Link>
             <Link
                 onClick={commands.onStrike}
+                color={"foreground"}
                 className={`menu-item${states.isStrike && states.isStrike ? ' is-active' : ''}`}
             >
                 {IconComponentsMap["Strikethrough"]}
             </Link>
             <Link
                 onClick={commands.onCodeBlock}
+                color={"foreground"}
                 className={`menu-item${states.isCode && states.isCode ? ' is-active' : ''}`}
             >
                 {IconComponentsMap["CodeBlock"]}
@@ -68,7 +74,11 @@ export const TextMenu = ({editor}: TextMenuProps) => {
             <EditLinkPopover onSetLink={commands.onLink}/>
             <Dropdown>
                 <DropdownTrigger>
-                    <Link>{IconComponentsMap["Highlighter"]}</Link>
+                    <Link
+                        color={"foreground"}
+                    >
+                        {IconComponentsMap["Highlighter"]}
+                    </Link>
                 </DropdownTrigger>
                 <DropdownMenu>
                     <DropdownItem isReadOnly>

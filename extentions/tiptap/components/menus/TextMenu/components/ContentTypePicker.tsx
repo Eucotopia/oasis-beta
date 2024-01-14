@@ -60,6 +60,7 @@ export const ContentTypePicker = ({options}: ContentTypePickerProps) => {
                 <DropdownTrigger>
                     <Link
                         size={"sm"}
+                        color={"foreground"}
                     >
                         {IconComponentsMap[selectedValue]}
                     </Link>

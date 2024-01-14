@@ -36,7 +36,10 @@ export const EditLinkPopover = ({onSetLink}: EditLinkPopoverProps) => {
         <>
             <Dropdown closeOnSelect={false}>
                 <DropdownTrigger>
-                    <Link size={"sm"}>
+                    <Link
+                        size={"sm"}
+                        color={"foreground"}
+                    >
                         {IconComponentsMap["Link"]}
                     </Link>
                 </DropdownTrigger>
