@@ -118,7 +118,7 @@ export const Login = () => {
                             <Card
                                 className="max-w-full w-[360px] h-[410px]"
                             >
-                                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start text-xl">Log in11</CardHeader>
+                                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start text-xl">Log in</CardHeader>
                                 <CardBody className="overflow-hidden">
                                     <Tabs
                                         fullWidth
