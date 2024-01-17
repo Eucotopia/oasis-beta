@@ -8,7 +8,6 @@ import {
     NavbarItem,
     NavbarMenuItem,
 } from "@nextui-org/navbar";
-import {Button} from "@nextui-org/button";
 import {Kbd} from "@nextui-org/kbd";
 import {Link} from "@nextui-org/link";
 import {Input} from "@nextui-org/input";
@@ -28,22 +27,10 @@ import {
 } from "@/components/icons";
 
 import {Logo} from "@/components/icons";
-import React, {useState} from "react";
-import {
-    Card, CardBody,
-    Checkbox,
-    Modal,
-    ModalBody,
-    ModalContent,
-    ModalFooter,
-    ModalHeader, Tab, Tabs,
-    useDisclosure
-} from "@nextui-org/react";
-import {MailIcon} from "@nextui-org/shared-icons";
+import React, {ChangeEvent, useMemo, useState} from "react";
+import {Login} from "@/features/auth/Login";
 
 export const Navbar = () => {
-    const [selected, setSelected] = useState("login");
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [active, setActive] = useState("Home")
     const searchInput = (
         <Input
@@ -67,88 +54,6 @@ export const Navbar = () => {
     );
     return (
         <>
-            <Modal
-                isOpen={isOpen}
-                onOpenChange={onOpenChange}
-                placement="top-center"
-                hideCloseButton
-            >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
-                            <Card className="max-w-full w-[450px] h-[400px]">
-                                <CardBody className="overflow-hidden">
-                                    <Tabs
-                                        fullWidth
-                                        size="md"
-                                        aria-label="Tabs form"
-                                        selectedKey={selected}
-                                        onSelectionChange={setSelected}
-                                    >
-                                        <Tab key="login" title="Login">
-                                            <form className="flex flex-col gap-4">
-                                                <Input isRequired label="Email" placeholder="Enter your email"
-                                                       type="email"/>
-                                                <Input
-                                                    isRequired
-                                                    label="Password"
-                                                    placeholder="Enter your password"
-                                                    type="password"
-                                                />
-                                                <p className="text-center text-small">
-                                                    Need to create an account?{" "}
-                                                    <Link size="sm" onPress={() => setSelected("sign-up")}>
-                                                        Sign up
-                                                    </Link>
-                                                </p>
-                                                <div className="flex gap-2 justify-end">
-                                                    <Button fullWidth color="primary">
-                                                        Login
-                                                    </Button>
-                                                </div>
-                                            </form>
-                                        </Tab>
-                                        <Tab key="sign-up" title="Sign up">
-                                            <form className="flex flex-col gap-4 h-[300px]">
-                                                <Input isRequired label="Name" placeholder="Enter your name"
-                                                       type="password"/>
-                                                <Input isRequired label="Email" placeholder="Enter your email"
-                                                       type="email"/>
-                                                <Input
-                                                    isRequired
-                                                    label="Password"
-                                                    placeholder="Enter your password"
-                                                    type="password"
-                                                />
-                                                <p className="text-center text-small">
-                                                    Already have an account?{" "}
-                                                    <Link size="sm" onPress={() => setSelected("login")}>
-                                                        Login
-                                                    </Link>
-                                                </p>
-                                                <div className="flex gap-2 justify-end">
-                                                    <Button fullWidth color="primary">
-                                                        Sign up
-                                                    </Button>
-                                                </div>
-                                            </form>
-                                        </Tab>
-                                    </Tabs>
-                                </CardBody>
-                            </Card>
-                            <ModalFooter>
-                                <Button color="primary" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button className="bg-[#6f4ef2] shadow-lg shadow-indigo-500/20" onPress={onClose}>
-                                    Action
-                                </Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
-            </Modal>
             <NextUINavbar maxWidth="xl" position="sticky">
                 <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
                     <NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -198,15 +103,7 @@ export const Navbar = () => {
                     </NavbarItem>
                     <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
                     <NavbarItem className="hidden md:flex">
-                        {/*<Button*/}
-                        {/*    as={Link}*/}
-                        {/*    className="text-medium font-normal text-default-600 bg-default-100"*/}
-                        {/*    // startContent={<HeartFilledIcon className="text-danger"/>}*/}
-                        {/*    variant={"solid"}*/}
-                        {/*>*/}
-                        {/*    Login*/}
-                        {/*</Button>*/}
-                        <Button onPress={onOpen} color="primary">Login</Button>
+                        <Login/>
                     </NavbarItem>
                 </NavbarContent>
 

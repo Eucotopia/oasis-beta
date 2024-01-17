@@ -6,14 +6,14 @@ import {Button} from "@nextui-org/button";
 import {setCredentials} from "@/features/auth/authSlice";
 import {removeCredentials} from "@/features/auth/authSlice";
 import {
-    Avatar,
+    Avatar, Card, CardBody, CardFooter, CardHeader,
     Checkbox, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger,
     Link,
     Modal,
     ModalBody,
     ModalContent,
     ModalFooter,
-    ModalHeader,
+    ModalHeader, Tab, Tabs,
     useDisclosure
 } from "@nextui-org/react";
 import {EyeFilledIcon, EyeSlashFilledIcon, MailIcon} from "@nextui-org/shared-icons";
@@ -27,6 +27,7 @@ export const Login = () => {
     const {currentUser} = useAuth()
 
     const dispatch = useAppDispatch()
+    const [selected, setSelected] = useState("login");
 
     // 定义用户名和密码
     const [formState, setFormState] = useState<LoginRequest>({
@@ -107,79 +108,146 @@ export const Login = () => {
                 <Button onPress={onOpen} variant={"flat"}>Login</Button>
             )}
             <Modal
-                isDismissable={false}
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 placement="top-center"
+                hideCloseButton
+                isDismissable={false}
+                className={"w-[360px] h-auto"}
             >
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
-                            <ModalBody>
-                                <Input
-                                    value={formState.username}
-                                    onChange={handleChange}
-                                    name="username"
-                                    isInvalid={isInvalid}
-                                    color={isInvalid ? "danger" : "success"}
-                                    errorMessage={isInvalid && "Please enter a valid email"}
-                                    autoFocus
-                                    endContent={
-                                        <MailIcon
-                                            className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
-                                    }
-                                    label="Email"
-                                    placeholder="Enter your email"
-                                    variant="bordered"
-                                />
-                                <Input
-                                    endContent={
-                                        <button className="focus:outline-none" type="button"
-                                                onClick={() => setIsVisible(!isVisible)}>
-                                            {isVisible ? (
-                                                <EyeSlashFilledIcon
-                                                    className="text-2xl text-default-400 pointer-events-none"/>
-                                            ) : (
-                                                <EyeFilledIcon
-                                                    className="text-2xl text-default-400 pointer-events-none"/>
-                                            )}
-                                        </button>
-                                    }
-                                    label="Password"
-                                    placeholder="Enter your password"
-                                    name={"password"}
-                                    value={formState.password}
-                                    onChange={handleChange}
-                                    type={isVisible ? "text" : "password"}
-                                    variant="bordered"
-                                />
-                                <div className="flex py-2 px-1 justify-between">
-                                    <Checkbox
-                                        classNames={{
-                                            label: "text-small",
-                                        }}
+                            <Card
+                                className="max-w-full w-[360px] h-[410px]"
+                            >
+                                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start text-xl">Log in</CardHeader>
+                                <CardBody className="overflow-hidden">
+                                    <Tabs
+                                        fullWidth
+                                        size="md"
+                                        aria-label="Tabs form"
+                                        selectedKey={selected}
+                                        onSelectionChange={setSelected}
                                     >
-                                        Remember me
-                                    </Checkbox>
-                                    <Link color="primary" href="#" size="sm">
-                                        Forgot password?
-                                    </Link>
-                                </div>
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="danger" variant="flat" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button
-                                    color="primary"
-                                    onPress={onClose}
-                                    onClick={Login}
-                                    isLoading={isLoading}
-                                >
-                                    Sign in
-                                </Button>
-                            </ModalFooter>
+                                        <Tab key="login" title="Login">
+                                            <form className="flex flex-col gap-4">
+                                                <Input
+                                                    value={formState.username}
+                                                    onChange={handleChange}
+                                                    name="username"
+                                                    isInvalid={isInvalid}
+                                                    color={isInvalid ? "danger" : "success"}
+                                                    errorMessage={isInvalid && "Please enter a valid email"}
+                                                    autoFocus
+                                                    endContent={
+                                                        <MailIcon
+                                                            className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
+                                                    }
+                                                    label="Email"
+                                                    placeholder="Enter your email"
+                                                    variant="bordered"
+                                                />
+                                                <Input
+                                                    endContent={
+                                                        <button className="focus:outline-none" type="button"
+                                                                onClick={() => setIsVisible(!isVisible)}>
+                                                            {isVisible ? (
+                                                                <EyeSlashFilledIcon
+                                                                    className="text-2xl text-default-400 pointer-events-none"/>
+                                                            ) : (
+                                                                <EyeFilledIcon
+                                                                    className="text-2xl text-default-400 pointer-events-none"/>
+                                                            )}
+                                                        </button>
+                                                    }
+                                                    label="Password"
+                                                    placeholder="Enter your password"
+                                                    name={"password"}
+                                                    value={formState.password}
+                                                    onChange={handleChange}
+                                                    type={isVisible ? "text" : "password"}
+                                                    variant="bordered"
+                                                />
+                                                <Button fullWidth color="primary">
+                                                    Wechat Login
+                                                </Button>
+                                                <p className="text-center text-small">
+                                                    Need to create an account?{" "}
+                                                    <Link size="sm" onPress={() => setSelected("sign-up")}>
+                                                        Sign up
+                                                    </Link>
+                                                </p>
+                                            </form>
+                                        </Tab>
+                                        <Tab key="sign-up" title="Sign up">
+                                            <form className="flex flex-col gap-4 h-[300px]">
+                                                <Input isRequired label="Name" placeholder="Enter your name"
+                                                       type="password"/>
+                                                <Input
+                                                    value={formState.username}
+                                                    onChange={handleChange}
+                                                    name="username"
+                                                    isInvalid={isInvalid}
+                                                    color={isInvalid ? "danger" : "success"}
+                                                    errorMessage={isInvalid && "Please enter a valid email"}
+                                                    autoFocus
+                                                    endContent={
+                                                        <MailIcon
+                                                            className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
+                                                    }
+                                                    label="Email"
+                                                    placeholder="Enter your email"
+                                                    variant="bordered"
+                                                />
+                                                <Input
+                                                    endContent={
+                                                        <button className="focus:outline-none" type="button"
+                                                                onClick={() => setIsVisible(!isVisible)}>
+                                                            {isVisible ? (
+                                                                <EyeSlashFilledIcon
+                                                                    className="text-2xl text-default-400 pointer-events-none"/>
+                                                            ) : (
+                                                                <EyeFilledIcon
+                                                                    className="text-2xl text-default-400 pointer-events-none"/>
+                                                            )}
+                                                        </button>
+                                                    }
+                                                    label="Password"
+                                                    placeholder="Enter your password"
+                                                    name={"password"}
+                                                    value={formState.password}
+                                                    onChange={handleChange}
+                                                    type={isVisible ? "text" : "password"}
+                                                    variant="bordered"
+                                                />
+                                                <p className="text-center text-small">
+                                                    Already have an account?{" "}
+                                                    <Link size="sm" onPress={() => setSelected("login")}>
+                                                        Login
+                                                    </Link>
+                                                </p>
+                                            </form>
+                                        </Tab>
+                                    </Tabs>
+                                </CardBody>
+                                <CardFooter className={"flex flex-row justify-between gap-4"}>
+                                    <Button color="primary" variant="light" onPress={onClose} fullWidth>
+                                        Close
+                                    </Button>
+                                    {
+                                        selected === "login" ? (
+                                            <Button onPress={onClose} fullWidth color="primary">
+                                                Login
+                                            </Button>
+                                        ) : (
+                                            <Button onPress={onClose} fullWidth color="primary">
+                                                Sign up
+                                            </Button>
+                                        )
+                                    }
+                                </CardFooter>
+                            </Card>
                         </>
                     )}
                 </ModalContent>
