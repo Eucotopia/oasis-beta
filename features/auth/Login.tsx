@@ -6,14 +6,11 @@ import {Button} from "@nextui-org/button";
 import {setCredentials} from "@/features/auth/authSlice";
 import {removeCredentials} from "@/features/auth/authSlice";
 import {
-    Avatar, Card, CardBody, CardFooter, CardHeader,
-    Checkbox, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger,
+    Avatar, Card, CardBody, CardFooter, CardHeader, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger,
     Link,
     Modal,
-    ModalBody,
     ModalContent,
-    ModalFooter,
-    ModalHeader, Tab, Tabs,
+    Tab, Tabs,
     useDisclosure
 } from "@nextui-org/react";
 import {EyeFilledIcon, EyeSlashFilledIcon, MailIcon} from "@nextui-org/shared-icons";
@@ -113,7 +110,7 @@ export const Login = () => {
                 placement="top-center"
                 hideCloseButton
                 isDismissable={false}
-                className={"w-[360px] h-auto"}
+                className={"w-[360px]"}
             >
                 <ModalContent>
                     {(onClose) => (
@@ -128,6 +125,7 @@ export const Login = () => {
                                         size="md"
                                         aria-label="Tabs form"
                                         selectedKey={selected}
+                                        // @ts-ignore
                                         onSelectionChange={setSelected}
                                     >
                                         <Tab key="login" title="Login">
@@ -182,8 +180,12 @@ export const Login = () => {
                                         </Tab>
                                         <Tab key="sign-up" title="Sign up">
                                             <form className="flex flex-col gap-4 h-[300px]">
-                                                <Input isRequired label="Name" placeholder="Enter your name"
-                                                       type="password"/>
+                                                <Input
+                                                    variant="bordered"
+                                                    isRequired
+                                                    label="Nickname"
+                                                    placeholder="Enter your nickname"
+                                                    type="text"/>
                                                 <Input
                                                     value={formState.username}
                                                     onChange={handleChange}
