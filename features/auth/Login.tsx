@@ -1,5 +1,5 @@
 "use client"
-import {LoginRequest} from "@/types";
+import {LoginRequest, UserLoginType, UserRegisterType} from "@/types";
 import {Input} from "@nextui-org/input";
 import React, {ChangeEvent, useEffect, useMemo, useState} from "react";
 import {Button} from "@nextui-org/button";
@@ -27,10 +27,20 @@ export const Login = () => {
     const [selected, setSelected] = useState("login");
 
     // 定义用户名和密码
-    const [formState, setFormState] = useState<LoginRequest>({
+    const [loginState, setLoginState] = useState<UserLoginType>({
         username: '',
         password: '',
     })
+
+    const [registerState, setRegisterState] = useState<UserRegisterType>(
+        {
+            username: '',
+            password: '',
+            nickname: '',
+            image: ''
+        }
+    );
+
 
     const [login, {isLoading}] = useLoginMutation()
 
@@ -39,11 +49,11 @@ export const Login = () => {
     const validateEmail = (value: string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
     // 校验用户名格式
     const isInvalid = useMemo(() => {
-        if (formState.username === "") return false;
-        return !validateEmail(formState.username);
-    }, [formState.username]);
+        if (loginState.username === "") return false;
+        return !validateEmail(loginState.username);
+    }, [loginState.username]);
 
-    const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setFormState((prev) => ({
+    const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setLoginState((prev) => ({
         ...prev,
         [name]: value
     }))
@@ -51,12 +61,12 @@ export const Login = () => {
     // 用户登陆
     const Login = async () => {
         try {
-            const user = await login(formState).unwrap()
+            const user = await login(loginState).unwrap()
             dispatch(setCredentials(user))
         } catch (err) {
             console.error(err)
         } finally {
-            setFormState({
+            setLoginState({
                 username: '',
                 password: '',
             })
@@ -132,7 +142,7 @@ export const Login = () => {
                                         <Tab key="login" title="Login">
                                             <form className="flex flex-col gap-4">
                                                 <Input
-                                                    value={formState.username}
+                                                    value={loginState.username}
                                                     onChange={handleChange}
                                                     name="username"
                                                     isInvalid={isInvalid}
@@ -163,13 +173,13 @@ export const Login = () => {
                                                     label="Password"
                                                     placeholder="Enter your password"
                                                     name={"password"}
-                                                    value={formState.password}
+                                                    value={loginState.password}
                                                     onChange={handleChange}
                                                     type={isVisible ? "text" : "password"}
                                                     variant="bordered"
                                                 />
-                                                <Button fullWidth color="primary">
-                                                    Wechat Login
+                                                <Button fullWidth color="primary" isDisabled>
+                                                    Wechat Login(待开发)
                                                 </Button>
                                                 <p className="text-center text-small">
                                                     Need to create an account?{" "}
@@ -184,11 +194,13 @@ export const Login = () => {
                                                 <Input
                                                     variant="bordered"
                                                     isRequired
+                                                    name={"nickname"}
+                                                    value={registerState.nickname}
                                                     label="Nickname"
                                                     placeholder="Enter your nickname"
                                                     type="text"/>
                                                 <Input
-                                                    value={formState.username}
+                                                    value={registerState.username}
                                                     onChange={handleChange}
                                                     name="username"
                                                     isInvalid={isInvalid}
@@ -219,11 +231,12 @@ export const Login = () => {
                                                     label="Password"
                                                     placeholder="Enter your password"
                                                     name={"password"}
-                                                    value={formState.password}
+                                                    value={registerState.password}
                                                     onChange={handleChange}
                                                     type={isVisible ? "text" : "password"}
                                                     variant="bordered"
                                                 />
+                                                <Input type={"file"}/>
                                                 <p className="text-center text-small">
                                                     Already have an account?{" "}
                                                     <Link size="sm" onPress={() => setSelected("login")}>

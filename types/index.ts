@@ -1,4 +1,5 @@
 import {SVGProps} from "react";
+import exp from "node:constants";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
     size?: number;
@@ -14,6 +15,17 @@ export interface User {
 export interface LoginRequest {
     username: string
     password: string
+}
+
+export type UserLoginType = {
+    username: string,
+    password: string
+}
+export type UserRegisterType = {
+    nickname: string,
+    username: string,
+    password: string,
+    image: string
 }
 
 // 博客类型
