@@ -25,7 +25,6 @@ export type UserRegisterType = {
     nickname: string,
     username: string,
     password: string,
-    image: string
 }
 
 // 博客类型

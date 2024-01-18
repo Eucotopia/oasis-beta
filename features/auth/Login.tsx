@@ -17,7 +17,7 @@ import {EyeFilledIcon, EyeSlashFilledIcon, MailIcon} from "@nextui-org/shared-ic
 import {useAuth} from "@/hooks/useAuth";
 import {NavbarContent} from "@nextui-org/navbar";
 import {useAppDispatch} from "@/hooks/store";
-import {useLoginMutation} from "@/features/api/authApi";
+import {useLoginMutation, useRegisterMutation} from "@/features/api/authApi";
 
 export const Login = () => {
 
@@ -26,7 +26,6 @@ export const Login = () => {
     const dispatch = useAppDispatch()
     const [selected, setSelected] = useState("login");
 
-    // 定义用户名和密码
     const [loginState, setLoginState] = useState<UserLoginType>({
         username: '',
         password: '',
@@ -37,12 +36,13 @@ export const Login = () => {
             username: '',
             password: '',
             nickname: '',
-            image: ''
         }
     );
 
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     const [login, {isLoading}] = useLoginMutation()
+    const [register] = useRegisterMutation();
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -53,7 +53,12 @@ export const Login = () => {
         return !validateEmail(loginState.username);
     }, [loginState.username]);
 
-    const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setLoginState((prev) => ({
+    const handleLoginChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setLoginState((prev) => ({
+        ...prev,
+        [name]: value
+    }))
+
+    const handleRegisterChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setRegisterState((prev) => ({
         ...prev,
         [name]: value
     }))
@@ -63,7 +68,7 @@ export const Login = () => {
         try {
             const user = await login(loginState).unwrap()
             dispatch(setCredentials(user))
-        } catch (err) {
+        } catch (err: any) {
             console.error(err)
         } finally {
             setLoginState({
@@ -77,7 +82,11 @@ export const Login = () => {
     const Logout = () => {
         dispatch(removeCredentials())
     }
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+    const Register = async () => {
+        const user = await register(registerState).unwrap()
+        console.log(user.code)
+    }
     return (
         <>
             {currentUser ? (
@@ -143,7 +152,7 @@ export const Login = () => {
                                             <form className="flex flex-col gap-4">
                                                 <Input
                                                     value={loginState.username}
-                                                    onChange={handleChange}
+                                                    onChange={handleLoginChange}
                                                     name="username"
                                                     isInvalid={isInvalid}
                                                     color={isInvalid ? "danger" : "success"}
@@ -174,7 +183,7 @@ export const Login = () => {
                                                     placeholder="Enter your password"
                                                     name={"password"}
                                                     value={loginState.password}
-                                                    onChange={handleChange}
+                                                    onChange={handleLoginChange}
                                                     type={isVisible ? "text" : "password"}
                                                     variant="bordered"
                                                 />
@@ -196,12 +205,13 @@ export const Login = () => {
                                                     isRequired
                                                     name={"nickname"}
                                                     value={registerState.nickname}
+                                                    onChange={handleRegisterChange}
                                                     label="Nickname"
                                                     placeholder="Enter your nickname"
                                                     type="text"/>
                                                 <Input
                                                     value={registerState.username}
-                                                    onChange={handleChange}
+                                                    onChange={handleRegisterChange}
                                                     name="username"
                                                     isInvalid={isInvalid}
                                                     color={isInvalid ? "danger" : "success"}
@@ -232,11 +242,10 @@ export const Login = () => {
                                                     placeholder="Enter your password"
                                                     name={"password"}
                                                     value={registerState.password}
-                                                    onChange={handleChange}
+                                                    onChange={handleRegisterChange}
                                                     type={isVisible ? "text" : "password"}
                                                     variant="bordered"
                                                 />
-                                                <Input type={"file"}/>
                                                 <p className="text-center text-small">
                                                     Already have an account?{" "}
                                                     <Link size="sm" onPress={() => setSelected("login")}>
@@ -253,11 +262,11 @@ export const Login = () => {
                                     </Button>
                                     {
                                         selected === "login" ? (
-                                            <Button onPress={onClose} fullWidth color="primary">
+                                            <Button onPress={onClose} fullWidth color="primary" onClick={Login}>
                                                 Login
                                             </Button>
                                         ) : (
-                                            <Button onPress={onClose} fullWidth color="primary">
+                                            <Button onPress={onClose} fullWidth color="primary" onClick={Register}>
                                                 Sign up
                                             </Button>
                                         )
