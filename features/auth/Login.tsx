@@ -109,16 +109,17 @@ export const Login = () => {
                 onOpenChange={onOpenChange}
                 placement="top-center"
                 hideCloseButton
+                size={"sm"}
                 isDismissable={false}
-                className={"w-[360px]"}
             >
                 <ModalContent>
                     {(onClose) => (
                         <>
                             <Card
-                                className="max-w-full w-[360px] h-[410px]"
+                                className="max-w-full w-[340px] h-[400px]"
                             >
-                                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start text-xl">Log in</CardHeader>
+                                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start text-xl">Log
+                                    in</CardHeader>
                                 <CardBody className="overflow-hidden">
                                     <Tabs
                                         fullWidth
