@@ -54,3 +54,4 @@ export interface ResultResponse<T> {
     data: T
     message: string
 }
+

@@ -1,26 +1,48 @@
-// app/components/ThemeSwitcher.tsx
-"use client";
-
+import React from "react";
+import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button} from "@nextui-org/react";
 import {useTheme} from "next-themes";
-import { useEffect, useState } from "react";
-import {Button} from "@nextui-org/button";
+import {useAppDispatch} from "@/hooks/store";
+import {setCurrentTheme} from "@/features/theme/themeSlice";
+import {useCurrentTheme} from "@/hooks/useCurrentTheme";
 
-export function ThemeSwitcher() {
-    const [mounted, setMounted] = useState(false)
-    const { theme, setTheme } = useTheme()
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
-
-    if(!mounted) return null
+export default function ThemeSwitcher() {
+    const dispatch = useAppDispatch()
+    const currentTheme = useCurrentTheme();
+    const [selectedKeys, setSelectedKeys] = React.useState(new Set([currentTheme.currentTheme]));
+    const selectedValue = React.useMemo(
+        () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
+        [selectedKeys]
+    );
+    const {theme, setTheme} = useTheme()
 
     return (
-        <div>
-            The current theme is: {theme}
-            <Button onClick={() => setTheme('light')} color={"primary"}>Light Mode</Button>
-            <Button onClick={() => setTheme('dark')} color={"primary"}>Dark Mode</Button>
-            <Button onClick={()=> setTheme('purple-dark')} color={"primary"}>purple-dark</Button>
-        </div>
-    )
-};
+        <>
+            <Dropdown>
+                <DropdownTrigger>
+                    <Button
+                        variant="bordered"
+                        className="capitalize"
+                    >
+                        {selectedValue}
+                    </Button>
+                </DropdownTrigger>
+                <DropdownMenu
+                    aria-label="Single selection example"
+                    variant="flat"
+                    disallowEmptySelection
+                    onAction={(key) => {
+                        dispatch(setCurrentTheme(key.toLocaleString()))
+                        setTheme(key.toLocaleString())
+                    }}
+                    selectionMode="single"
+                    selectedKeys={selectedKeys}
+                    onSelectionChange={setSelectedKeys as any}
+                >
+                    <DropdownItem key="light">Light</DropdownItem>
+                    <DropdownItem key="dark">Dark</DropdownItem>
+                    <DropdownItem key="purple-dark">purple-dark</DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
+        </>
+    );
+}

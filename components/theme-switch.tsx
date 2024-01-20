@@ -6,8 +6,12 @@ import {SwitchProps, useSwitch} from "@nextui-org/switch";
 import {useTheme} from "next-themes";
 import {useIsSSR} from "@react-aria/ssr";
 import clsx from "clsx";
+import {setCurrentTheme} from "@/features/theme/themeSlice";
+
 
 import {SunFilledIcon, MoonFilledIcon} from "@/components/icons";
+import {useAppDispatch} from "@/hooks/store";
+import {themeApi} from "@/features/api/themeApi";
 
 export interface ThemeSwitchProps {
     className?: string;
@@ -20,9 +24,11 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
                                                   }) => {
     const {theme, setTheme} = useTheme();
     const isSSR = useIsSSR();
+    const dispatch = useAppDispatch()
 
     const onChange = () => {
         theme === "light" ? setTheme("dark") : setTheme("light");
+        dispatch(setCurrentTheme(theme === "light" ? "dark" : "light"))
     };
 
     const {

@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import {ThemeSwitcher} from "@/components/theme/ThemeSwitcher";
+import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
 
 
 export default function App() {
