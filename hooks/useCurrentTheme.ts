@@ -4,6 +4,5 @@ import {selectCurrentTheme, setCurrentTheme} from '@/features/theme/themeSlice'
 
 export const useCurrentTheme = () => {
     const currentTheme = useSelector(selectCurrentTheme)
-
     return useMemo(() => ({currentTheme}), [currentTheme])
 }

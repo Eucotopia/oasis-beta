@@ -11,7 +11,6 @@ import {setCurrentTheme} from "@/features/theme/themeSlice";
 
 import {SunFilledIcon, MoonFilledIcon} from "@/components/icons";
 import {useAppDispatch} from "@/hooks/store";
-import {themeApi} from "@/features/api/themeApi";
 
 export interface ThemeSwitchProps {
     className?: string;
