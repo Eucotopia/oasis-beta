@@ -13,7 +13,6 @@ import {Link} from "@nextui-org/link";
 import {Input} from "@nextui-org/input";
 
 import {link as linkStyles} from "@nextui-org/theme";
-
 import {siteConfig} from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -27,11 +26,12 @@ import {
 } from "@/components/icons";
 
 import {Logo} from "@/components/icons";
-import React, {ChangeEvent, useMemo, useState} from "react";
+import React, { useState} from "react";
 import {Login} from "@/features/auth/Login";
+import {usePathname} from "next/navigation";
 
 export const Navbar = () => {
-    const [active, setActive] = useState("Home")
+    const [active, setActive] = useState(usePathname())
     const searchInput = (
         <Input
             aria-label="Search"
@@ -60,14 +60,14 @@ export const Navbar = () => {
                         <NextLink
                             className="flex justify-start items-center gap-1"
                             href="/"
-                            onClick={() => setActive("Home")}>
+                            onClick={() => setActive("/")}>
                             <Logo/>
                             <p className="font-bold text-inherit">ACME</p>
                         </NextLink>
                     </NavbarBrand>
                     <ul className="hidden lg:flex gap-4 justify-start ml-2">
                         {siteConfig.navItems.map((item) => (
-                            <NavbarItem key={item.href} isActive={active === item.label}>
+                            <NavbarItem key={item.href} isActive={active === item.href}>
                                 <Link
                                     isBlock
                                     className={clsx(
@@ -76,7 +76,7 @@ export const Navbar = () => {
                                     )}
                                     color="foreground"
                                     href={item.href}
-                                    onClick={() => setActive(item.label)}
+                                    onClick={() => setActive(item.href)}
                                 >
                                     {item.label}
                                 </Link>

@@ -8,8 +8,6 @@ import {ThemeProviderProps} from "next-themes/dist/types";
 import {Provider} from "react-redux";
 import {persistor, store} from "@/app/store";
 import {PersistGate} from 'redux-persist/integration/react';
-import {Metadata} from "next";
-import {siteConfig} from "@/config/site";
 
 export interface ProvidersProps {
     children: React.ReactNode;

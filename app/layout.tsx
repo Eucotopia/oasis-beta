@@ -28,13 +28,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children}: { children: React.ReactNode }) {
-    // let themes
-    // const {data} = useGetThemesQuery()
-    // if (data === undefined) {
-    //     themes = ['light', 'dark', 'purple-dark']
-    // } else {
-    //     themes = data.data
-    // }
     return (
         <html lang="en" suppressHydrationWarning>
         <head/>
@@ -55,14 +48,15 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                     {children}
                 </main>
                 <footer className="w-full flex items-center justify-center py-3">
+                    <p className={"text-sm text-default-500"}>©&nbsp;</p>
+                    <p className={"text-sm text-default-500"}>{new Date().getFullYear()}&nbsp;</p>
+                    <p className={"text-sm text-default-500"}>Design by &nbsp;</p>
                     <Link
                         isExternal
-                        className="flex items-center gap-1 text-current"
-                        href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                        title="nextui.org homepage"
-                    >
-                        <span className="text-default-600">Powered by</span>
-                        <p className="text-primary">NextUI</p>
+                        href={"https://nextui-docs-v2.vercel.app?utm_source=next-app-template"}
+                        title={"Eucotopia homepage"}
+                        className={"text-sm font-bold bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text"}
+                    >Eucotopia
                     </Link>
                 </footer>
             </div>

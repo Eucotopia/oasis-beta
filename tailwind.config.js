@@ -9,14 +9,17 @@ module.exports = {
         './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+            }
+        },
     },
     darkMode: "class",
     plugins: [
         nextui({
             themes: {
                 "purple-dark": {
-                    extend: "dark", // <- inherit default values from dark theme
+                    extend: "dark",
                     colors: {
                         background: "#0D001A",
                         foreground: "#ffffff",
@@ -34,7 +37,7 @@ module.exports = {
                             DEFAULT: "#DD62ED",
                             foreground: "#ffffff",
                         },
-                        success:{
+                        success: {
                             50: "#FFD8D6",
                             100: "#FFD8D6",
                             200: "#FFAEB2",
@@ -48,7 +51,7 @@ module.exports = {
                             DEFAULT: "#FF357C",
                             foreground: "#ffffff",
                         },
-                        danger:{
+                        danger: {
                             50: "#FFD8D6",
                             100: "#FFD8D6",
                             200: "#FFAEB2",
@@ -62,6 +65,7 @@ module.exports = {
                             DEFAULT: "#FF357C",
                             foreground: "#ffffff",
                         },
+
                         focus: "#F182F6",
                     },
                     layout: {

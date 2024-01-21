@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
     theme: themeReducer,
     [postApi.reducerPath]: postApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
-    [themeApi.reducerPath]: themeApi.reducer
+    // [themeApi.reducerPath]: themeApi.reducer
 })
 // 创建持久化的配置persist的信息
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -33,7 +33,7 @@ export const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
-    }).concat(postApi.middleware).concat(authApi.middleware).concat(themeApi.middleware).concat(thunk)
+    }).concat(authApi.middleware).concat(thunk).concat(postApi.middleware)
 })
 
 export const persistor = persistStore(store)
