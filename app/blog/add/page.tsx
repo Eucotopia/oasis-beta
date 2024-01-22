@@ -3,47 +3,46 @@ import * as React from "react";
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
 import {title} from "@/components/primitives";
 import {Input} from "@nextui-org/input";
-import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
+import {Autocomplete, AutocompleteItem, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
 import {Button} from "@nextui-org/button";
+import {useGetCategoriesQuery} from "@/features/api/categoryApi";
+import {useState} from "react";
 
 export default function App() {
-    const [selectedKeys, setSelectedKeys] = React.useState(new Set(["text"]));
+    const [value, setValue] = React.useState('');
+    const [title, setTitle] = useState("")
+    const onInputChange = (value: string) => {
+        setValue(value)
+    };
+    const {data: categories} = useGetCategoriesQuery()
 
-    const selectedValue = React.useMemo(
-        () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
-        [selectedKeys]
-    );
-
+    if (categories === undefined) {
+        return
+    }
     return (
         <>
-            <div className="flex flex-col items-center justify-center w-[896px]">
+            <div className="flex flex-col items-center justify-center">
                 <p className={"font-bold text-xl bg-gradient-to-r from-primary-500 to-warning-500 text-transparent bg-clip-text"}>Create
                     a post</p>
-                <div className={"bg-amber-700"}>
-                    <Dropdown>
-                        <DropdownTrigger>
-                            <Button
-                                variant="bordered"
-                                className="capitalize"
-                            >
-                                {selectedValue}
-                            </Button>
-                        </DropdownTrigger>
-                        <DropdownMenu
-                            aria-label="Single selection example"
-                            variant="flat"
-                            disallowEmptySelection
-                            selectionMode="single"
-                            selectedKeys={selectedKeys}
-                            onSelectionChange={setSelectedKeys as any}
+                <div className={"flex flex-col border-8 w-[860px] h-full"}>
+                    <div className={"flex flex-row "}>
+                        <Input type="text" variant={"bordered"} label="Title" value={title} onChange={(e) => {
+                            setTitle(e.target.value)
+                        }}/>
+                        <Autocomplete
+                            variant={"bordered"}
+                            defaultItems={categories?.data}
+                            label="Select an category"
+                            allowsCustomValue={true}
+                            onInputChange={onInputChange}
+                            className="max-w-sm"
                         >
-                            <DropdownItem key="text">Text</DropdownItem>
-                            <DropdownItem key="number">Number</DropdownItem>
-                            <DropdownItem key="date">Date</DropdownItem>
-                            <DropdownItem key="single_date">Single Date</DropdownItem>
-                            <DropdownItem key="iteration">Iteration</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
+                            {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
+                        </Autocomplete>
+                    </div>
+                    <div >
+                        <BlockEditor/>
+                    </div>
                 </div>
             </div>
         </>
