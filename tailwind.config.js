@@ -65,7 +65,20 @@ module.exports = {
                             DEFAULT: "#FF357C",
                             foreground: "#ffffff",
                         },
-
+                        info:{
+                            50: "#FFD8D6",
+                            100: "#FFD8D6",
+                            200: "#FFAEB2",
+                            300: "#FF8598",
+                            400: "#FF678D",
+                            500: "#FF357C",
+                            600: "#DB2678",
+                            700: "#B71A70",
+                            800: "#931065",
+                            900: "#7A0A5D",
+                            DEFAULT: "#FF357C",
+                            foreground: "#ffffff",
+                        },
                         focus: "#F182F6",
                     },
                     layout: {

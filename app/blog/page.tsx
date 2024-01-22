@@ -1,49 +1,12 @@
 'use client'
 import * as React from "react";
 import {motion} from "framer-motion";
-
-const container = {
-    hidden: {opacity: 1, scale: 0},
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-            delayChildren: 0.3,
-            staggerChildren: 0.2
-        }
-    }
-};
-
-const item = {
-    hidden: {
-        y: 20,
-        x:100,
-        opacity: 0
-    },
-    visible: {
-        y: 0,
-        x: 0,
-        opacity: 1
-    }
-};
+import {Link} from "@nextui-org/link";
 
 export default function App() {
     return (
         <>
-            <motion.ul
-                className="container"
-                variants={container}
-                initial="hidden"
-                animate="visible"
-            >
-                <motion.li className="item" variants={item}>1</motion.li>
-                <motion.li className="item" variants={item}>1</motion.li>
-                <motion.li className="item" variants={item}>1</motion.li>
-                <motion.li className="item" variants={item}>1</motion.li>
-                <motion.li className="item" variants={item}>1</motion.li>
-                <motion.li className="item" variants={item}>1</motion.li>
-
-            </motion.ul>
+            <Link href={"/blog/add"}>23123213123123213123123213123123213</Link>
         </>
     )
 }
