@@ -1,11 +1,11 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {ResultResponse, UserLoginType, UserRegisterType} from '@/types'
+import {ResultResponse} from '@/types'
 import {RootState} from "@/app/store";
 
 
 export const categoryApi = createApi({
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8080/category',
+        baseUrl: 'http://localhost:8082/category',
         prepareHeaders: (headers, {getState}) => {
             // By default, if we have a token in the store, let's use that for authenticated requests
             const token = (getState() as RootState).auth.user?.token
@@ -20,9 +20,9 @@ export const categoryApi = createApi({
             query: () => ({url: '/count'}),
         }),
         getCategories: builder.query<ResultResponse<string[]>, void>({
-            query: () => ({url: ''})
+            query: () => ({url: ''}),
         })
     }),
 })
 
-export const {useGetCountQuery} = categoryApi
+export const {useGetCountQuery, useGetCategoriesQuery} = categoryApi

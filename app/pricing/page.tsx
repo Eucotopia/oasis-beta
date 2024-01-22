@@ -1,6 +1,9 @@
-import {title} from "@/components/primitives";
+"use client"
+import {useGetCategoriesQuery} from "@/features/api/categoryApi";
 
 export default function PricingPage() {
+    const {data} = useGetCategoriesQuery()
+    console.log(data)
     return (
         <>
             <div className={"flex justify-self-start"}>

@@ -8,6 +8,7 @@ import themeReducer from '@/features/theme/themeSlice'
 import postReducer from "@/features/post/postSlice";
 import {themeApi} from "@/features/api/themeApi";
 import {thunk} from "redux-thunk";
+import {categoryApi} from "@/features/api/categoryApi";
 
 
 // 定义配置信息
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
     theme: themeReducer,
     [postApi.reducerPath]: postApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
+    [categoryApi.reducerPath]: categoryApi.reducer
     // [themeApi.reducerPath]: themeApi.reducer
 })
 // 创建持久化的配置persist的信息
@@ -33,7 +35,7 @@ export const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
-    }).concat(authApi.middleware).concat(thunk).concat(postApi.middleware)
+    }).concat(authApi.middleware).concat(thunk).concat(postApi.middleware).concat(categoryApi.middleware)
 })
 
 export const persistor = persistStore(store)
