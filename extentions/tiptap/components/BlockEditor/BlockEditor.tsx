@@ -17,7 +17,7 @@ export const BlockEditor = () => {
     }
     return (
         <>
-            <div ref={menuContainerRef} className={"w-[600px]"}>
+            <div ref={menuContainerRef} >
                 <EditorContent editor={editor} />
                 <ContentItemMenu editor={editor}/>
                 <TextMenu editor={editor}/>

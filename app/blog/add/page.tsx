@@ -1,12 +1,11 @@
 'use client'
 import * as React from "react";
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
-import {title} from "@/components/primitives";
 import {Input} from "@nextui-org/input";
 import {Autocomplete, AutocompleteItem, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
-import {Button} from "@nextui-org/button";
 import {useGetCategoriesQuery} from "@/features/api/categoryApi";
 import {useState} from "react";
+import {ScrollShadow} from "@nextui-org/react";
 
 export default function App() {
     const [value, setValue] = React.useState('');
@@ -21,27 +20,33 @@ export default function App() {
     }
     return (
         <>
-            <div className="flex flex-col items-center justify-center">
-                <p className={"font-bold text-xl bg-gradient-to-r from-primary-500 to-warning-500 text-transparent bg-clip-text"}>Create
-                    a post</p>
-                <div className={"flex flex-col border-8 w-[860px] h-full"}>
-                    <div className={"flex flex-row "}>
-                        <Input type="text" variant={"bordered"} label="Title" value={title} onChange={(e) => {
-                            setTitle(e.target.value)
-                        }}/>
-                        <Autocomplete
-                            variant={"bordered"}
-                            defaultItems={categories?.data}
-                            label="Select an category"
-                            allowsCustomValue={true}
-                            onInputChange={onInputChange}
-                            className="max-w-sm"
-                        >
-                            {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
-                        </Autocomplete>
+            <div className={"flex flex-col"}>
+                <p className={"font-bold text-4xl mb-4"}>Create a post</p>
+                <div className={"border-2  rounded-2xl shadow-2xl w-[896px] p-4"}>
+                    <div className={"space-y-2 mb-2"}>
+                        <p className={"text-md"}>Post name</p>
+                        <Input variant={"bordered"} size={"sm"} placeholder={"post name"} color={"default"}/>
                     </div>
-                    <div >
-                        <BlockEditor/>
+                    <div className={"space-y-2 mb-2"}>
+                        <p className={"text-md"}>Post type</p>
+                        <div className={"flex flex-row gap-4"}>
+                            <div className={"bg-green-200 h-20 basis-1/6 px-8 py-2 rounded-md hover:bg-green-950"}>123</div>
+                            <div className={"bg-green-200 h-20 basis-1/6 px-8 py-2 rounded-md hover:bg-green-950"}>123</div>
+                            <div className={"bg-green-200 h-20 basis-1/6 px-8 py-2 rounded-md hover:bg-green-950"}>123</div>
+                            <div className={"bg-green-200 h-20 basis-1/6 px-8 py-2 rounded-md hover:bg-green-950"}>123</div>
+                            <div className={"bg-green-200 h-20 basis-1/6 px-8 py-2 rounded-md hover:bg-green-950"}>123</div>
+                            <div className={"bg-green-200 h-20 basis-1/6 px-8 py-2 rounded-md hover:bg-green-950"}>123</div>
+                        </div>
+                    </div>
+                    <div className={"space-y-2 mb-4"}>
+                        <p className={"text-md"}>Short description</p>
+                        <Input variant={"bordered"} className={"h-12"} color={"default"}/>
+                    </div>
+                    <div className={"space-y-2 mb-2"}>
+                        <p className={"text-md"}>Post body</p>
+                        <div className={"border rounded-2xl h-96"}>
+                            <BlockEditor/>
+                        </div>
                     </div>
                 </div>
             </div>
