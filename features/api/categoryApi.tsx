@@ -4,6 +4,8 @@ import {RootState} from "@/app/store";
 
 
 export const categoryApi = createApi({
+    reducerPath: 'categoryApi',
+    tagTypes: ['Category'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080/category',
         prepareHeaders: (headers, {getState}) => {

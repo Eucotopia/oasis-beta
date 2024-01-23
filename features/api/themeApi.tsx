@@ -3,6 +3,8 @@ import {ResultResponse} from '@/types'
 import {RootState} from "@/app/store";
 
 export const themeApi = createApi({
+    reducerPath: 'themeApi',
+    tagTypes: ['Theme'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080/theme',
         prepareHeaders: (headers, {getState}) => {
