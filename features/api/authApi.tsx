@@ -25,6 +25,8 @@ export interface User {
 
 
 export const authApi = createApi({
+    reducerPath: 'authApi',
+    tagTypes: ['Auth'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080/user',
         prepareHeaders: (headers, {getState}) => {

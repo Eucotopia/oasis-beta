@@ -14,6 +14,7 @@ export default function App() {
     const onInputChange = (value: string) => {
         setValue(value)
     };
+
     const {data: categories} = useGetCategoriesQuery()
 
     if (categories === undefined) {
@@ -40,7 +41,7 @@ export default function App() {
                             {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
                         </Autocomplete>
                     </div>
-                    <div >
+                    <div>
                         <BlockEditor/>
                     </div>
                 </div>
