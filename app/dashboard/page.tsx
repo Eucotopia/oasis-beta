@@ -28,12 +28,12 @@ const initialData = [
 
 ];
 export default function App() {
-    const {data:userCount} = useGetCountQuery()
-    const {data:postCount} = useGetPostCountQuery();
+    const {data: userCount} = useGetCountQuery()
+    const {data: postCount} = useGetPostCountQuery();
     return (
         <>
             <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-                <div className="flex flex-row justify-between w-[1280px]">
+                <div className="flex flex-row justify-between ">
                     <Card className="py-4 shadow-xl">
                         <CardBody className="flex flex-row gap-4 overflow-visible pl-6 py-2 pr-20 ">
                             <div className={"bg-green-100 p-4 rounded-xl"}>
@@ -79,8 +79,8 @@ export default function App() {
                         </CardBody>
                     </Card>
                 </div>
-                <div className="flex flex-row justify-between w-[1280px] mt-6">
-                    <div className={"flex flex-col border-1 rounded-xl w-3/5"}>
+                <div className="flex flex-row justify-between  mt-6">
+                    <div className={"flex flex-col border-1 rounded-xl"}>
                         <div className={"flex justify-start items-center border-b font-bold pl-4 h-14 text-xl"}>
                             Traffic stats
                         </div>
@@ -88,7 +88,7 @@ export default function App() {
                             <ChartComponent data={initialData}/>
                         </div>
                     </div>
-                    <Card className={"w-[360px]"}>
+                    <Card>
                         <CardHeader className={"flex flex-row justify-between"}>
                             <p className={"font-bold text-xl bg-gradient-to-r from-violet-600 to-emerald-500 bg-clip-text text-transparent"}>Latest
                                 post</p>
