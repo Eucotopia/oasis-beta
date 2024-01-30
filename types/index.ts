@@ -50,7 +50,7 @@ export type PostDTO = {
     title: string,
     content: string,
     summary: string,
-    isTop: boolean,
+    isTop: number,
     cover: string
 }
 
