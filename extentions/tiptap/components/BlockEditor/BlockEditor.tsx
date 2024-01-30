@@ -18,7 +18,7 @@ export const BlockEditor = ({onContentChange}: { onContentChange: (html: string)
     return (
         <>
             <div ref={menuContainerRef}>
-                <EditorContent editor={editor}/>
+                <EditorContent editor={editor} className="flex-1 overflow-y-auto"/>
                 <ContentItemMenu editor={editor}/>
                 <TextMenu editor={editor}/>
                 <LinkMenu editor={editor} appendTo={menuContainerRef}/>

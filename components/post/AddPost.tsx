@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
 import {PostDTO} from "@/types";
-import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
 
 export default function App() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();

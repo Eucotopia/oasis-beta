@@ -11,7 +11,7 @@
     @apply caret-black dark:caret-white outline-0 pr-8 pl-6 py-6 z-0 lg:pl-6 lg:pr-6;
 
     & > * {
-        @apply mt-3 max-w-2xl;
+        @apply mt-3 max-w-6xl;
     }
 
     .selection {
