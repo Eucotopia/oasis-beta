@@ -1,4 +1,3 @@
-'use client'
 import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
 import {EditorContent} from "@tiptap/react";
 import "@/extentions/tiptap/styles/index.css"
@@ -8,17 +7,18 @@ import {TableColumnMenu, TableRowMenu} from "@/extentions/tiptap/extentions/Tabl
 import ColumnsMenu from "@/extentions/tiptap/extentions/MultiColumn/menus/ColumnsMenu";
 import {useRef} from "react";
 import {LinkMenu} from "@/extentions/tiptap/components/menus/LinkMenu";
-export const BlockEditor = () => {
 
-    const {editor, characterCount} = useBlockEditor()
+export const BlockEditor = ({onContentChange}: { onContentChange: (html: string) => void }) => {
     const menuContainerRef = useRef(null)
+
+    const {editor, characterCount} = useBlockEditor(onContentChange)
     if (!editor) {
         return null
     }
     return (
         <>
-            <div ref={menuContainerRef} >
-                <EditorContent editor={editor} />
+            <div ref={menuContainerRef}>
+                <EditorContent editor={editor}/>
                 <ContentItemMenu editor={editor}/>
                 <TextMenu editor={editor}/>
                 <LinkMenu editor={editor} appendTo={menuContainerRef}/>

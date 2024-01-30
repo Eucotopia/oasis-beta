@@ -45,11 +45,12 @@ export type Post = {
     comments: number,
     cover: string
 }
+
 export type PostDTO = {
     title: string,
     content: string,
     summary: string,
-    isTop: number,
+    isTop: boolean,
     cover: string
 }
 
