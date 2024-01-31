@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {
     Modal,
     ModalContent,
@@ -7,7 +7,7 @@ import {
     ModalFooter,
     Button,
     useDisclosure,
-    CardHeader, CardBody, CardFooter, Divider
+    Divider, Switch
 } from "@nextui-org/react";
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
 import {PostDTO} from "@/types";
@@ -17,23 +17,34 @@ import {Input, Textarea} from "@nextui-org/input";
 export default function App() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [addBlog, isLoading] = useAddBlogMutation()
-    const [postState, setPostState] = useState<PostDTO>({
-        title: "nn",
-        content: "ads",
-        summary: "asdasd",
-        isTop: 1,
-        cover: "https://nextui.org/images/album-cover.png"
-    })
+
     const handleChildContent = (html: string) => {
         setPostState((pre) => ({
             ...pre,
             content: html
         }))
     }
+    const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setPostState((prev) => ({
+        ...prev,
+        [name]: value
+    }))
     const addPost = async () => {
         const blog = await addBlog(postState).unwrap()
         if (blog.code === "200") {
         }
+    }
+    const [postState, setPostState] = useState<PostDTO>({
+        title: "",
+        content: "",
+        summary: "",
+        isTop: false,
+        cover: "https://nextui.org/images/album-cover.png"
+    })
+    const onIsTopChange = () => {
+        setPostState((pre) => ({
+            ...pre,
+            isTop: !pre.isTop
+        }))
     }
     return (
         <>
@@ -53,11 +64,14 @@ export default function App() {
                             <ModalBody>
                                 <BlockEditor onContentChange={handleChildContent}/>
                             </ModalBody>
-                            <Divider/>
                             <ModalFooter className={"flex flex-col"}>
+                                <Divider/>
                                 <div>
                                     <Input
+                                        value={postState.title}
                                         variant={"bordered"}
+                                        onChange={handleChange}
+                                        name={"title"}
                                         size={"sm"}
                                         placeholder={'请输入标题'}/>
                                 </div>
@@ -65,15 +79,18 @@ export default function App() {
                                     <Textarea
                                         label="Description"
                                         variant="bordered"
+                                        name={"summary"}
+                                        onChange={handleChange}
                                         labelPlacement="outside"
                                         placeholder="Enter your description"
-                                        defaultValue="NextUI is a React UI library that provides a set of accessible, reusable, and beautiful components."
                                         className="max-w-xs"
                                     />
                                 </div>
                                 <div>
-
+                                    <Switch isSelected={postState.isTop} onValueChange={onIsTopChange}
+                                            color="secondary">置顶</Switch>
                                 </div>
+                                <Divider/>
                                 <div className={"flex flex-row justify-between"}>
                                     <Button color="danger" variant="light" onPress={onClose}>
                                         Close
