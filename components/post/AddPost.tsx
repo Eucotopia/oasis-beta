@@ -1,8 +1,18 @@
 import React, {useState} from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import {
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Button,
+    useDisclosure,
+    CardHeader, CardBody, CardFooter, Divider
+} from "@nextui-org/react";
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
 import {PostDTO} from "@/types";
 import {useAddBlogMutation} from "@/features/api/postApi";
+import {Input, Textarea} from "@nextui-org/input";
 
 export default function App() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -43,13 +53,35 @@ export default function App() {
                             <ModalBody>
                                 <BlockEditor onContentChange={handleChildContent}/>
                             </ModalBody>
-                            <ModalFooter>
-                                <Button color="danger" variant="light" onPress={onClose}>
-                                    Close
-                                </Button>
-                                <Button color="primary" onPress={onClose} onClick={addPost}>
-                                    Action
-                                </Button>
+                            <Divider/>
+                            <ModalFooter className={"flex flex-col"}>
+                                <div>
+                                    <Input
+                                        variant={"bordered"}
+                                        size={"sm"}
+                                        placeholder={'请输入标题'}/>
+                                </div>
+                                <div>
+                                    <Textarea
+                                        label="Description"
+                                        variant="bordered"
+                                        labelPlacement="outside"
+                                        placeholder="Enter your description"
+                                        defaultValue="NextUI is a React UI library that provides a set of accessible, reusable, and beautiful components."
+                                        className="max-w-xs"
+                                    />
+                                </div>
+                                <div>
+
+                                </div>
+                                <div className={"flex flex-row justify-between"}>
+                                    <Button color="danger" variant="light" onPress={onClose}>
+                                        Close
+                                    </Button>
+                                    <Button color="primary" onPress={onClose} onClick={addPost}>
+                                        Action
+                                    </Button>
+                                </div>
                             </ModalFooter>
                         </>
                     )}
