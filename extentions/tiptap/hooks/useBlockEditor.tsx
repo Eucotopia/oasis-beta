@@ -2,13 +2,13 @@ import ExtensionKit from "@/extentions/tiptap/extentions/extension-kit";
 import {useEditor} from "@tiptap/react";
 import {useEffect} from "react";
 
-export const useBlockEditor = (onContentChange: (html: string) => void) => {
+export const useBlockEditor = (onContentChange?: (html: string) => void, content?: string) => {
     const editor = useEditor({
         autofocus: true,
         extensions: [
             ...ExtensionKit()
         ],
-        content: "",
+        content: content ? content : '',
         editorProps: {
             attributes: {
                 autocomplete: 'off',
@@ -17,14 +17,14 @@ export const useBlockEditor = (onContentChange: (html: string) => void) => {
                 class: 'min-h-full',
             },
         },
+        editable: onContentChange !== undefined,
     }, [])
     useEffect(() => {
         if (!editor) {
             return undefined
         }
         editor.on("update", () => {
-            onContentChange(editor.getHTML())
-            console.log(editor.getHTML())
+            onContentChange && onContentChange(editor.getHTML())
         })
     })
 

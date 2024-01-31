@@ -8,24 +8,30 @@ import ColumnsMenu from "@/extentions/tiptap/extentions/MultiColumn/menus/Column
 import {useRef} from "react";
 import {LinkMenu} from "@/extentions/tiptap/components/menus/LinkMenu";
 
-export const BlockEditor = ({onContentChange}: { onContentChange: (html: string) => void }) => {
+export const BlockEditor = ({onContentChange, content}: {
+    onContentChange?: (html: string) => void,
+    content?: string
+}) => {
     const menuContainerRef = useRef(null)
-
-    const {editor, characterCount} = useBlockEditor(onContentChange)
+    const {editor, characterCount} = useBlockEditor(onContentChange, content)
     if (!editor) {
         return null
     }
     return (
         <>
-            <div ref={menuContainerRef}>
+            {onContentChange === undefined ? (
                 <EditorContent editor={editor} className="flex-1 overflow-y-auto"/>
-                <ContentItemMenu editor={editor}/>
-                <TextMenu editor={editor}/>
-                <LinkMenu editor={editor} appendTo={menuContainerRef}/>
-                <TableRowMenu editor={editor} appendTo={menuContainerRef}/>
-                <TableColumnMenu editor={editor} appendTo={menuContainerRef}/>
-                <ColumnsMenu editor={editor} appendTo={menuContainerRef}/>
-            </div>
+            ) : (
+                <div ref={menuContainerRef}>
+                    <EditorContent editor={editor} className="flex-1 overflow-y-auto"/>
+                    <ContentItemMenu editor={editor}/>
+                    <TextMenu editor={editor}/>
+                    <LinkMenu editor={editor} appendTo={menuContainerRef}/>
+                    <TableRowMenu editor={editor} appendTo={menuContainerRef}/>
+                    <TableColumnMenu editor={editor} appendTo={menuContainerRef}/>
+                    <ColumnsMenu editor={editor} appendTo={menuContainerRef}/>
+                </div>
+            )}
         </>
-    )
+    );
 }
