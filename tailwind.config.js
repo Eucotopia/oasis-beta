@@ -10,7 +10,8 @@ module.exports = {
     ],
     theme: {
         extend: {
-            colors: {
+            fontFamily:{
+                h1:['STXINGKA','sans-serif']
             }
         },
     },

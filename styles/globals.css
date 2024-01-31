@@ -1,5 +1,10 @@
 @import './editor.css';
-
+@layer base{
+    @font-face {
+        font-family: STXINGKA;
+        src: url("../public/font/STXINGKA.TTF");
+    }
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

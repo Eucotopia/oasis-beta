@@ -8,7 +8,7 @@
   }
 
   h1 {
-    @apply text-3xl;
+    @apply text-3xl font-h1;
   }
 
   h2 {
