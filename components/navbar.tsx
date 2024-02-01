@@ -26,9 +26,10 @@ import {
 } from "@/components/icons";
 
 import {Logo} from "@/components/icons";
-import React, { useState} from "react";
+import React, {useState} from "react";
 import {Login} from "@/features/auth/Login";
 import {usePathname} from "next/navigation";
+import {Tooltip} from "@nextui-org/react";
 
 export const Navbar = () => {
     const [active, setActive] = useState(usePathname())
@@ -82,7 +83,47 @@ export const Navbar = () => {
                                 </Link>
                             </NavbarItem>
                         ))}
+                        <NavbarItem isActive={active === "/develop"}>
+                            <Tooltip
+                                content="123123"
+                                delay={0}
+                                showArrow
+                                closeDelay={0}
+                                motionProps={{
+                                    variants: {
+                                        exit: {
+                                            opacity: 0,
+                                            transition: {
+                                                duration: 0.1,
+                                                ease: "easeIn",
+                                            }
+                                        },
+                                        enter: {
+                                            opacity: 1,
+                                            transition: {
+                                                duration: 0.15,
+                                                ease: "easeOut",
+                                            }
+                                        },
+                                    },
+                                }}
+                            >
+                                <Link
+                                    isBlock
+                                    className={clsx(
+                                        linkStyles({color: "foreground"}),
+                                        "data-[active=true]:text-primary data-[active=true]:font-medium"
+                                    )}
+                                    color="foreground"
+                                    href={"/develop"}
+                                    onClick={() => setActive("/develop")}
+                                >
+                                    Develop
+                                </Link>
+                            </Tooltip>
+                        </NavbarItem>
                     </ul>
+
                 </NavbarContent>
 
                 <NavbarContent
