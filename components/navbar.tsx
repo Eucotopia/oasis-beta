@@ -24,7 +24,7 @@ import {
     DiscordIcon,
     SearchIcon,
 } from "@/components/icons";
-
+import DevelopComponent from "@/components/navbar/DevelopComponent"
 import {Logo} from "@/components/icons";
 import React, {useState} from "react";
 import {Login} from "@/features/auth/Login";
@@ -85,7 +85,7 @@ export const Navbar = () => {
                         ))}
                         <NavbarItem isActive={active === "/develop"}>
                             <Tooltip
-                                content="123123"
+                                content=<DevelopComponent/>
                                 delay={0}
                                 showArrow
                                 closeDelay={0}
