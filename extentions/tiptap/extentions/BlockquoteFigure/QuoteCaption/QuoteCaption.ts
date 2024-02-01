@@ -1,54 +1,54 @@
-import { Node } from '@tiptap/core'
+import {Node} from '@tiptap/core'
 
 export const QuoteCaption = Node.create({
-  name: 'quoteCaption',
+    name: 'quoteCaption',
 
-  group: 'block',
+    group: 'block',
 
-  content: 'text*',
+    content: 'text*',
 
-  defining: true,
+    defining: true,
 
-  isolating: true,
+    isolating: true,
 
-  parseHTML() {
-    return [
-      {
-        tag: 'figcaption',
-      },
-    ]
-  },
+    parseHTML() {
+        return [
+            {
+                tag: 'figcaption',
+            },
+        ]
+    },
 
-  renderHTML({ HTMLAttributes }) {
-    return ['figcaption', HTMLAttributes, 0]
-  },
+    renderHTML({HTMLAttributes}) {
+        return ['figcaption', HTMLAttributes, 0]
+    },
 
-  addKeyboardShortcuts() {
-    return {
-      // On Enter at the end of line, create new paragraph and focus
-      Enter: ({ editor }) => {
-        const {
-          state: {
-            selection: { $from, empty },
-          },
-        } = editor
+    addKeyboardShortcuts() {
+        return {
+            // On Enter at the end of line, create new paragraph and focus
+            Enter: ({editor}) => {
+                const {
+                    state: {
+                        selection: {$from, empty},
+                    },
+                } = editor
 
-        if (!empty || $from.parent.type !== this.type) {
-          return false
+                if (!empty || $from.parent.type !== this.type) {
+                    return false
+                }
+
+                const isAtEnd = $from.parentOffset === $from.parent.nodeSize - 2
+
+                if (!isAtEnd) {
+                    return false
+                }
+
+                const pos = editor.state.selection.$from.end()
+
+                return editor.chain().focus(pos).insertContentAt(pos, {type: 'paragraph'}).run()
+            },
         }
-
-        const isAtEnd = $from.parentOffset === $from.parent.nodeSize - 2
-
-        if (!isAtEnd) {
-          return false
-        }
-
-        const pos = editor.state.selection.$from.end()
-
-        return editor.chain().focus(pos).insertContentAt(pos, { type: 'paragraph' }).run()
-      },
-    }
-  },
+    },
 })
 
 export default QuoteCaption

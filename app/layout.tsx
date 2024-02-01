@@ -54,7 +54,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                     <Link
                         isExternal
                         href={"https://nextui-docs-v2.vercel.app?utm_source=next-app-template"}
-                        title={"Eucotopia homepage"}
+                        title={"Eucotopia Homepage"}
                         className={"text-sm font-bold bg-gradient-to-r from-red-500 to-blue-500 text-transparent bg-clip-text"}
                     >Eucotopia
                     </Link>
