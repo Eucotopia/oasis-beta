@@ -1,38 +1,142 @@
 import React from "react";
 import {Listbox, ListboxItem} from "@nextui-org/react";
-import {ClearFormat} from "@/extentions/tiptap/lib/svg/icon";
 
 export default function App() {
     return (
-        <Listbox
-            aria-label="User Menu"
-            onAction={(key) => alert(key)}
-            className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-content1 max-w-[300px] overflow-visible  rounded-medium"
-            itemClasses={{
-                base: "px-3 first:rounded-t-medium last:rounded-b-medium rounded-none gap-3  data-[hover=true]:bg-default-100/80 py-4",
-            }}
-        >
-            <ListboxItem
-                key="issues"
-                startContent={<ClearFormat/>}
-
+        <div className={"flex flex-row"}>
+            <Listbox
+                aria-label="User Menu"
+                className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-content1  overflow-visible rounded-medium max-w-sm"
+                itemClasses={{
+                    base: "px-3 rounded-medium first:mt-2 last:mb-2 gap-3  data-[hover=true]:bg-default-100/80 ",
+                }}
             >
-                Android
-            </ListboxItem>
-            <ListboxItem
-                key="pull_requests"
-                startContent={<ClearFormat/>}
-
+                <ListboxItem
+                    href={"/blog/swift"}
+                    key="issues"
+                    startContent={
+                        <svg width="7em" height="7em" viewBox="0 -40 256 256" xmlns="http://www.w3.org/2000/svg"
+                             preserveAspectRatio="xMinYMin meet">
+                            <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="-1845.501" y1="1255.639"
+                                            x2="-1797.134" y2="981.338"
+                                            gradientTransform="rotate(180 -846.605 623.252)">
+                                <stop offset="0" stop-color="#faae42"/>
+                                <stop offset="1" stop-color="#ef3e31"/>
+                            </linearGradient>
+                            <path fill="url(#a)"
+                                  d="M56.9 0h141.8c6.9 0 13.6 1.1 20.1 3.4 9.4 3.4 17.9 9.4 24.3 17.2 6.5 7.8 10.8 17.4 12.3 27.4.6 3.7.7 7.4.7 11.1V197.4c0 4.4-.2 8.9-1.1 13.2-2 9.9-6.7 19.2-13.5 26.7-6.7 7.5-15.5 13.1-25 16.1-5.8 1.8-11.8 2.6-17.9 2.6-2.7 0-142.1 0-144.2-.1-10.2-.5-20.3-3.8-28.8-9.5-8.3-5.6-15.1-13.4-19.5-22.4-3.8-7.7-5.7-16.3-5.7-24.9V56.9C.2 48.4 2 40 5.7 32.4c4.3-9 11-16.9 19.3-22.5C33.5 4.1 43.5.7 53.7.2c1-.2 2.1-.2 3.2-.2z"/>
+                            <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="130.612" y1="4.136" x2="95.213"
+                                            y2="204.893">
+                                <stop offset="0" stop-color="#e39f3a"/>
+                                <stop offset="1" stop-color="#d33929"/>
+                            </linearGradient>
+                            <path fill="url(#b)"
+                                  d="M216 209.4c-.9-1.4-1.9-2.8-3-4.1-2.5-3-5.4-5.6-8.6-7.8-4-2.7-8.7-4.4-13.5-4.6-3.4-.2-6.8.4-10 1.6-3.2 1.1-6.3 2.7-9.3 4.3-3.5 1.8-7 3.6-10.7 5.1-4.4 1.8-9 3.2-13.7 4.2-5.9 1.1-11.9 1.5-17.8 1.4-10.7-.2-21.4-1.8-31.6-4.8-9-2.7-17.6-6.4-25.7-11.1-7.1-4.1-13.7-8.8-19.9-14.1-5.1-4.4-9.8-9.1-14.2-14.1-3-3.5-5.9-7.2-8.6-11-1.1-1.5-2.1-3.1-3-4.7L0 121.2V56.7C0 25.4 25.3 0 56.6 0h50.5l37.4 38c84.4 57.4 57.1 120.7 57.1 120.7s24 27 14.4 50.7z"/>
+                            <path fill="#FFF"
+                                  d="M144.7 38c84.4 57.4 57.1 120.7 57.1 120.7s24 27.1 14.3 50.8c0 0-9.9-16.6-26.5-16.6-16 0-25.4 16.6-57.6 16.6-71.7 0-105.6-59.9-105.6-59.9C91 192.1 135.1 162 135.1 162c-29.1-16.9-91-97.7-91-97.7 53.9 45.9 77.2 58 77.2 58-13.9-11.5-52.9-67.7-52.9-67.7 31.2 31.6 93.2 75.7 93.2 75.7C179.2 81.5 144.7 38 144.7 38z"/>
+                        </svg>
+                    }
+                    description={"2024年开始成为一名 Apple Developer"}
+                >
+                    Swift Develop
+                </ListboxItem>
+                <ListboxItem
+                    key="issues"
+                    href={"/blog/android"}
+                    startContent={
+                        <svg height="7em" viewBox="32.163 70.009 203.691 226.654" width="7em"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g fill="#a4c639">
+                                <path
+                                    d="m101.885 207.092c7.865 0 14.241 6.376 14.241 14.241v61.09c0 7.865-6.376 14.24-14.241 14.24-7.864 0-14.24-6.375-14.24-14.24v-61.09c0-7.864 6.376-14.24 14.24-14.24z"/>
+                                <path
+                                    d="m69.374 133.645c-.047.54-.088 1.086-.088 1.638v92.557c0 9.954 7.879 17.973 17.66 17.973h94.124c9.782 0 17.661-8.02 17.661-17.973v-92.557c0-.552-.02-1.1-.066-1.638z"/>
+                                <path
+                                    d="m166.133 207.092c7.865 0 14.241 6.376 14.241 14.241v61.09c0 7.865-6.376 14.24-14.241 14.24-7.864 0-14.24-6.375-14.24-14.24v-61.09c0-7.864 6.376-14.24 14.24-14.24zm-119.728-65.21c7.864 0 14.24 6.376 14.24 14.241v61.09c0 7.865-6.376 14.241-14.24 14.241-7.865 0-14.241-6.376-14.241-14.24v-61.09c-.001-7.865 6.375-14.242 14.241-14.242zm175.209 0c7.864 0 14.24 6.376 14.24 14.241v61.09c0 7.865-6.376 14.241-14.24 14.241-7.865 0-14.241-6.376-14.241-14.24v-61.09c0-7.865 6.376-14.242 14.241-14.242zm-151.824-14.317c.396-28.43 25.21-51.74 57.062-54.812h14.312c31.854 3.073 56.666 26.384 57.062 54.812z"/>
+                            </g>
+                            <path d="m74.743 70.009 15.022 26.02m103.511-26.02-15.023 26.02" fill="none"
+                                  stroke="#a4c639" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                            <path
+                                d="m114.878 102.087c.012 3.974-3.277 7.205-7.347 7.216-4.068.01-7.376-3.202-7.388-7.176v-.04c-.011-3.975 3.278-7.205 7.347-7.216 4.068-.011 7.376 3.2 7.388 7.176zm54.996 0c.012 3.974-3.277 7.205-7.347 7.216-4.068.01-7.376-3.202-7.388-7.176v-.04c-.011-3.975 3.278-7.205 7.347-7.216 4.068-.011 7.376 3.2 7.388 7.176z"
+                                fill="#fff"/>
+                        </svg>
+                    }
+                    description={"2024年开始成为一名 Apple Developer2024年开始成为一名 Apple Developer"}
+                >
+                    Android Develop
+                </ListboxItem>
+            </Listbox>
+            <Listbox
+                aria-label="User Menu"
+                className="p-0 gap-0 divide-y divide-default-300/50 dark:divide-default-100/80 bg-content1  overflow-visible rounded-medium max-w-sm"
+                itemClasses={{
+                    base: "px-3 rounded-medium first:mt-2 last:mb-2 gap-3  data-[hover=true]:bg-default-100/80 ",
+                }}
             >
-                Apple
-            </ListboxItem>
-            <ListboxItem
-                key="discussions"
-                startContent={<ClearFormat/>}
-
-            >
-                Web
-            </ListboxItem>
-        </Listbox>
+                <ListboxItem
+                    href={"/blog/web"}
+                    key="issues"
+                    startContent={
+                        <svg width="7em" height="7em" viewBox="0 -40 256 256" xmlns="http://www.w3.org/2000/svg"
+                             preserveAspectRatio="xMinYMin meet">
+                            <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="-1845.501" y1="1255.639"
+                                            x2="-1797.134" y2="981.338"
+                                            gradientTransform="rotate(180 -846.605 623.252)">
+                                <stop offset="0" stop-color="#faae42"/>
+                                <stop offset="1" stop-color="#ef3e31"/>
+                            </linearGradient>
+                            <path fill="url(#a)"
+                                  d="M56.9 0h141.8c6.9 0 13.6 1.1 20.1 3.4 9.4 3.4 17.9 9.4 24.3 17.2 6.5 7.8 10.8 17.4 12.3 27.4.6 3.7.7 7.4.7 11.1V197.4c0 4.4-.2 8.9-1.1 13.2-2 9.9-6.7 19.2-13.5 26.7-6.7 7.5-15.5 13.1-25 16.1-5.8 1.8-11.8 2.6-17.9 2.6-2.7 0-142.1 0-144.2-.1-10.2-.5-20.3-3.8-28.8-9.5-8.3-5.6-15.1-13.4-19.5-22.4-3.8-7.7-5.7-16.3-5.7-24.9V56.9C.2 48.4 2 40 5.7 32.4c4.3-9 11-16.9 19.3-22.5C33.5 4.1 43.5.7 53.7.2c1-.2 2.1-.2 3.2-.2z"/>
+                            <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="130.612" y1="4.136" x2="95.213"
+                                            y2="204.893">
+                                <stop offset="0" stop-color="#e39f3a"/>
+                                <stop offset="1" stop-color="#d33929"/>
+                            </linearGradient>
+                            <path fill="url(#b)"
+                                  d="M216 209.4c-.9-1.4-1.9-2.8-3-4.1-2.5-3-5.4-5.6-8.6-7.8-4-2.7-8.7-4.4-13.5-4.6-3.4-.2-6.8.4-10 1.6-3.2 1.1-6.3 2.7-9.3 4.3-3.5 1.8-7 3.6-10.7 5.1-4.4 1.8-9 3.2-13.7 4.2-5.9 1.1-11.9 1.5-17.8 1.4-10.7-.2-21.4-1.8-31.6-4.8-9-2.7-17.6-6.4-25.7-11.1-7.1-4.1-13.7-8.8-19.9-14.1-5.1-4.4-9.8-9.1-14.2-14.1-3-3.5-5.9-7.2-8.6-11-1.1-1.5-2.1-3.1-3-4.7L0 121.2V56.7C0 25.4 25.3 0 56.6 0h50.5l37.4 38c84.4 57.4 57.1 120.7 57.1 120.7s24 27 14.4 50.7z"/>
+                            <path fill="#FFF"
+                                  d="M144.7 38c84.4 57.4 57.1 120.7 57.1 120.7s24 27.1 14.3 50.8c0 0-9.9-16.6-26.5-16.6-16 0-25.4 16.6-57.6 16.6-71.7 0-105.6-59.9-105.6-59.9C91 192.1 135.1 162 135.1 162c-29.1-16.9-91-97.7-91-97.7 53.9 45.9 77.2 58 77.2 58-13.9-11.5-52.9-67.7-52.9-67.7 31.2 31.6 93.2 75.7 93.2 75.7C179.2 81.5 144.7 38 144.7 38z"/>
+                        </svg>
+                    }
+                    description={"2024年开始成为一名 Apple Developer"}
+                >
+                    Web Develop
+                </ListboxItem>
+                <ListboxItem
+                    key="issues"
+                    href={"/blog/android"}
+                    startContent={
+                        <svg height="7em" viewBox="32.163 70.009 203.691 226.654" width="7em"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <g fill="#a4c639">
+                                <path
+                                    d="m101.885 207.092c7.865 0 14.241 6.376 14.241 14.241v61.09c0 7.865-6.376 14.24-14.241 14.24-7.864 0-14.24-6.375-14.24-14.24v-61.09c0-7.864 6.376-14.24 14.24-14.24z"/>
+                                <path
+                                    d="m69.374 133.645c-.047.54-.088 1.086-.088 1.638v92.557c0 9.954 7.879 17.973 17.66 17.973h94.124c9.782 0 17.661-8.02 17.661-17.973v-92.557c0-.552-.02-1.1-.066-1.638z"/>
+                                <path
+                                    d="m166.133 207.092c7.865 0 14.241 6.376 14.241 14.241v61.09c0 7.865-6.376 14.24-14.241 14.24-7.864 0-14.24-6.375-14.24-14.24v-61.09c0-7.864 6.376-14.24 14.24-14.24zm-119.728-65.21c7.864 0 14.24 6.376 14.24 14.241v61.09c0 7.865-6.376 14.241-14.24 14.241-7.865 0-14.241-6.376-14.241-14.24v-61.09c-.001-7.865 6.375-14.242 14.241-14.242zm175.209 0c7.864 0 14.24 6.376 14.24 14.241v61.09c0 7.865-6.376 14.241-14.24 14.241-7.865 0-14.241-6.376-14.241-14.24v-61.09c0-7.865 6.376-14.242 14.241-14.242zm-151.824-14.317c.396-28.43 25.21-51.74 57.062-54.812h14.312c31.854 3.073 56.666 26.384 57.062 54.812z"/>
+                            </g>
+                            <path d="m74.743 70.009 15.022 26.02m103.511-26.02-15.023 26.02" fill="none"
+                                  stroke="#a4c639" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                            <path
+                                d="m114.878 102.087c.012 3.974-3.277 7.205-7.347 7.216-4.068.01-7.376-3.202-7.388-7.176v-.04c-.011-3.975 3.278-7.205 7.347-7.216 4.068-.011 7.376 3.2 7.388 7.176zm54.996 0c.012 3.974-3.277 7.205-7.347 7.216-4.068.01-7.376-3.202-7.388-7.176v-.04c-.011-3.975 3.278-7.205 7.347-7.216 4.068-.011 7.376 3.2 7.388 7.176z"
+                                fill="#fff"/>
+                        </svg>
+                    }
+                    textValue={"Android Develop"}
+                >
+                    <div className="flex flex-col gap-1">
+                        <span>Android Develop</span>
+                        <div className="px-2 py-1 rounded-small bg-default-100 group-data-[hover=true]:bg-default-200">
+                            <span className="text-tiny text-default-600">@nextui-org/react@2.0.10</span>
+                            <div className="flex gap-2 text-tiny">
+                                <span className="text-default-500">49 minutes ago</span>
+                                <span className="text-success">Latest</span>
+                            </div>
+                        </div>
+                    </div>
+                </ListboxItem>
+            </Listbox>
+        </div>
     );
 }

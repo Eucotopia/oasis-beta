@@ -68,7 +68,8 @@ export const Navbar = () => {
                     </NavbarBrand>
                     <ul className="hidden lg:flex gap-4 justify-start ml-2">
                         {siteConfig.navItems.map((item) => (
-                            <NavbarItem key={item.href} isActive={active === item.href}>
+                            //TODO 需要修改，这么写会导致 Home 一直处于 active 状态，应该使用 label 作为标识而不是 href
+                            <NavbarItem key={item.href} isActive={active.includes(item.href)}>
                                 <Link
                                     isBlock
                                     className={clsx(
@@ -83,7 +84,7 @@ export const Navbar = () => {
                                 </Link>
                             </NavbarItem>
                         ))}
-                        <NavbarItem isActive={active === "/develop"}>
+                        <NavbarItem isActive={active.includes("/develop")}>
                             <Tooltip
                                 content=<DevelopComponent/>
                                 delay={0}

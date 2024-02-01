@@ -9,7 +9,7 @@ export default function PricingPage() {
         data: post,
         isFetching,
         isLoading
-    } = useGetBlogByIdQuery(33, {
+    } = useGetBlogByIdQuery(1, {
         // 每 3s 轮询，实现实时数据更新的效果
         pollingInterval: 3000,
         // 用于控制查询的自动触发行为
