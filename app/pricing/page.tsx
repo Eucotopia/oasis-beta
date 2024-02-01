@@ -10,7 +10,7 @@ export default function PricingPage() {
         data: post,
         isFetching,
         isLoading
-    } = useGetBlogByIdQuery(32, {
+    } = useGetBlogByIdQuery(33, {
         // 每 3s 轮询，实现实时数据更新的效果
         pollingInterval: 3000,
         // 用于控制查询的自动触发行为
@@ -18,6 +18,12 @@ export default function PricingPage() {
         skip: false,
     })
     const {editor, characterCount} = useBlockEditor({content: post?.data.content})
+    if (isLoading) {
+        return <div>Loading</div>
+    }
+    if (!post) {
+        return <div>Missing post!</div>
+    }
     return (
         <>
             <BlockEditor editor={editor}/>
