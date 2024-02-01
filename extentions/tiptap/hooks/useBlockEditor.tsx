@@ -2,7 +2,10 @@ import ExtensionKit from "@/extentions/tiptap/extentions/extension-kit";
 import {useEditor} from "@tiptap/react";
 import {useEffect} from "react";
 
-export const useBlockEditor = (onContentChange?: (html: string) => void, content?: string) => {
+export const useBlockEditor = ({onContentChange, content}: {
+    onContentChange?: (html: string) => void,
+    content?: string
+}) => {
     const editor = useEditor({
         autofocus: true,
         extensions: [

@@ -1,5 +1,4 @@
-import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
-import {EditorContent} from "@tiptap/react";
+import {Editor, EditorContent} from "@tiptap/react";
 import "@/extentions/tiptap/styles/index.css"
 import {ContentItemMenu} from "@/extentions/tiptap/components/menus/ContentItemMenu";
 import {TextMenu} from "@/extentions/tiptap/components/menus/TextMenu";
@@ -8,20 +7,14 @@ import ColumnsMenu from "@/extentions/tiptap/extentions/MultiColumn/menus/Column
 import {useRef} from "react";
 import {LinkMenu} from "@/extentions/tiptap/components/menus/LinkMenu";
 
-export const BlockEditor = ({onContentChange, content}: {
-    onContentChange?: (html: string) => void,
-    content?: string
-}) => {
+export const BlockEditor = ({editor}: { editor: Editor | null }) => {
     const menuContainerRef = useRef(null)
-    const {editor, characterCount} = useBlockEditor(onContentChange, content)
     if (!editor) {
         return null
     }
     return (
         <>
-            {onContentChange === undefined ? (
-                <EditorContent editor={editor} className="flex-1 overflow-y-auto"/>
-            ) : (
+            {editor.isEditable ? (
                 <div ref={menuContainerRef}>
                     <EditorContent editor={editor} className="flex-1 overflow-y-auto"/>
                     <ContentItemMenu editor={editor}/>
@@ -31,6 +24,8 @@ export const BlockEditor = ({onContentChange, content}: {
                     <TableColumnMenu editor={editor} appendTo={menuContainerRef}/>
                     <ColumnsMenu editor={editor} appendTo={menuContainerRef}/>
                 </div>
+            ) : (
+                <EditorContent editor={editor} className="flex-1 overflow-y-auto"/>
             )}
         </>
     );

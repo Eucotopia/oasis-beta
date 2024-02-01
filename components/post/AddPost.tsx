@@ -13,8 +13,10 @@ import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEdito
 import {PostDTO} from "@/types";
 import {useAddBlogMutation} from "@/features/api/postApi";
 import {Input, Textarea} from "@nextui-org/input";
+import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
 
 export default function App() {
+
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [addBlog, isLoading] = useAddBlogMutation()
 
@@ -24,6 +26,7 @@ export default function App() {
             content: html
         }))
     }
+    const {editor, characterCount} = useBlockEditor({onContentChange: handleChildContent})
     const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setPostState((prev) => ({
         ...prev,
         [name]: value
@@ -62,7 +65,7 @@ export default function App() {
                         <>
                             <ModalHeader className="flex flex-col gap-1">Add Post</ModalHeader>
                             <ModalBody>
-                                <BlockEditor onContentChange={handleChildContent}/>
+                                <BlockEditor editor={editor}/>
                             </ModalBody>
                             <ModalFooter className={"flex flex-col"}>
                                 <Divider/>

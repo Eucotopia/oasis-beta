@@ -17,9 +17,10 @@ export default function PricingPage() {
         refetchOnMountOrArgChange: true,
         skip: false,
     })
+    const {editor, characterCount} = useBlockEditor({content: post?.data.content})
     return (
         <>
-            <BlockEditor content={post?.data.content}/>
+            <BlockEditor editor={editor}/>
         </>
     );
 }
