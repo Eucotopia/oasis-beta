@@ -6,10 +6,7 @@ import {Providers} from "./providers";
 import {Navbar} from "@/components/navbar";
 import {Link} from "@nextui-org/link";
 import clsx from "clsx";
-import {config} from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 
-config.autoAddCss = false
 export const metadata: Metadata = {
     title: {
         default: siteConfig.name,

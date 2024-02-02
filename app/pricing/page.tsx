@@ -1,31 +1,14 @@
-"use client"
-import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
-import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
-import {useGetBlogByIdQuery} from "@/features/api/postApi";
+'use client'
 import React from "react";
+import {Swift} from "@styled-icons/simple-icons/Swift"
+import {Button} from "@nextui-org/button";
+import {Link} from "@nextui-org/link";
 
 export default function PricingPage() {
-    const {
-        data: post,
-        isFetching,
-        isLoading
-    } = useGetBlogByIdQuery(1, {
-        // 每 3s 轮询，实现实时数据更新的效果
-        pollingInterval: 3000,
-        // 用于控制查询的自动触发行为
-        refetchOnMountOrArgChange: true,
-        skip: false,
-    })
-    const {editor, characterCount} = useBlockEditor({content: post?.data.content})
-    if (isLoading) {
-        return <div>Loading</div>
-    }
-    if (!post) {
-        return <div>Missing post!</div>
-    }
+
     return (
         <>
-            <BlockEditor editor={editor}/>
+            <Swift/>
         </>
     );
 }

@@ -16,7 +16,7 @@ export const BlockEditor = ({editor}: { editor: Editor | null }) => {
         <>
             {editor.isEditable ? (
                 <div ref={menuContainerRef}>
-                    <EditorContent editor={editor} className="flex-1 overflow-y-auto"/>
+                    <EditorContent editor={editor} className={"w-[700px]"}/>
                     <ContentItemMenu editor={editor}/>
                     <TextMenu editor={editor}/>
                     <LinkMenu editor={editor} appendTo={menuContainerRef}/>
@@ -25,7 +25,7 @@ export const BlockEditor = ({editor}: { editor: Editor | null }) => {
                     <ColumnsMenu editor={editor} appendTo={menuContainerRef}/>
                 </div>
             ) : (
-                <EditorContent editor={editor} className="flex-1 overflow-y-auto"/>
+                <EditorContent editor={editor} className={"overflow-hidden"}/>
             )}
         </>
     );

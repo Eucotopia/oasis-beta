@@ -1,12 +1,8 @@
 import React, {useCallback} from 'react'
 import {Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger} from "@nextui-org/react";
-import {Button} from "@nextui-org/button";
-import {library} from '@fortawesome/fontawesome-svg-core'
-import {fas} from '@fortawesome/free-solid-svg-icons'
 import IconComponentsMap from "@/extentions/tiptap/lib/svg/IconComponents";
 import {Link} from "@nextui-org/link";
 
-library.add(fas)
 export type ContentTypePickerOption = {
     label: string
     id: string
