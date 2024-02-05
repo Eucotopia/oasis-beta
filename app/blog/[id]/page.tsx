@@ -9,6 +9,7 @@ import {Button} from "@nextui-org/button";
 import {Link} from "@nextui-org/link";
 import {useState} from "react";
 import NextLink from "next/link";
+import goober from "goober";
 
 export default function Page({params}: { params: { id: string } }) {
 
@@ -17,6 +18,7 @@ export default function Page({params}: { params: { id: string } }) {
         isFetching,
         isLoading
     } = useGetBlogByIdQuery(Number(params.id))
+
     const [currentPost, setCurrentPost] = useState(post)
 
     const {
@@ -26,7 +28,8 @@ export default function Page({params}: { params: { id: string } }) {
     const {
         data: lastPost,
     } = useGetBlogByIdQuery(Number(params.id) + 1)
-
+    console.log("prePost", prePost)
+    console.log("lasePost", lastPost)
     const {editor, characterCount} = useBlockEditor({content: currentPost?.data.content})
     if (isLoading) {
         return <div>Loading</div>
@@ -48,19 +51,24 @@ export default function Page({params}: { params: { id: string } }) {
                 className={"flex flex-row justify-center gap-4 px-6"}
             >
                 <Button
-                    as={NextLink}
+                    as={Link}
                     size={"lg"}
+                    isDisabled={prePost === undefined || prePost === null}
+                    variant={"ghost"}
                     href={`/blog/${Number(params.id) - 1}`}
-                    className={"flex flex-row border  shadow-2xl rounded-xl  p-3 basis-1/2 hover:bg-green-400"}
+                    color="primary"
                 >
                     <p>上一篇&nbsp;/&nbsp;</p>
                     <p>{prePost?.data.title}</p>
                 </Button>
                 <Button
-                    as={NextLink}
+                    as={Link}
+                    variant={"ghost"}
+                    isDisabled={lastPost === undefined || lastPost === null}
                     href={`/blog/${Number(params.id) + 1}`}
                     size={"lg"}
-                    className={"flex flex-row border  shadow-2xl rounded-xl  p-3 basis-1/2 hover:bg-green-400"}>
+                    color="primary"
+                >
                     <p>下一篇&nbsp;/&nbsp;</p>
                     <p>{lastPost?.data.title}</p>
                 </Button>
