@@ -17,7 +17,7 @@ export const useBlockEditor = ({onContentChange, content}: {
                 autocomplete: 'off',
                 autocorrect: 'off',
                 autocapitalize: 'off',
-                class: 'min-h-full',
+                class: 'min-h-full bg-default-100 rounded-xl',
             },
         },
         editable: onContentChange !== undefined,

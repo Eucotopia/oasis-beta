@@ -11,7 +11,9 @@ export const TableColumnMenu = React.memo(({editor}: MenuProps): JSX.Element => 
             if (!state) {
                 return false
             }
-            console.log(isColumnGripSelected({editor, view, state, from: from || 0}))
+            if (!view){
+                return false
+            }
             return isColumnGripSelected({editor, view, state, from: from || 0})
         },
         [editor],

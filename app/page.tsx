@@ -5,9 +5,9 @@ import {button as buttonStyles} from "@nextui-org/theme";
 import {siteConfig} from "@/config/site";
 import {title, subtitle} from "@/components/primitives";
 import {GithubIcon} from "@/components/icons";
-import TechnologyStack from "@/components/Marquee/TechnologyStack";
-import ProgrammingLanguage from "@/components/Marquee/ProgrammingLanguage";
-import ProgrammingTools from "@/components/Marquee/ProgrammingTools";
+import TechnologyStack from "@/components/marquee/TechnologyStack";
+import ProgrammingLanguage from "@/components/marquee/ProgrammingLanguage";
+import ProgrammingTools from "@/components/marquee/ProgrammingTools";
 import React from "react";
 
 export default function Home() {

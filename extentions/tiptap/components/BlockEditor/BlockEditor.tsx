@@ -16,7 +16,7 @@ export const BlockEditor = ({editor}: { editor: Editor | null }) => {
         <>
             {editor.isEditable ? (
                 <div ref={menuContainerRef}>
-                    <EditorContent editor={editor} className={"w-[700px]"}/>
+                    <EditorContent editor={editor} className={"w-[700px] "}/>
                     <ContentItemMenu editor={editor}/>
                     <TextMenu editor={editor}/>
                     <LinkMenu editor={editor} appendTo={menuContainerRef}/>

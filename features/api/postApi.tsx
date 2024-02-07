@@ -51,6 +51,10 @@ export const postApi = createApi({
             isLiked: builder.query<ResultResponse<boolean>, number>({
                 query: (id) => `/post/isLiked/${id}`,
             }),
+            // 获取相关文章
+            getRelatedArticles:builder.query<ResultResponse<Post[]>,number>({
+                query:(id)=>`/post/related/${id}`
+            })
         }),
     }
 )
@@ -58,6 +62,7 @@ export const postApi = createApi({
 export const {
     useGetBlogQuery,
     useIsLikedQuery,
+    useGetRelatedArticlesQuery,
     useGetBlogByIdQuery,
     useLikeBlogQuery,
     useAddBlogMutation,

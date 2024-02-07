@@ -2,21 +2,19 @@
 import {useGetBlogByIdQuery} from "@/features/api/postApi";
 import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
-import {TableOfContents} from "@/extentions/tiptap/components/TableOfContents";
-import {link, Listbox, ListboxItem} from "@nextui-org/react";
-import {ListItem} from "@tiptap/extension-list-item";
 import {Button} from "@nextui-org/button";
 import {Link} from "@nextui-org/link";
 import {useState} from "react";
-import NextLink from "next/link";
-import goober from "goober";
+import {HandPointLeft} from '@styled-icons/fa-solid/HandPointLeft'
+import {HandPointRight} from '@styled-icons/fa-solid/HandPointRight'
+import RelatedArticles from '@/components/marquee/RelatedArticles'
 
 export default function Page({params}: { params: { id: string } }) {
 
     const {
         data: post,
         isFetching,
-        isLoading
+        isLoading,
     } = useGetBlogByIdQuery(Number(params.id))
 
     const [currentPost, setCurrentPost] = useState(post)
@@ -28,8 +26,7 @@ export default function Page({params}: { params: { id: string } }) {
     const {
         data: lastPost,
     } = useGetBlogByIdQuery(Number(params.id) + 1)
-    console.log("prePost", prePost)
-    console.log("lasePost", lastPost)
+
     const {editor, characterCount} = useBlockEditor({content: currentPost?.data.content})
     if (isLoading) {
         return <div>Loading</div>
@@ -42,36 +39,40 @@ export default function Page({params}: { params: { id: string } }) {
     }
     return (
         <>
-            <div className={"flex flex-row"}>
-                <div className={"w-[700px]"}>
+            <div className={"flex flex-col items-center"}>
+                <div className={"w-[840px]"}>
                     <BlockEditor editor={editor}/>
+                    <div
+                        className={"flex flex-row justify-around"}
+                    >
+                        <Button
+                            as={Link}
+                            size={"lg"}
+                            variant={"ghost"}
+                            href={`/blog/${Number(params.id) - 1}`}
+                            isDisabled={prePost === undefined || prePost === null}
+                            className={'text gap-4 p-6'}
+                            startContent={<HandPointLeft height={100} width={100}/>}
+                        >
+                            <p>{prePost?.data.title}</p>
+                        </Button>
+                        <Button
+                            as={Link}
+                            size={"lg"}
+                            variant={"ghost"}
+                            isDisabled={lastPost === undefined || lastPost === null}
+                            href={`/blog/${Number(params.id) + 1}`}
+                            className={'text gap-4 p-6'}
+
+                            endContent={<HandPointRight height={100} width={100}/>}
+                        >
+                            <p>{lastPost?.data.title}</p>
+                        </Button>
+                    </div>
                 </div>
-            </div>
-            <div
-                className={"flex flex-row justify-center gap-4 px-6"}
-            >
-                <Button
-                    as={Link}
-                    size={"lg"}
-                    isDisabled={prePost === undefined || prePost === null}
-                    variant={"ghost"}
-                    href={`/blog/${Number(params.id) - 1}`}
-                    color="primary"
-                >
-                    <p>上一篇&nbsp;/&nbsp;</p>
-                    <p>{prePost?.data.title}</p>
-                </Button>
-                <Button
-                    as={Link}
-                    variant={"ghost"}
-                    isDisabled={lastPost === undefined || lastPost === null}
-                    href={`/blog/${Number(params.id) + 1}`}
-                    size={"lg"}
-                    color="primary"
-                >
-                    <p>下一篇&nbsp;/&nbsp;</p>
-                    <p>{lastPost?.data.title}</p>
-                </Button>
+                <div className={"mt-20"}>
+                    <RelatedArticles id={Number(params.id)}/>
+                </div>
             </div>
         </>
     )

@@ -104,7 +104,7 @@ export default function App() {
                 </ListboxItem>
                 <ListboxItem
                     key="issues"
-                    href={"/blog/10"}
+                    href={"/blog/54"}
                     startContent={
                         <svg height="7em" viewBox="32.163 70.009 203.691 226.654" width="7em"
                              xmlns="http://www.w3.org/2000/svg">

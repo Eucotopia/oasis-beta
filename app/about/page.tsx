@@ -1,8 +1,8 @@
 'use client'
 import React from "react";
-import TechnologyStack from "@/components/Marquee/TechnologyStack";
-import ProgrammingTools from "@/components/Marquee/ProgrammingTools"
-import ProgrammingLanguage from "@/components/Marquee/ProgrammingLanguage"
+import TechnologyStack from "@/components/marquee/TechnologyStack";
+import ProgrammingTools from "@/components/marquee/ProgrammingTools"
+import ProgrammingLanguage from "@/components/marquee/ProgrammingLanguage"
 import {subtitle, title} from "@/components/primitives";
 import {motion} from "framer-motion";
 

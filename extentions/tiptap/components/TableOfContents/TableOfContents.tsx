@@ -3,8 +3,7 @@
 import { Editor as CoreEditor } from '@tiptap/core'
 import { memo, useEffect, useState } from 'react'
 import { TableOfContentStorage } from '@tiptap-pro/extension-table-of-content'
-import {cn} from "@nextui-org/react";
-// import { cn } from '@/extentions/tiptap/lib/utils'
+import { cn } from '@/extentions/tiptap/lib/util'
 
 export type TableOfContentsProps = {
   editor: CoreEditor

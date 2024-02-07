@@ -11,11 +11,13 @@ export interface User {
     email: string | null
     token: string | null
 }
+
 export interface Category {
     id: number
     name: string
     parentId: string
 }
+
 export interface LoginRequest {
     username: string
     password: string
@@ -51,7 +53,8 @@ export type PostDTO = {
     content: string,
     summary: string,
     isTop: boolean,
-    cover: string
+    cover: string,
+    categoryId:string
 }
 
 export interface ResultResponse<T> {

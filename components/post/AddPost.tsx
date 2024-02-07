@@ -12,10 +12,14 @@ import {
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
 import {PostDTO} from "@/types";
 import {useAddBlogMutation} from "@/features/api/postApi";
-import {Input, Textarea} from "@nextui-org/input";
+import {Textarea} from "@nextui-org/input";
 import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
 
-export default function App() {
+import ChoseCategory from "./ChoseCategory";
+import {useGetCategoriesQuery} from "@/features/api/categoryApi";
+import ChoseTag from "./ChoseTag";
+
+const AddPost = () => {
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [addBlog, isLoading] = useAddBlogMutation()
@@ -26,6 +30,7 @@ export default function App() {
             content: html
         }))
     }
+    const [isSelected, setIsSelected] = React.useState(false);
     const {editor, characterCount} = useBlockEditor({onContentChange: handleChildContent})
     const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setPostState((prev) => ({
         ...prev,
@@ -34,6 +39,14 @@ export default function App() {
     const addPost = async () => {
         const blog = await addBlog(postState).unwrap()
         if (blog.code === "200") {
+            setPostState(prevState => ({
+                title: "",
+                content: "",
+                summary: "",
+                isTop: true,
+                cover: "https://nextui.org/images/album-cover.png",
+                categoryId: ''
+            }))
         }
     }
     const [postState, setPostState] = useState<PostDTO>({
@@ -41,14 +54,24 @@ export default function App() {
         content: "",
         summary: "",
         isTop: false,
-        cover: "https://nextui.org/images/album-cover.png"
+        cover: "https://nextui.org/images/album-cover.png",
+        categoryId: ''
     })
-    const onIsTopChange = () => {
-        setPostState((pre) => ({
-            ...pre,
-            isTop: !pre.isTop
+
+    const HandeCategoryIdChange = (id: string) => {
+        setPostState(prevState => ({
+            ...prevState,
+            categoryId: id
         }))
     }
+    const onIsTopChange = () => {
+        setPostState(prevState => ({
+            ...prevState,
+            isTop: !prevState.isTop
+        }))
+    }
+    const {data: categories} = useGetCategoriesQuery()
+
     return (
         <>
             <Button onPress={onOpen}>Add new</Button>
@@ -63,35 +86,60 @@ export default function App() {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Add Post</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1">Keep Writing</ModalHeader>
                             <ModalBody>
+                                <p className={"font-bold text-medium "}>Content</p>
                                 <BlockEditor editor={editor}/>
                             </ModalBody>
                             <ModalFooter className={"flex flex-col"}>
-                                <Divider/>
-                                <div>
-                                    <Input
-                                        value={postState.title}
-                                        variant={"bordered"}
-                                        onChange={handleChange}
-                                        name={"title"}
-                                        size={"sm"}
-                                        placeholder={'请输入标题'}/>
+                                <div className={"flex flex-row justify-between gap-10"}>
+                                    <div className={'basis-1/2'}>
+                                        <p className={"font-bold text-medium"}>Title</p>
+                                        <Textarea
+                                            variant="flat"
+                                            name={"title"}
+                                            onChange={handleChange}
+                                            labelPlacement="outside"
+                                            placeholder="Enter your title"
+                                            className="mt-3"
+                                            size={"md"}
+                                        />
+                                    </div>
+                                    <div className={'basis-1/2'}>
+                                        <p className={"font-bold text-medium"}>Summary</p>
+                                        <Textarea
+                                            variant="flat"
+                                            name={"summary"}
+                                            onChange={handleChange}
+                                            labelPlacement="outside"
+                                            placeholder="Enter your summary"
+                                            className="mt-3"
+                                            size={"md"}
+                                        />
+                                    </div>
                                 </div>
-                                <div>
-                                    <Textarea
-                                        label="Description"
-                                        variant="bordered"
-                                        name={"summary"}
-                                        onChange={handleChange}
-                                        labelPlacement="outside"
-                                        placeholder="Enter your description"
-                                        className="max-w-xs"
-                                    />
-                                </div>
-                                <div>
-                                    <Switch isSelected={postState.isTop} onValueChange={onIsTopChange}
-                                            color="secondary">置顶</Switch>
+                                <div className={"flex flex-row justify-between gap-10"}>
+
+                                    <div>
+                                        <p className={"font-bold text-medium mb-4"}>Category</p>
+                                        <ChoseCategory category={categories?.data}
+                                                       setCategoryId={HandeCategoryIdChange}/>
+                                    </div>
+                                    <div>
+                                        <p className={"font-bold text-medium mb-4 mt-1"}>IsTop</p>
+                                        <Switch isSelected={postState.isTop} onValueChange={onIsTopChange}
+                                                color="secondary">Top</Switch>
+                                    </div>
+                                    <div>
+                                        <p className={"font-bold text-medium mb-4 mt-1"}>Tag</p>
+                                        <div className={"flex flex-row gap-2 flex-nowrap"}>
+                                            {
+                                                categories?.data.map((item, index) => (
+                                                    <ChoseTag key={index} tag={item.name}/>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                                 <Divider/>
                                 <div className={"flex flex-row justify-between"}>
@@ -110,3 +158,5 @@ export default function App() {
         </>
     );
 }
+
+export default AddPost

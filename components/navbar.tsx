@@ -87,9 +87,7 @@ export const Navbar = () => {
                         <NavbarItem isActive={active.includes("/develop")}>
                             <Tooltip
                                 content=<DevelopComponent/>
-                                delay={0}
                                 showArrow
-                                closeDelay={0}
                                 motionProps={{
                                     variants: {
                                         exit: {
