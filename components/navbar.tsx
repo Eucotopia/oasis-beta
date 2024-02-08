@@ -122,7 +122,6 @@ export const Navbar = () => {
                             </Tooltip>
                         </NavbarItem>
                     </ul>
-
                 </NavbarContent>
 
                 <NavbarContent

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {
     Modal,
     ModalContent,
@@ -36,19 +36,7 @@ const AddPost = () => {
         ...prev,
         [name]: value
     }))
-    const addPost = async () => {
-        const blog = await addBlog(postState).unwrap()
-        if (blog.code === "200") {
-            setPostState(prevState => ({
-                title: "",
-                content: "",
-                summary: "",
-                isTop: true,
-                cover: "https://nextui.org/images/album-cover.png",
-                categoryId: ''
-            }))
-        }
-    }
+
     const [postState, setPostState] = useState<PostDTO>({
         title: "",
         content: "",
@@ -57,7 +45,6 @@ const AddPost = () => {
         cover: "https://nextui.org/images/album-cover.png",
         categoryId: ''
     })
-
     const HandeCategoryIdChange = (id: string) => {
         setPostState(prevState => ({
             ...prevState,
@@ -70,8 +57,28 @@ const AddPost = () => {
             isTop: !prevState.isTop
         }))
     }
-    const {data: categories} = useGetCategoriesQuery()
 
+    const {data: categories} = useGetCategoriesQuery()
+    if (!editor) {
+        return undefined
+    }
+    const addPost = async () => {
+        const updatedPostState = {
+            ...postState,
+            content: editor?.getHTML()
+        };
+        const blog = await addBlog(updatedPostState).unwrap()
+        if (blog.code === "200") {
+            setPostState(prevState => ({
+                title: "",
+                content: "",
+                summary: "",
+                isTop: true,
+                cover: "https://nextui.org/images/album-cover.png",
+                categoryId: ''
+            }))
+        }
+    }
     return (
         <>
             <Button onPress={onOpen}>Add new</Button>

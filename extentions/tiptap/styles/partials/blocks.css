@@ -10,14 +10,13 @@
     }
 
     /* Block Quote */
-
     figure[data-type='blockquoteFigure'] {
-        @apply my-14 text-black dark:text-white ;
+        @apply my-14 text-black dark:text-white bg-primary-100 rounded-xl ;
         position: relative;
     }
 
     figure[data-type='blockquoteFigure']::before {
-        content: "‘"; /* 设置伪元素的内容为左引号 */
+        content: "'‘"; /* 设置伪元素的内容为左引号 */
         position: absolute; /* 设置伪元素的定位方式为绝对定位 */
         top: 0; /* 将伪元素定位在元素的顶部 */
         left: 0; /* 将伪元素定位在元素的左侧 */
@@ -27,7 +26,7 @@
     & > blockquote,
     [data-type='blockquoteFigure'] {
         blockquote {
-            @apply m-0;
+            @apply m-0 ;
 
             & > * {
                 @apply first:mt-0 last:mb-0;

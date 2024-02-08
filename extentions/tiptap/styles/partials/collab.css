@@ -1,7 +1,7 @@
 .ProseMirror {
   .collaboration-cursor {
     &__caret {
-      @apply border-r border-l border-black pointer-events-none -ml-[1px] -mr-[1px] relative break-normal;
+      @apply border-r border-l border-black pointer-events-none -ml-[1px] -mr-[1px] relative break-normal ;
     }
 
     &__label {

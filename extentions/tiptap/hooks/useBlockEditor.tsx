@@ -17,19 +17,19 @@ export const useBlockEditor = ({onContentChange, content}: {
                 autocomplete: 'off',
                 autocorrect: 'off',
                 autocapitalize: 'off',
-                class: 'min-h-full bg-default-100 rounded-xl',
+                class: 'min-h-full',
             },
         },
         editable: onContentChange !== undefined,
     }, [])
-    useEffect(() => {
-        if (!editor) {
-            return undefined
-        }
-        editor.on("update", () => {
-            onContentChange && onContentChange(editor.getHTML())
-        })
-    })
+    // useEffect(() => {
+    //     if (!editor) {
+    //         return undefined
+    //     }
+    //     editor.on("update", () => {
+    //         onContentChange && onContentChange(editor.getHTML())
+    //     })
+    // })
 
     const characterCount = editor?.storage.characterCount || {characters: () => 0, words: () => 0}
     return {editor, characterCount}
