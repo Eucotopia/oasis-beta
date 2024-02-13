@@ -3,10 +3,13 @@ import {useGetBlogByIdQuery} from "@/features/api/postApi";
 import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
 import {Button} from "@nextui-org/button";
+import Image from "next/image";
+
 import {Link} from "@nextui-org/link";
 import {HandPointLeft} from '@styled-icons/fa-solid/HandPointLeft'
 import {HandPointRight} from '@styled-icons/fa-solid/HandPointRight'
 import RelatedArticles from '@/components/marquee/RelatedArticles'
+import React from "react";
 
 export default function Page({params}: { params: { id: string } }) {
 
@@ -38,6 +41,12 @@ export default function Page({params}: { params: { id: string } }) {
     return (
         <>
             <div className="flex flex-col items-center">
+                <div className={"relative flex flex-col h-screen -z-10 inset-0"}>
+                    <Image style={{objectFit: 'cover'}}
+                           src={'https://images.pexels.com/photos/19985445/pexels-photo-19985445/free-photo-of-dogs-sitting-in-snow-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}
+                           alt={'asdf'} fill></Image>
+                    <div className={'bg-gradient-to-r from-violet-900 inset-0 absolute'}></div>
+                </div>
                 {/*<Card isFooterBlurred className="w-screen col-span-12 sm:col-span-5">*/}
                 {/*    <CardHeader className="absolute z-10 top-1 flex-col">*/}
                 {/*        <h1 className={title({color: 'violet'})}>{post.data.summary}</h1>*/}
@@ -46,7 +55,7 @@ export default function Page({params}: { params: { id: string } }) {
                 {/*    <Image*/}
                 {/*        removeWrapper*/}
                 {/*        alt="Card background"*/}
-                {/*        className="z-0 w-full h-full"*/}
+                {/*        className="z-0 bg-gradient-to-r from-primary-900"*/}
                 {/*        src="https://nextui.org/images/album-cover.png"*/}
                 {/*    />*/}
                 {/*    <CardFooter*/}

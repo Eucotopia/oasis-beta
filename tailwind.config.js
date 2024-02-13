@@ -10,15 +10,32 @@ module.exports = {
     ],
     theme: {
         extend: {
-            fontFamily:{
-                h1:['STXINGKA','sans-serif']
-            }
+            colors: {
+            },
+            fontFamily: {
+                h1: ['STXINGKA', 'sans-serif']
+            },
+
         },
     },
     darkMode: "class",
     plugins: [
         nextui({
             themes: {
+                light: {
+                    backgroundImage: {
+                        site: "url('../public/image/site-bg.jpg')",
+                        about: "url('./assets/about.png')",
+                        services: "url('./assets/services.png')",
+                    },
+                },
+                dark: {
+                    backgroundImage: {
+                        site: "url('../public/image/site-bg.jpg')",
+                        about: "url('./assets/about.png')",
+                        services: "url('./assets/services.png')",
+                    },
+                },
                 "purple-dark": {
                     extend: "dark",
                     colors: {
@@ -66,7 +83,7 @@ module.exports = {
                             DEFAULT: "#FF357C",
                             foreground: "#ffffff",
                         },
-                        info:{
+                        info: {
                             50: "#FFD8D6",
                             100: "#FFD8D6",
                             200: "#FFAEB2",
@@ -81,6 +98,11 @@ module.exports = {
                             foreground: "#ffffff",
                         },
                         focus: "#F182F6",
+                    },
+                    backgroundImage: {
+                        site: "url('../public/image/hero-image.png')",
+                        about: "url('./assets/about.png')",
+                        services: "url('./assets/services.png')",
                     },
                     layout: {
                         disabledOpacity: "0.3",

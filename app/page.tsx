@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import {Link} from "@nextui-org/link";
 import {Snippet} from "@nextui-org/snippet";
 import {Code} from "@nextui-org/code"
@@ -5,29 +6,34 @@ import {button as buttonStyles} from "@nextui-org/theme";
 import {siteConfig} from "@/config/site";
 import {title, subtitle} from "@/components/primitives";
 import {GithubIcon} from "@/components/icons";
-import TechnologyStack from "@/components/marquee/TechnologyStack";
-import ProgrammingLanguage from "@/components/marquee/ProgrammingLanguage";
-import ProgrammingTools from "@/components/marquee/ProgrammingTools";
-import React from "react";
+import Avatar from "@/public/image/avatar.svg"
+import Image from "next/image";
 
 export default function Home() {
     return (
-        <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-            <div className="inline-block  text-center justify-center">
-                <h1 className={title()}>Make&nbsp;</h1>
-                <h1 className={title({color: "violet"})}>beautiful&nbsp;</h1>
-                <br/>
-                <h1 className={title()}>
-                    websites regardless of your design experience.
-                </h1>
-                <h2 className={subtitle({class: "mt-4"})}>
-                    Beautiful, fast and modern React UI library.
-                </h2>
+        <section
+            className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 bg-site bg-no-repeat bg-cover overflow-hidden">
+            <div className={'flex md:gap-12 items-center'}>
+                <div className="inline-block max-w-lg text-center justify-center">
+                    <h1 className={title()}>Make&nbsp;</h1>
+                    <h1 className={title({color: "violet"})}>beautiful&nbsp;</h1>
+                    <br/>
+                    <h1 className={title()}>
+                        websites regardless of your design experience.
+                    </h1>
+                    <h2 className={subtitle({class: "mt-4"})}>
+                        Beautiful, fast and modern React UI library.
+                    </h2>
+                </div>
+                <div>
+                    <Image src={Avatar} alt={''}/>
+                </div>
             </div>
 
             <div className="flex gap-3">
                 <Link
                     isExternal
+                    as={NextLink}
                     href={siteConfig.links.docs}
                     className={buttonStyles({color: "primary", radius: "full", variant: "shadow"})}
                 >
@@ -35,6 +41,7 @@ export default function Home() {
                 </Link>
                 <Link
                     isExternal
+                    as={NextLink}
                     className={buttonStyles({variant: "bordered", radius: "full"})}
                     href={siteConfig.links.github}
                 >
