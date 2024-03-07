@@ -15,7 +15,11 @@ module.exports = {
             fontFamily: {
                 h1: ['STXINGKA', 'sans-serif']
             },
-
+            backgroundImage: {
+                site: "url('../public/image/site-bg.jpg')",
+                about: "url('./assets/about.png')",
+                services: "url('./assets/services.png')",
+            },
         },
     },
     darkMode: "class",
