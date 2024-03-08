@@ -6,10 +6,11 @@ import {Button} from "@nextui-org/button";
 import Image from "next/image";
 
 import {Link} from "@nextui-org/link";
-import {HandPointLeft} from '@styled-icons/fa-solid/HandPointLeft'
-import {HandPointRight} from '@styled-icons/fa-solid/HandPointRight'
+// import {HandPointLeft} from '@styled-icons/fa-solid/HandPointLeft'
+// import {HandPointRight} from '@styled-icons/fa-solid/HandPointRight'
 import RelatedArticles from '@/components/marquee/RelatedArticles'
 import React from "react";
+import {HandPointLeft, HandPointRight} from "@styled-icons/fa-regular";
 
 export default function Page({params}: { params: { id: string } }) {
 

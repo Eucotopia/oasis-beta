@@ -3,7 +3,7 @@ import React from "react";
 import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
 import {Button} from "@nextui-org/button";
 import {Code} from "@nextui-org/code";
-import {Dropdown, DropdownItem, Tooltip} from "@nextui-org/react";
+import {Tooltip} from "@nextui-org/react";
 
 const AA = () => {
     return (
