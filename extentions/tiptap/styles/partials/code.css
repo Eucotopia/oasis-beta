@@ -1,7 +1,9 @@
 .ProseMirror {
     code {
         @apply caret-white text-white bg-neutral-900 rounded-sm shadow-lg font-mono;
-
+        background-color: red;
+        padding: 2px;
+        border-radius: 4px;
         &::selection {
             @apply bg-white/30;
         }
