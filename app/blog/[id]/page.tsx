@@ -4,13 +4,13 @@ import {useBlockEditor} from "@/extentions/tiptap/hooks/useBlockEditor";
 import {BlockEditor} from "@/extentions/tiptap/components/BlockEditor/BlockEditor";
 import {Button} from "@nextui-org/button";
 import Image from "next/image";
-
 import {Link} from "@nextui-org/link";
 // import {HandPointLeft} from '@styled-icons/fa-solid/HandPointLeft'
 // import {HandPointRight} from '@styled-icons/fa-solid/HandPointRight'
 import RelatedArticles from '@/components/marquee/RelatedArticles'
 import React from "react";
 import {HandPointLeft, HandPointRight} from "@styled-icons/fa-regular";
+import {Card, CardFooter, CardHeader} from "@nextui-org/react";
 
 export default function Page({params}: { params: { id: string } }) {
 
@@ -42,34 +42,10 @@ export default function Page({params}: { params: { id: string } }) {
     return (
         <>
             <div className="flex flex-col items-center">
-                <div className={"relative flex flex-col h-screen -z-10 inset-0"}>
-                    <Image style={{objectFit: 'cover'}}
-                           src={'https://images.pexels.com/photos/19985445/pexels-photo-19985445/free-photo-of-dogs-sitting-in-snow-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}
-                           alt={'asdf'} fill></Image>
-                    <div className={'bg-gradient-to-r from-violet-900 inset-0 absolute'}></div>
+                <div >
+                    <div className="bg-fixed bg-cover" style={{background: `url('${post?.data.cover}')`}}/>
+                    <div>{post?.data.cover}</div>
                 </div>
-                {/*<Card isFooterBlurred className="w-screen col-span-12 sm:col-span-5">*/}
-                {/*    <CardHeader className="absolute z-10 top-1 flex-col">*/}
-                {/*        <h1 className={title({color: 'violet'})}>{post.data.summary}</h1>*/}
-                {/*        <h4 className="text-white font-medium text-large">{post.data.title}</h4>*/}
-                {/*    </CardHeader>*/}
-                {/*    <Image*/}
-                {/*        removeWrapper*/}
-                {/*        alt="Card background"*/}
-                {/*        className="z-0 bg-gradient-to-r from-primary-900"*/}
-                {/*        src="https://nextui.org/images/album-cover.png"*/}
-                {/*    />*/}
-                {/*    <CardFooter*/}
-                {/*        className={'absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between'}>*/}
-                {/*        <div>*/}
-                {/*            <p className="text-black text-tiny">Available soon.</p>*/}
-                {/*            <p className="text-black text-tiny">Get notified.</p>*/}
-                {/*        </div>*/}
-                {/*        <Button className="text-tiny" color="primary" radius="full" size="sm">*/}
-                {/*            Notify Me*/}
-                {/*        </Button>*/}
-                {/*    </CardFooter>*/}
-                {/*</Card>*/}
 
                 <div className={"flex flex-row gap-6"}>
                     <div className={"p-6 bg-amber-700 rounded-xl"}>

@@ -10,15 +10,15 @@ module.exports = {
     ],
     theme: {
         extend: {
-            colors: {
+            backgroundPosition:{
+                'left-4': 'left 8rem top',
             },
+            colors: {},
             fontFamily: {
                 h1: ['STXINGKA', 'sans-serif']
             },
             backgroundImage: {
-                site: "url('../public/image/site-bg.jpg')",
-                about: "url('./assets/about.png')",
-                services: "url('./assets/services.png')",
+                'index-bg-image': "url('../public/image/ccchaos.svg')",
             },
         },
     },
@@ -27,21 +27,18 @@ module.exports = {
         nextui({
             themes: {
                 light: {
-                    backgroundImage: {
-                        site: "url('../public/image/site-bg.jpg')",
-                        about: "url('./assets/about.png')",
-                        services: "url('./assets/services.png')",
-                    },
+                    backgroundImage: {},
                 },
                 dark: {
-                    backgroundImage: {
-                        site: "url('../public/image/site-bg.jpg')",
-                        about: "url('./assets/about.png')",
-                        services: "url('./assets/services.png')",
-                    },
+                    backgroundImage: {},
                 },
                 "purple-dark": {
                     extend: "dark",
+                    backgroundImage: {
+                        site: "url('../public/image/hero-image.png')",
+                        about: "url('./assets/about.png')",
+                        services: "url('./assets/services.png')",
+                    },
                     colors: {
                         background: "#0D001A",
                         foreground: "#ffffff",
@@ -103,11 +100,7 @@ module.exports = {
                         },
                         focus: "#F182F6",
                     },
-                    backgroundImage: {
-                        site: "url('../public/image/hero-image.png')",
-                        about: "url('./assets/about.png')",
-                        services: "url('./assets/services.png')",
-                    },
+
                     layout: {
                         disabledOpacity: "0.3",
                         radius: {

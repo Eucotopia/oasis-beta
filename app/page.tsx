@@ -4,53 +4,43 @@ import {Snippet} from "@nextui-org/snippet";
 import {Code} from "@nextui-org/code"
 import {button as buttonStyles} from "@nextui-org/theme";
 import {siteConfig} from "@/config/site";
-import {title, subtitle} from "@/components/primitives";
 import {GithubIcon} from "@/components/icons";
-import Avatar from "@/public/image/avatar.svg"
-import Image from "next/image";
+import {title} from "@/components/primitives";
+import {Card, CardBody, CardFooter, CardHeader} from "@nextui-org/react";
 
 export default function Home() {
     return (
         <section
-            className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 bg-site bg-no-repeat bg-cover overflow-hidden">
-            <div className={'flex md:gap-12 items-center'}>
-                <div className="inline-block max-w-lg text-center justify-center">
-                    <h1 className={title()}>Make&nbsp;</h1>
-                    <h1 className={title({color: "violet"})}>beautiful&nbsp;</h1>
-                    <br/>
-                    <h1 className={title()}>
-                        websites regardless of your design experience.
-                    </h1>
-                    <h2 className={subtitle({class: "mt-4"})}>
-                        Beautiful, fast and modern React UI library.
-                    </h2>
-                </div>
-                <div>
-                    <Image src={Avatar} alt={''}/>
+            className="flex flex-col items-center justify-center gap-4 -mt-10 overflow-hidden">
+            <div
+                className="flex flex-row justify-end items-start h-screen w-screen bg-index-bg-image bg-no-repeat bg-left-4">
+                <div className={"flex flex-col mr-36 tracking-wide leading-10 mt-40"}>
+                    <h1 className={title({color: "yellow"})}>You brought life's breath,</h1>
+                    <h1 className={title({color: "cyan", class: "mt-5"})}>and I found my reason to be.</h1>
                 </div>
             </div>
-
-            <div className="flex gap-3">
-                <Link
-                    isExternal
-                    as={NextLink}
-                    href={siteConfig.links.docs}
-                    className={buttonStyles({color: "primary", radius: "full", variant: "shadow"})}
-                >
-                    Documentation
-                </Link>
-                <Link
-                    isExternal
-                    as={NextLink}
-                    className={buttonStyles({variant: "bordered", radius: "full"})}
-                    href={siteConfig.links.github}
-                >
-                    <GithubIcon size={20}/>
-                    GitHub
-                </Link>
-            </div>
-
             <div className="mt-8">
+                <Card>
+                    <CardHeader>
+                        adf
+                    </CardHeader>
+                    <CardBody>123123213</CardBody>
+                    <CardFooter>adfasdfsdf</CardFooter>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        adf
+                    </CardHeader>
+                    <CardBody>123123213</CardBody>
+                    <CardFooter>adfasdfsdf</CardFooter>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        adf
+                    </CardHeader>
+                    <CardBody>123123213</CardBody>
+                    <CardFooter>adfasdfsdf</CardFooter>
+                </Card>
                 <Snippet hideSymbol hideCopyButton variant="flat">
 					<span>
 						Get started by editing <Code color="primary">app/page.tsx</Code>
