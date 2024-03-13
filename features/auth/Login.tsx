@@ -1,6 +1,5 @@
 "use client"
-import {LoginRequest, UserLoginType, UserRegisterType} from "@/types";
-import {Input} from "@nextui-org/input";
+import {UserLoginType, UserRegisterType} from "@/types";
 import React, {ChangeEvent, useEffect, useImperativeHandle, useMemo, useState} from "react";
 import {Button} from "@nextui-org/button";
 import {setCredentials} from "@/features/auth/authSlice";
@@ -13,7 +12,7 @@ import {
     Tab, Tabs,
     useDisclosure
 } from "@nextui-org/react";
-import {EyeFilledIcon, EyeSlashFilledIcon, MailIcon} from "@nextui-org/shared-icons";
+import SimpleLogin from "@/components/Application/Authentication/simple-login/App";
 import {useAuth} from "@/hooks/useAuth";
 import {NavbarContent} from "@nextui-org/navbar";
 import {useAppDispatch} from "@/hooks/store";
@@ -133,145 +132,7 @@ export const Login = () => {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <Card
-                                className="max-w-full w-[340px] h-[400px]"
-                            >
-                                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start text-xl">Log
-                                    in</CardHeader>
-                                <CardBody className="overflow-hidden">
-                                    <Tabs
-                                        fullWidth
-                                        size="md"
-                                        aria-label="Tabs form"
-                                        selectedKey={selected}
-                                        // @ts-ignore
-                                        onSelectionChange={setSelected}
-                                    >
-                                        <Tab key="login" title="Login">
-                                            <form className="flex flex-col gap-4">
-                                                <Input
-                                                    value={loginState.username}
-                                                    onChange={handleLoginChange}
-                                                    name="username"
-                                                    isInvalid={isInvalid}
-                                                    color={isInvalid ? "danger" : "success"}
-                                                    errorMessage={isInvalid && "Please enter a valid email"}
-                                                    autoFocus
-                                                    endContent={
-                                                        <MailIcon
-                                                            className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
-                                                    }
-                                                    label="Email"
-                                                    placeholder="Enter your email"
-                                                    variant="bordered"
-                                                />
-                                                <Input
-                                                    endContent={
-                                                        <button className="focus:outline-none" type="button"
-                                                                onClick={() => setIsVisible(!isVisible)}>
-                                                            {isVisible ? (
-                                                                <EyeSlashFilledIcon
-                                                                    className="text-2xl text-default-400 pointer-events-none"/>
-                                                            ) : (
-                                                                <EyeFilledIcon
-                                                                    className="text-2xl text-default-400 pointer-events-none"/>
-                                                            )}
-                                                        </button>
-                                                    }
-                                                    label="Password"
-                                                    placeholder="Enter your password"
-                                                    name={"password"}
-                                                    value={loginState.password}
-                                                    onChange={handleLoginChange}
-                                                    type={isVisible ? "text" : "password"}
-                                                    variant="bordered"
-                                                />
-                                                <Button fullWidth color="primary" isDisabled>
-                                                    Wechat Login(待开发)
-                                                </Button>
-                                                <p className="text-center text-small">
-                                                    Need to create an account?{" "}
-                                                    <Link size="sm" onPress={() => setSelected("sign-up")}>
-                                                        Sign up
-                                                    </Link>
-                                                </p>
-                                            </form>
-                                        </Tab>
-                                        <Tab key="sign-up" title="Sign up">
-                                            <form className="flex flex-col gap-4 h-[300px]">
-                                                <Input
-                                                    variant="bordered"
-                                                    isRequired
-                                                    name={"nickname"}
-                                                    value={registerState.nickname}
-                                                    onChange={handleRegisterChange}
-                                                    label="Nickname"
-                                                    placeholder="Enter your nickname"
-                                                    type="text"/>
-                                                <Input
-                                                    value={registerState.username}
-                                                    onChange={handleRegisterChange}
-                                                    name="username"
-                                                    isInvalid={isInvalid}
-                                                    color={isInvalid ? "danger" : "success"}
-                                                    errorMessage={isInvalid && "Please enter a valid email"}
-                                                    autoFocus
-                                                    endContent={
-                                                        <MailIcon
-                                                            className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
-                                                    }
-                                                    label="Email"
-                                                    placeholder="Enter your email"
-                                                    variant="bordered"
-                                                />
-                                                <Input
-                                                    endContent={
-                                                        <button className="focus:outline-none" type="button"
-                                                                onClick={() => setIsVisible(!isVisible)}>
-                                                            {isVisible ? (
-                                                                <EyeSlashFilledIcon
-                                                                    className="text-2xl text-default-400 pointer-events-none"/>
-                                                            ) : (
-                                                                <EyeFilledIcon
-                                                                    className="text-2xl text-default-400 pointer-events-none"/>
-                                                            )}
-                                                        </button>
-                                                    }
-                                                    label="Password"
-                                                    placeholder="Enter your password"
-                                                    name={"password"}
-                                                    value={registerState.password}
-                                                    onChange={handleRegisterChange}
-                                                    type={isVisible ? "text" : "password"}
-                                                    variant="bordered"
-                                                />
-                                                <p className="text-center text-small">
-                                                    Already have an account?{" "}
-                                                    <Link size="sm" onPress={() => setSelected("login")}>
-                                                        Login
-                                                    </Link>
-                                                </p>
-                                            </form>
-                                        </Tab>
-                                    </Tabs>
-                                </CardBody>
-                                <CardFooter className={"flex flex-row justify-between gap-4"}>
-                                    <Button color="primary" variant="light" onPress={onClose} fullWidth>
-                                        Close
-                                    </Button>
-                                    {
-                                        selected === "login" ? (
-                                            <Button onPress={onClose} fullWidth color="primary" onClick={Login}>
-                                                Login
-                                            </Button>
-                                        ) : (
-                                            <Button onPress={onClose} fullWidth color="primary" onClick={Register}>
-                                                Sign up
-                                            </Button>
-                                        )
-                                    }
-                                </CardFooter>
-                            </Card>
+                            <SimpleLogin/>
                         </>
                     )}
                 </ModalContent>

@@ -1,3 +1,7 @@
+import type {ClassValue} from "clsx";
+
+import clsx from "clsx";
+import {twMerge} from "tailwind-merge";
 export const fadeIn = ({direction, delay}: { direction: string, delay: number }) => {
     return {
         hidden: {
@@ -18,3 +22,7 @@ export const fadeIn = ({direction, delay}: { direction: string, delay: number })
         },
     };
 };
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+}

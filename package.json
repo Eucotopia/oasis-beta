@@ -57,7 +57,7 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.16",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "eslint": "8.48.0",
     "eslint-config-next": "14.0.2",
     "framer-motion": "^10.16.4",
@@ -76,16 +76,20 @@
     "react-icons": "^5.0.1",
     "react-redux": "^9.1.0",
     "react-responsive-masonry": "^2.1.7",
+    "react-scripts": "^5.0.1",
     "react-type-animation": "^3.2.0",
     "redux-persist": "^6.0.0",
     "styled-icons": "^10.47.0",
     "swiper": "^11.0.5",
+    "tailwind-merge": "^2.2.1",
     "tailwind-variants": "^0.1.18",
     "tailwindcss": "3.3.5",
     "typescript": "5.0.4",
+    "usehooks-ts": "^3.0.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@iconify/react": "^4.1.1",
     "@types/uuid": "^9.0.7"
   }
 }

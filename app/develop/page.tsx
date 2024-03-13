@@ -1,54 +1,25 @@
 'use client'
 import React from "react";
-import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
-import {Button} from "@nextui-org/button";
-import {Code} from "@nextui-org/code";
-import {Dropdown, DropdownItem, Tooltip} from "@nextui-org/react";
-
-const AA = () => {
-    return (
-        <>
-            <div>1</div>
-            <div>1</div>
-            <div>1</div>
-        </>
-    )
-}
+import ActionCard from "@/components/card/actions-cards/App";
+import AccountDetails from "@/components/card/account-details/App"
+import CardFieldset from "@/components/card/card-fieldset/App"
+import FeatureCard from "@/components/AI/Features/features-cards/App";
+import AssistantMessage from "@/components/AI/Messages/assistant-message/App";
+import PlaceListItem from "@/components/E-commerce/Product-List/place-list-grid/App";
+import EcommerceFilters from "@/components/E-commerce/Filters/ecommerce-filters-with-sidebar/App"
 export default function App() {
-
     return (
         <>
-            <Code color={"primary"}>123123</Code>
-            <div className={"text-danger-800"}> asdf</div>
-            <Button color={"primary"}>new Theme</Button>
-            <Button color={"danger"}>new Theme</Button>
-            <ThemeSwitcher/>
-            <Tooltip
-                content=<AA/>
-                delay={0}
-                showArrow
-                closeDelay={0}
-                motionProps={{
-                    variants: {
-                        exit: {
-                            opacity: 0,
-                            transition: {
-                                duration: 0.1,
-                                ease: "easeIn",
-                            }
-                        },
-                        enter: {
-                            opacity: 1,
-                            transition: {
-                                duration: 0.15,
-                                ease: "easeOut",
-                            }
-                        },
-                    },
-                }}
-            >
-                <Button variant="flat">Hover me</Button>
-            </Tooltip>
+            <div className={"w-screen h-screen p-8 flex items-start justify-center flex-col"}>
+                <EcommerceFilters/>
+
+                <ActionCard/>
+                <AccountDetails/>
+                <CardFieldset/>
+                <FeatureCard/>
+                <AssistantMessage/>
+                <PlaceListItem/>
+            </div>
         </>
     );
 }
