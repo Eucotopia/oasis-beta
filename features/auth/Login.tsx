@@ -1,29 +1,34 @@
 "use client"
 import {UserLoginType, UserRegisterType} from "@/types";
-import React, {ChangeEvent, useEffect, useImperativeHandle, useMemo, useState} from "react";
+import React, {ChangeEvent, useMemo, useState} from "react";
 import {Button} from "@nextui-org/button";
 import {setCredentials} from "@/features/auth/authSlice";
 import {removeCredentials} from "@/features/auth/authSlice";
 import {
-    Avatar, Card, CardBody, CardFooter, CardHeader, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger,
+    Avatar,
+    Checkbox, Divider,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownTrigger,
+    Input,
     Link,
     Modal,
     ModalContent,
-    Tab, Tabs,
     useDisclosure
 } from "@nextui-org/react";
-import SimpleLogin from "@/components/Application/Authentication/simple-login/App";
 import {useAuth} from "@/hooks/useAuth";
 import {NavbarContent} from "@nextui-org/navbar";
 import {useAppDispatch} from "@/hooks/store";
 import {useLoginMutation, useRegisterMutation} from "@/features/api/authApi";
+import {Icon} from "@iconify/react";
 
 export const Login = () => {
+    const toggleVisibility = () => setIsVisible(!isVisible);
+    const [isVisible, setIsVisible] = React.useState(false);
+    // 获取当前用户
     const {currentUser} = useAuth()
-
     const dispatch = useAppDispatch()
-    const [selected, setSelected] = useState("login");
-
     const [loginState, setLoginState] = useState<UserLoginType>({
         username: '',
         password: '',
@@ -42,7 +47,7 @@ export const Login = () => {
     const [login, {isLoading}] = useLoginMutation()
     const [register] = useRegisterMutation();
 
-    const [isVisible, setIsVisible] = useState(false);
+    // const [isVisible, setIsVisible] = useState(false);
 
     const validateEmail = (value: string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
     // 校验用户名格式
@@ -62,7 +67,8 @@ export const Login = () => {
     }))
 
     // 用户登陆
-    const Login = async () => {
+    const Login = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         try {
             const user = await login(loginState).unwrap()
             dispatch(setCredentials(user))
@@ -132,7 +138,83 @@ export const Login = () => {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <SimpleLogin/>
+                            <div className="flex h-full w-full items-center justify-center">
+                                <div className="flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 pb-10 pt-6 shadow-small">
+                                    <p className="pb-2 text-xl font-medium">Log In</p>
+                                    <form className="flex flex-col gap-3" onSubmit={(e)=>Login(e)}>
+                                        <Input
+                                            value={loginState.username}
+                                            onChange={handleLoginChange}
+                                            name="username"
+                                            label="Email Address"
+                                            errorMessage={isInvalid && "Please enter a valid email"}
+                                            placeholder="Enter your email"
+                                            type="email"
+                                            variant="bordered"
+                                        />
+                                        <Input
+                                            endContent={
+                                                <button type="button" onClick={toggleVisibility}>
+                                                    {isVisible ? (
+                                                        <Icon
+                                                            className="pointer-events-none text-2xl text-default-400"
+                                                            icon="solar:eye-closed-linear"
+                                                        />
+                                                    ) : (
+                                                        <Icon
+                                                            className="pointer-events-none text-2xl text-default-400"
+                                                            icon="solar:eye-bold"
+                                                        />
+                                                    )}
+                                                </button>
+                                            }
+                                            label="Password"
+                                            name={"password"}
+                                            value={loginState.password}
+                                            onChange={handleLoginChange}
+                                            placeholder="Enter your password"
+                                            type={isVisible ? "text" : "password"}
+                                            variant="bordered"
+                                        />
+                                        <div className="flex items-center justify-between px-1 py-2">
+                                            <Checkbox name="remember" size="sm">
+                                                Remember me
+                                            </Checkbox>
+                                            <Link className="text-default-500" href="#" size="sm">
+                                                Forgot password?
+                                            </Link>
+                                        </div>
+                                        <Button color="primary" type="submit" onPress={onClose}>
+                                            Log In
+                                        </Button>
+                                    </form>
+                                    <div className="flex items-center gap-4 py-2">
+                                        <Divider className="flex-1" />
+                                        <p className="shrink-0 text-tiny text-default-500">OR</p>
+                                        <Divider className="flex-1" />
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        <Button
+                                            startContent={<Icon icon="flat-color-icons:google" width={24} />}
+                                            variant="bordered"
+                                        >
+                                            Continue with Google
+                                        </Button>
+                                        <Button
+                                            startContent={<Icon className="text-default-500" icon="fe:github" width={24} />}
+                                            variant="bordered"
+                                        >
+                                            Continue with Github
+                                        </Button>
+                                    </div>
+                                    <p className="text-center text-small">
+                                        Need to create an account?&nbsp;
+                                        <Link href="#" size="sm">
+                                            Sign Up
+                                        </Link>
+                                    </p>
+                                </div>
+                            </div>
                         </>
                     )}
                 </ModalContent>
