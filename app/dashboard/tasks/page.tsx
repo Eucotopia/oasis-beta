@@ -1,11 +1,10 @@
 'use client'
 import React from "react";
-import PopoverFeedback from "@/components/Application/Feedbacks/popover-feedback/App";
-
+import Reviews from "@/components/E-commerce/Reviews/reviews-with-search-and-sort/App";
 export default function App() {
     return (
         <>
-            Task
+            <Reviews/>
         </>
     );
 }

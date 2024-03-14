@@ -5,7 +5,7 @@ import SidebarDrawer from "@/components/Application/Sidebars/sidebar-off-canvas-
 import {sectionItemsWithTeams} from "@/components/Application/Sidebars/sidebar-off-canvas-responsive/sidebar-items";
 import {Icon} from "@iconify/react";
 import {Button} from "@nextui-org/button";
-import {Avatar, Spacer, useDisclosure} from "@nextui-org/react";
+import {Avatar, BreadcrumbItem, Breadcrumbs, Spacer, useDisclosure} from "@nextui-org/react";
 import {usePathname} from "next/navigation";
 export default function DashboardLayout({children}: { children: React.ReactNode; }) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -61,9 +61,9 @@ export default function DashboardLayout({children}: { children: React.ReactNode;
         </div>
     );
     return (
-        <section className="flex flex-col justify-center items-center gap-4  md:py-10">
+        <section className="flex flex-col justify-center items-center gap-4 md:py-10">
             <div className="inline-block w-4xl justify-center">
-                <div className="flex h-dvh w-full">
+                <div className="flex h-dvh w-full gap-4">
                     <SidebarDrawer
                         className=" !border-r-small border-divider"
                         isOpen={isOpen}
@@ -71,20 +71,8 @@ export default function DashboardLayout({children}: { children: React.ReactNode;
                     >
                         {content}
                     </SidebarDrawer>
-                    <div className="w-full flex-1 flex-col p-4">
-                        <header
-                            className="flex h-16 items-center gap-2 rounded-medium border-small border-divider px-4">
-                            <Button isIconOnly className="flex sm:hidden" size="sm" variant="light" onPress={onOpen}>
-                                <Icon
-                                    className="text-default-500"
-                                    height={24}
-                                    icon="solar:hamburger-menu-outline"
-                                    width={24}
-                                />
-                            </Button>
-                            <h2 className="text-medium font-medium text-default-700">Overview</h2>
-                        </header>
-                        <main className="mt-4 h-full w-[960px] overflow-visible">
+                    <div className="w-full flex-1 flex-col">
+                        <main className="h-full w-[960px]">
                             <div
                                 className="flex h-[90%] w-full flex-col gap-4 rounded-medium border-small border-divider">
                                 {children}
