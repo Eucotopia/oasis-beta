@@ -23,7 +23,7 @@ import Sidebar from "./sidebar";
  * <Sidebar defaultSelectedKey="home" selectedKeys={[currentPath]} />
  * ```
  */
-export default function Component() {
+export default function Component({children}: { children: React.ReactNode }) {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   const content = (
@@ -97,8 +97,10 @@ export default function Component() {
           </Button>
           <h2 className="text-medium font-medium text-default-700">Overview</h2>
         </header>
-        <main className="mt-4 h-full w-full overflow-visible">
-          <div className="flex h-[90%] w-full flex-col gap-4 rounded-medium border-small border-divider" />
+        <main className="mt-4 h-full w-[960px] overflow-visible">
+            <div className="flex h-[90%] w-full flex-col gap-4 rounded-medium border-small border-divider">
+                {children}
+            </div>
         </main>
       </div>
     </div>
