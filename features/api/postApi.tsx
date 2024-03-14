@@ -54,6 +54,9 @@ export const postApi = createApi({
             // 获取相关文章
             getRelatedArticles:builder.query<ResultResponse<Post[]>,number>({
                 query:(id)=>`/post/related/${id}`
+            }),
+            getHostArticles:builder.query<ResultResponse<Post[]>,void>({
+                query:(id)=>`/post/hot`
             })
         }),
     }
@@ -62,6 +65,7 @@ export const postApi = createApi({
 export const {
     useGetBlogQuery,
     useIsLikedQuery,
+    useGetHostArticlesQuery,
     useGetRelatedArticlesQuery,
     useGetBlogByIdQuery,
     useLikeBlogQuery,

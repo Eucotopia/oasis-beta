@@ -45,7 +45,8 @@ export type Post = {
     likes: number,
     views: number,
     comments: number,
-    cover: string
+    cover: string,
+    rating: number,
 }
 
 export type PostDTO = {

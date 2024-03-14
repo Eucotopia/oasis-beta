@@ -13,10 +13,10 @@ export default function Component() {
 
   return (
     <div
-      className="flex h-screen w-screen items-center justify-start overflow-hidden rounded-small bg-content1 p-2 sm:p-4 lg:p-8"
+      className="flex h-screen w-screen items-center justify-start overflow-hidden rounded-small p-2 sm:p-4 lg:p-8"
       style={{
         backgroundImage:
-          "url(https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/black-background-texture-2.jpg)",
+          "url('/image/ssscribble.svg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

@@ -4,10 +4,16 @@ import {title} from "@/components/primitives";
 import {Card, CardBody, CardFooter, CardHeader, Image} from "@nextui-org/react";
 import {useGetRootCategoriesQuery} from "@/features/api/categoryApi";
 import {Link} from "@nextui-org/link";
+import PlaceListItem from "@/components/E-commerce/Product-List/place-list-grid/App";
+import {useGetHostArticlesQuery} from "@/features/api/postApi";
 
 export default function App() {
     const {data: rootCategories} = useGetRootCategoriesQuery()
+    const {data: hostArticles} = useGetHostArticlesQuery();
     if (rootCategories === undefined) {
+        return null
+    }
+    if (hostArticles === undefined) {
         return null
     }
     return (
@@ -49,8 +55,14 @@ export default function App() {
                         }
                     </div>
                 </div>
+                <div className={"flex flex-col mt-2"}>
+                    <h2 className="px-2 text-3xl leading-7">
+                        <span className="inline-block md:hidden">FAQs</span>
+                        <span className="hidden md:inline-block">Frequently asked questions</span>
+                    </h2>
+                    <PlaceListItem posts={hostArticles?.data}/>
+                </div>
             </section>
-            {/*<AddPost/>*/}
         </>
     )
 }
