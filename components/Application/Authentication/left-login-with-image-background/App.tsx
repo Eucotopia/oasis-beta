@@ -13,11 +13,11 @@ export default function Component() {
 
   return (
     <div
-      className="flex h-screen w-screen items-center justify-start overflow-hidden rounded-small p-2 sm:p-4 lg:p-8"
+      className="flex h-screen w-screen items-center justify-start overflow-hidden rounded-small p-2 sm:p-4 lg:p-8 bg-no-repeat"
       style={{
         backgroundImage:
-          "url('/image/ssscribble.svg')",
-        backgroundSize: "cover",
+          "url('/image/sssplatter.svg')",
+        // backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >

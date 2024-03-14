@@ -33,7 +33,6 @@ export const Login = () => {
         username: '',
         password: '',
     })
-
     const [registerState, setRegisterState] = useState<UserRegisterType>(
         {
             username: '',
@@ -41,13 +40,10 @@ export const Login = () => {
             nickname: '',
         }
     );
-
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-
+    const [isSelectRemember, setIsSelectRemember] = useState(false)
     const [login, {isLoading}] = useLoginMutation()
     const [register] = useRegisterMutation();
-
-    // const [isVisible, setIsVisible] = useState(false);
 
     const validateEmail = (value: string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
     // 校验用户名格式
@@ -177,7 +173,7 @@ export const Login = () => {
                                             variant="bordered"
                                         />
                                         <div className="flex items-center justify-between px-1 py-2">
-                                            <Checkbox name="remember" size="sm">
+                                            <Checkbox name="remember" size="sm" isSelected={isSelectRemember} onValueChange={setIsSelectRemember}>
                                                 Remember me
                                             </Checkbox>
                                             <Link className="text-default-500" href="#" size="sm">
