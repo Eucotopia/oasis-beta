@@ -9,7 +9,7 @@ import postReducer from "@/features/post/postSlice";
 import {themeApi} from "@/features/api/themeApi";
 import {thunk} from "redux-thunk";
 import {categoryApi} from "@/features/api/categoryApi";
-
+import userReducer from '@/features/user/userSlice'
 
 // 定义配置信息
 const persistConfig = {
@@ -22,6 +22,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     post: postReducer,
     theme: themeReducer,
+    user: userReducer,
     [postApi.reducerPath]: postApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer

@@ -14,7 +14,6 @@ const postSlice = createSlice({
                 data: Post[]
             }>
         ) => {
-            console.log(data)
             state.posts = data
         }
     }
