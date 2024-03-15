@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {ResultResponse, UserLoginType, UserRegisterType} from '@/types'
+import {ResultResponse, UserLoginType, UserRegisterType, UserType} from '@/types'
 import {LoginRequest} from "@/types";
 import {RootState} from "@/app/store";
 import {Result} from "postcss";
@@ -49,7 +49,7 @@ export const authApi = createApi({
         getUserById: builder.query<void, number>({
             query: (id) => ({url: '/${id}'}),
         }),
-        getUsers: builder.query<ResultResponse<User[]>, void>({
+        getUsers: builder.query<ResultResponse<UserType[]>, void>({
             query: () => ({url: ''}),
         }),
         register: builder.mutation<ResultResponse<string>, UserRegisterType>({

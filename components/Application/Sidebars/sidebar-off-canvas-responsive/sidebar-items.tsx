@@ -128,6 +128,17 @@ export const sectionItems: SidebarItem[] = [
           </Chip>
         ),
       },
+      {
+        key: "user-manager",
+        href: "/dashboard/user-manager",
+        icon: "solar:sort-by-time-linear",
+        title: "User Manager",
+        endContent: (
+            <Chip size="sm" variant="flat">
+              New
+            </Chip>
+        ),
+      }
     ],
   },
   {
@@ -270,6 +281,17 @@ export const brandItems: SidebarItem[] = [
           <Chip className="bg-primary-foreground font-medium text-primary" size="sm" variant="flat">
             New
           </Chip>
+        ),
+      },
+      {
+        key: "user-manager",
+        href: "/dashboard/user-manager",
+        icon: "solar:sort-by-time-linear",
+        title: "User Manager",
+        endContent: (
+            <Chip className="bg-primary-foreground font-medium text-primary" size="sm" variant="flat">
+              New
+            </Chip>
         ),
       },
     ],

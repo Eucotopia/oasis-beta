@@ -3,6 +3,7 @@ import TestimonialsScrollingBanner from "@/components/Application/Scrolling-Bann
 import FaqsWithDivider from "@/components/Marketing/Faqs/faqs-with-divider/App"
 import BasicTeamPage from "@/components/Marketing/Teams/basic-team-page/App"
 import LeftLoginWithImageBackground from "@/components/Application/Authentication/left-login-with-image-background/App"
+import UserTable from "@/components/table/UserTable";
 export default function Home() {
     return (
         <section

@@ -8,10 +8,13 @@ import {Link} from "@nextui-org/link";
 import {useGetCountQuery} from "@/features/api/authApi";
 import {useGetPostCountQuery} from "@/features/api/postApi";
 import Sidebar from "@/components/Application/Sidebars/sidebar-with-long-list/App"
+
 export default function App() {
     return (
         <>
-            <Sidebar/>
+            <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+                adsfd
+            </section>
         </>
     );
 }

@@ -5,11 +5,18 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
     size?: number;
 };
 
-export interface User {
-    id: number | null
-    username: string | null
-    email: string | null
-    token: string | null
+export type UserType = {
+    id: number,
+    username: string,
+    email: string,
+    password: string,
+    motto: string,
+    createTime: string,
+    avatar: string,
+    role: string,
+    age: number,
+    status: number,
+    address: string
 }
 
 export interface Category {
@@ -55,7 +62,7 @@ export type PostDTO = {
     summary: string,
     isTop: boolean,
     cover: string,
-    categoryId:string
+    categoryId: string
 }
 
 export interface ResultResponse<T> {
