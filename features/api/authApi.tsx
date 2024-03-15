@@ -47,7 +47,7 @@ export const authApi = createApi({
             }),
         }),
         getUserById: builder.query<void, number>({
-            query: (id) => ({url: '/${id}'}),
+            query: (id) => ({url: `/${id}`}),
         }),
         getUsers: builder.query<ResultResponse<UserType[]>, void>({
             query: () => ({url: ''}),
@@ -62,7 +62,13 @@ export const authApi = createApi({
         getCount: builder.query<ResultResponse<number>, void>({
             query: () => ({url: '/count'}),
         }),
+        deleteUser: builder.mutation<void, number>({
+            query: (id) => ({
+                url: `/${id}`,
+                method: 'DELETE',
+            }),
+        })
     }),
 })
 
-export const {useLoginMutation, useRegisterMutation, useGetCountQuery,useGetUsersQuery} = authApi
+export const {useLoginMutation, useRegisterMutation, useGetCountQuery,useGetUsersQuery,useGetUserByIdQuery,useDeleteUserMutation} = authApi

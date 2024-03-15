@@ -20,9 +20,13 @@ import {
     SortDescriptor
 } from "@nextui-org/react";
 import {UserType} from "@/types";
-import {ChevronDownIcon, AlignVerticallyBoldIcon, SearchIcon, PlusFilledIcon} from "@nextui-org/shared-icons"
+import {VerticalDotsIcon} from "@/components/table/VerticalDotsIcon";
+import {ChevronDownIcon} from "@/components/table/ChevronDownIcon"
+import {PlusIcon} from "@/components/table/PlusIcon";
+import {SearchIcon} from "@/components/table/SearchIcon";
 import {columns, statusOptions} from "./data";
 import {capitalize} from "./utils";
+import {useDeleteUserMutation} from "@/features/api/authApi";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
     active: "success",
@@ -31,6 +35,7 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 };
 const INITIAL_VISIBLE_COLUMNS = ["username", "role", "status", "actions", "id", "age", "email", "address"];
 export default function UserTable({userList}: { userList: UserType[] }) {
+    const [deleteUser, {isLoading}] = useDeleteUserMutation()
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
     const [visibleColumns, setVisibleColumns] = React.useState<Selection>(new Set(INITIAL_VISIBLE_COLUMNS));
@@ -117,17 +122,19 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                 );
             case "actions":
                 return (
-                    <div className="relative flex justify-end items-center gap-2">
+                    <div className="relative flex justify-center items-center gap-2 ">
                         <Dropdown>
                             <DropdownTrigger>
                                 <Button isIconOnly size="sm" variant="light">
-                                    <AlignVerticallyBoldIcon className="text-default-300"/>
+                                    <VerticalDotsIcon className="text-default-300"/>
                                 </Button>
                             </DropdownTrigger>
                             <DropdownMenu>
                                 <DropdownItem>View</DropdownItem>
                                 <DropdownItem>Edit</DropdownItem>
-                                <DropdownItem>Delete</DropdownItem>
+                                <DropdownItem onClick={() => {
+                                    deleteUser(1)
+                                }}>Delete</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
@@ -236,7 +243,7 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                                 ))}
                             </DropdownMenu>
                         </Dropdown>
-                        <Button color="primary" endContent={<PlusFilledIcon/>}>
+                        <Button color="primary" endContent={<PlusIcon/>}>
                             Add New
                         </Button>
                     </div>
