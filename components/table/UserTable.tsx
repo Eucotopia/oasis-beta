@@ -115,9 +115,9 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                 );
             case "status":
                 return (
-                    <Chip className="capitalize" color={statusColorMap[user.status === 0 ? "active" : "inactive"]}
+                    <Chip className="capitalize" color={statusColorMap[user.status]}
                           size="sm" variant="flat">
-                        {cellValue === 0 ? "active" : "inactive"}
+                        {cellValue}
                     </Chip>
                 );
             case "actions":
@@ -133,7 +133,7 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                                 <DropdownItem>View</DropdownItem>
                                 <DropdownItem>Edit</DropdownItem>
                                 <DropdownItem onClick={() => {
-                                    deleteUser(1)
+                                    deleteUser(user.id)
                                 }}>Delete</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>

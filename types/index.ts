@@ -15,8 +15,8 @@ export type UserType = {
     avatar: string,
     role: string,
     age: number,
-    status: number,
-    address: string
+    address: string,
+    status: string
 }
 
 export interface Category {
