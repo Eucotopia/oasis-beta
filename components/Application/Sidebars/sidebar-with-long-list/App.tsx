@@ -8,6 +8,7 @@ import {AcmeLogo} from "./acme";
 import {sectionLongList} from "./sidebar-items";
 
 import Sidebar from "./sidebar";
+import {usePathname} from "next/navigation";
 
 /**
  * 💡 TIP: You can use the usePathname hook from Next.js App Router to get the current pathname
@@ -23,6 +24,8 @@ import Sidebar from "./sidebar";
  * ```
  */
 export default function Component() {
+  const pathname = usePathname();
+  const currentPath = pathname.split("/")?.[1]
   return (
     <div className="h-dvh justify-start">
       <div className="relative flex h-full w-72 flex-1 flex-col border-r-small border-divider p-6">
@@ -60,7 +63,7 @@ export default function Component() {
         </div>
 
         <ScrollShadow className="-mr-6 h-full max-h-full py-6 pr-6">
-          <Sidebar defaultSelectedKey="home" items={sectionLongList} />
+          <Sidebar defaultSelectedKey="home" items={sectionLongList} selectedKeys={[currentPath]} />
         </ScrollShadow>
 
         <Spacer y={8} />

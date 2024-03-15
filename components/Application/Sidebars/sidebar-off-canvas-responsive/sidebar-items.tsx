@@ -29,7 +29,7 @@ export const items: SidebarItem[] = [
     key: "tasks",
     href: "/tasks",
     icon: "solar:checklist-minimalistic-outline",
-    title: "Tasks",
+    title: "tasks",
     endContent: (
       <Icon className="text-default-400" icon="solar:add-circle-line-duotone" width={24} />
     ),
@@ -88,14 +88,14 @@ export const sectionItems: SidebarItem[] = [
     title: "Overview",
     items: [
       {
-        key: "home",
-        href: "/home",
+        key: "dashboard",
+        href: "/dashboard",
         icon: "solar:home-2-linear",
         title: "Home",
       },
       {
         key: "projects",
-        href: "/projects",
+        href: "/dashboard/projects",
         icon: "solar:widget-2-outline",
         title: "Projects",
         endContent: (
@@ -104,22 +104,22 @@ export const sectionItems: SidebarItem[] = [
       },
       {
         key: "tasks",
-        href: "/tasks",
+        href: "/dashboard/tasks",
         icon: "solar:checklist-minimalistic-outline",
-        title: "Tasks",
+        title: "tasks",
         endContent: (
           <Icon className="text-default-400" icon="solar:add-circle-line-duotone" width={24} />
         ),
       },
       {
         key: "team",
-        href: "/team",
+        href: "/dashboard/team",
         icon: "solar:users-group-two-rounded-outline",
         title: "Team",
       },
       {
         key: "tracker",
-        href: "/tracker",
+        href: "/dashboard/tracker",
         icon: "solar:sort-by-time-linear",
         title: "Tracker",
         endContent: (
@@ -136,36 +136,36 @@ export const sectionItems: SidebarItem[] = [
     items: [
       {
         key: "cap_table",
-        href: "/cap_table",
+        href: "/dashboard/cap_table",
         title: "Cap Table",
         icon: "solar:pie-chart-2-outline",
         items: [
           {
             key: "shareholders",
-            href: "/cap_table=shareholders",
+            href: "/dashboard/cap_table=shareholders",
             title: "Shareholders",
           },
           {
             key: "note_holders",
-            href: "/cap_table=note_holders",
+            href: "/dashboard/cap_table=note_holders",
             title: "Note Holders",
           },
           {
             key: "transactions_log",
-            href: "/cap_table=transactions_log",
+            href: "/dashboard/cap_table=transactions_log",
             title: "Transactions Log",
           },
         ],
       },
       {
         key: "analytics",
-        href: "/analytics",
+        href: "/dashboard/analytics",
         icon: "solar:chart-outline",
         title: "Analytics",
       },
       {
         key: "perks",
-        href: "/perks",
+        href: "/dashboard/perks",
         icon: "solar:gift-linear",
         title: "Perks",
         endContent: (
@@ -176,13 +176,13 @@ export const sectionItems: SidebarItem[] = [
       },
       {
         key: "expenses",
-        href: "/expenses",
+        href: "/dashboard/expenses",
         icon: "solar:bill-list-outline",
         title: "Expenses",
       },
       {
         key: "settings",
-        href: "/settings",
+        href: "/dashboard/settings",
         icon: "solar:settings-outline",
         title: "Settings",
       },
@@ -225,13 +225,13 @@ export const brandItems: SidebarItem[] = [
     items: [
       {
         key: "home",
-        href: "/home",
+        href: "/dashboard/home",
         icon: "solar:home-2-linear",
         title: "Home",
       },
       {
         key: "projects",
-        href: "/projects",
+        href: "/dashboard/projects",
         icon: "solar:widget-2-outline",
         title: "Projects",
         endContent: (
@@ -244,9 +244,9 @@ export const brandItems: SidebarItem[] = [
       },
       {
         key: "tasks",
-        href: "/tasks",
+        href: "/dashboard/tasks",
         icon: "solar:checklist-minimalistic-outline",
-        title: "Tasks",
+        title: "tasks",
         endContent: (
           <Icon
             className="text-primary-foreground/60"
@@ -257,13 +257,13 @@ export const brandItems: SidebarItem[] = [
       },
       {
         key: "team",
-        href: "/team",
+        href: "/dashboard/team",
         icon: "solar:users-group-two-rounded-outline",
         title: "Team",
       },
       {
         key: "tracker",
-        href: "/tracker",
+        href: "/dashboard/tracker",
         icon: "solar:sort-by-time-linear",
         title: "Tracker",
         endContent: (
