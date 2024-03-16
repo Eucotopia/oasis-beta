@@ -14,13 +14,12 @@ const slice = createSlice({
             state.users = null
         },
         updateUser: (state, {payload: {data}}: PayloadAction<{ data: UserType }>) => {
-            state.users = state.users!.map((user) => {
-                if (user.id === data.id) {
-                    return data
-                }
-                return user
-            })
+            const updatedUsers = state.users!.map((user) =>
+                user.id === data.id ? data : user
+            );
+            return {...state, users: updatedUsers};
         },
+
         removeUser: (state, {payload: {id}}: PayloadAction<{ id: number }>) => {
             state.users = state.users!.filter((user) => user.id !== id)
         },
@@ -30,7 +29,7 @@ const slice = createSlice({
     },
 })
 
-export const {setUsers,removeUser, removeUsers, updateUser, addUser} = slice.actions
+export const {setUsers, removeUser, removeUsers, updateUser, addUser} = slice.actions
 
 export default slice.reducer
 

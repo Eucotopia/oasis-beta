@@ -17,9 +17,10 @@ import {
     Pagination,
     Selection,
     ChipProps,
-    SortDescriptor
+    SortDescriptor, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
 } from "@nextui-org/react";
 import {UserType} from "@/types";
+import SettingsTabs from "@/components/Application/Cards/settings-tabs/App"
 import {VerticalDotsIcon} from "@/components/table/VerticalDotsIcon";
 import {ChevronDownIcon} from "@/components/table/ChevronDownIcon"
 import {PlusIcon} from "@/components/table/PlusIcon";
@@ -27,6 +28,8 @@ import {SearchIcon} from "@/components/table/SearchIcon";
 import {columns, statusOptions} from "./data";
 import {capitalize} from "./utils";
 import {useDeleteUserMutation} from "@/features/api/authApi";
+import {updateUser} from "@/features/user/userSlice";
+import {useAppDispatch} from "@/hooks/store";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
     active: "success",
@@ -35,6 +38,7 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 };
 const INITIAL_VISIBLE_COLUMNS = ["username", "role", "status", "actions", "id", "age", "email", "address"];
 export default function UserTable({userList}: { userList: UserType[] }) {
+    const dispatch = useAppDispatch()
     const [deleteUser, {isLoading}] = useDeleteUserMutation()
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
@@ -72,16 +76,29 @@ export default function UserTable({userList}: { userList: UserType[] }) {
 
         return filteredUsers;
     }, [userList, filterValue, statusFilter]);
-
+    const aa:UserType = {
+        id: 1,
+        password:"123",
+        "motto": "hello",
+        createTime: "2022-12-12",
+        username: "Zoey Lang",
+        role: "Tech Lead",
+        address: "Development",
+        status: "paused",
+        age: 25,
+        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+        email: "zoey.lang@example.com",
+    }
     const pages = Math.ceil(filteredItems.length / rowsPerPage);
-
     const items = React.useMemo(() => {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
 
         return filteredItems.slice(start, end);
     }, [page, filteredItems, rowsPerPage]);
-
+    const updateUsers = (users: UserType) => {
+        dispatch(updateUser({data: aa}))
+    }
     const sortedItems = React.useMemo(() => {
         return [...items].sort((a: UserType, b: UserType) => {
             const first = a[sortDescriptor.column as keyof UserType] as number;
@@ -130,10 +147,11 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                                 </Button>
                             </DropdownTrigger>
                             <DropdownMenu>
-                                <DropdownItem>View</DropdownItem>
-                                <DropdownItem>Edit</DropdownItem>
+                                <DropdownItem onClick={() => updateUsers(user)}>View</DropdownItem>
+                                <DropdownItem onPress={onOpen}>Edit</DropdownItem>
                                 <DropdownItem onClick={() => {
                                     deleteUser(user.id)
+
                                 }}>Delete</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
@@ -302,42 +320,78 @@ export default function UserTable({userList}: { userList: UserType[] }) {
             </div>
         );
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     return (
-        <Table
-            aria-label="Example table with custom cells, pagination and sorting"
-            isHeaderSticky
-            bottomContent={bottomContent}
-            bottomContentPlacement="outside"
-            classNames={{
-                wrapper: "max-h-[382px]",
-            }}
-            selectedKeys={selectedKeys}
-            selectionMode="multiple"
-            sortDescriptor={sortDescriptor}
-            topContent={topContent}
-            topContentPlacement="outside"
-            onSelectionChange={setSelectedKeys}
-            onSortChange={setSortDescriptor}
-        >
-            <TableHeader columns={headerColumns}>
-                {(column) => (
-                    <TableColumn
-                        key={column.uid}
-                        align={column.uid === "actions" ? "center" : "start"}
-                        allowsSorting={column.sortable}
-                    >
-                        {column.name}
-                    </TableColumn>
-                )}
-            </TableHeader>
-            <TableBody emptyContent={"No users found"} items={sortedItems}>
-                {(item) => (
-                    <TableRow key={item.id}>
-                        {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                    </TableRow>
-                )}
-            </TableBody>
-        </Table>
+        <>
+            <Modal
+                backdrop="opaque"
+                isOpen={isOpen}
+                onOpenChange={onOpenChange}
+                motionProps={{
+                    variants: {
+                        enter: {
+                            y: 0,
+                            opacity: 1,
+                            transition: {
+                                duration: 0.3,
+                                ease: "easeOut",
+                            },
+                        },
+                        exit: {
+                            y: -20,
+                            opacity: 0,
+                            transition: {
+                                duration: 0.2,
+                                ease: "easeIn",
+                            },
+                        },
+                    }
+                }}
+            >
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <SettingsTabs/>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
+            <Table
+                aria-label="Example table with custom cells, pagination and sorting"
+                isHeaderSticky
+                bottomContent={bottomContent}
+                bottomContentPlacement="outside"
+                classNames={{
+                    wrapper: "max-h-[382px]",
+                }}
+                selectedKeys={selectedKeys}
+                selectionMode="multiple"
+                sortDescriptor={sortDescriptor}
+                topContent={topContent}
+                topContentPlacement="outside"
+                onSelectionChange={setSelectedKeys}
+                onSortChange={setSortDescriptor}
+            >
+                <TableHeader columns={headerColumns}>
+                    {(column) => (
+                        <TableColumn
+                            key={column.uid}
+                            align={column.uid === "actions" ? "center" : "start"}
+                            allowsSorting={column.sortable}
+                        >
+                            {column.name}
+                        </TableColumn>
+                    )}
+                </TableHeader>
+                <TableBody emptyContent={"No users found"} items={sortedItems}>
+                    {(item) => (
+                        <TableRow key={item.id}>
+                            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+        </>
     );
 }

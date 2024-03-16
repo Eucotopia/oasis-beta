@@ -104,7 +104,7 @@ export default function DashboardLayout({children}: { children: React.ReactNode;
                         scrollBehavior="inside"
                         onOpenChange={onOpenChange}
                     >
-                        <ModalContent>
+                        <ModalContent className={"rounded-2xl"}>
                             <ModalBody>
                                 <div className="relative flex h-full w-72 flex-1 flex-col p-6">
                                     <div className="flex items-center gap-2 px-2">
