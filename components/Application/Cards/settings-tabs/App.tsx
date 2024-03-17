@@ -24,22 +24,22 @@ export default function Component(props: CardProps) {
           key="account-settings"
           textValue="Account Settings"
           title={
-            <div className="flex items-center gap-1.5">
-              <Icon icon="solar:user-id-bold" width={20} />
-              <p>Web</p>
-            </div>
+              <div className="flex items-center gap-1.5">
+                  <Icon icon="mdi:web" width={20}/>
+                  <p>Web</p>
+              </div>
           }
         >
-          <AccountDetails className="p-2 shadow-none" />
+            <AccountDetails className="p-2 shadow-none" />
         </Tab>
         <Tab
           key="notifications-settings"
           textValue="Notification Settings"
           title={
-            <div className="flex items-center gap-1.5">
-              <Icon icon="solar:bell-bold" width={20} />
-              <p>Apple</p>
-            </div>
+              <div className="flex items-center gap-1.5">
+                  <Icon icon="formkit:apple" width={20}/>
+                  <p>Apple</p>
+              </div>
           }
         >
             <AccountDetails className="p-2 shadow-none" />
@@ -48,10 +48,10 @@ export default function Component(props: CardProps) {
           key="security-settings"
           textValue="Security Settings"
           title={
-            <div className="flex items-center gap-1.5">
-              <Icon icon="solar:shield-keyhole-bold" width={20} />
-              <p>Android</p>
-            </div>
+              <div className="flex items-center gap-1.5">
+                  <Icon icon="uil:android" width={20}/>
+                  <p>Android</p>
+              </div>
           }
         >
             <AccountDetails className="p-2 shadow-none" />

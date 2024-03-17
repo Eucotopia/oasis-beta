@@ -8,33 +8,6 @@ import LeftLoginWithImageBackground from "@/components/Application/Authenticatio
 import React from "react";
 import FullStack from "@/components/code/FullStack";
 import SpotlightCard from "@/components/Application/Cards/spotlight-card/App"
-// const socialItems = [
-//     {
-//         name: "Facebook",
-//         href: "#",
-//         icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:facebook" />,
-//     },
-//     {
-//         name: "Instagram",
-//         href: "#",
-//         icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:instagram" />,
-//     },
-//     {
-//         name: "Twitter",
-//         href: "#",
-//         icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:twitter" />,
-//     },
-//     {
-//         name: "GitHub",
-//         href: "#",
-//         icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:github" />,
-//     },
-//     {
-//         name: "YouTube",
-//         href: "#",
-//         icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:youtube" />,
-//     },
-// ];
 export default function Home() {
     return (
         <section
