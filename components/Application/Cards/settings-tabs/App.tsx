@@ -26,11 +26,11 @@ export default function Component(props: CardProps) {
           title={
             <div className="flex items-center gap-1.5">
               <Icon icon="solar:user-id-bold" width={20} />
-              <p>Account</p>
+              <p>Web</p>
             </div>
           }
         >
-          <AccountDetails className="p-2  shadow-none" />
+          <AccountDetails className="p-2 shadow-none" />
         </Tab>
         <Tab
           key="notifications-settings"
@@ -38,11 +38,11 @@ export default function Component(props: CardProps) {
           title={
             <div className="flex items-center gap-1.5">
               <Icon icon="solar:bell-bold" width={20} />
-              <p>Notifications</p>
+              <p>Apple</p>
             </div>
           }
         >
-          <NotificationsSettings className="p-2  shadow-none" />
+            <AccountDetails className="p-2 shadow-none" />
         </Tab>
         <Tab
           key="security-settings"
@@ -50,11 +50,11 @@ export default function Component(props: CardProps) {
           title={
             <div className="flex items-center gap-1.5">
               <Icon icon="solar:shield-keyhole-bold" width={20} />
-              <p>Security</p>
+              <p>Android</p>
             </div>
           }
         >
-          <SecuritySettings className="p-2  shadow-none" />
+            <AccountDetails className="p-2 shadow-none" />
         </Tab>
       </Tabs>
     </Card>
