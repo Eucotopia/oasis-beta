@@ -17,26 +17,28 @@ export default function Home() {
                 <BasicTeamPage/>
             </div>
             <div className={"mt-8"}>
-
                 <TestimonialsScrollingBanner/>
             </div>
-            <div className={"mt-8 text-center mb-10"}>
+            <div className={"mt-8  mb-10"}>
                 <h2 className="font-medium text-secondary">We&apos;re hiring!</h2>
-                <h1 className="text-4xl font-medium tracking-tight">Full Stack</h1>
+                <h1 className="text-4xl font-bold tracking-tight text-primary-700">Full Stack Developer</h1>
                 <Spacer y={4}/>
-                <h2 className="text-large text-default-500 before:content-['【']">
-                    Any fool can write code that a computer can understand,
+                <h2 className="text-large text-default-500 before:content-['👩🏻‍🚀']">
+                    WEB
                 </h2>
-                <h2 className="text-large text-default-500 after:content-['】']">
-                    Good programmers write code that humans can understand.
-                </h2>
+                {/*<h2 className="text-large text-default-500 before:content-['【']">*/}
+                {/*    Any fool can write code that a computer can understand,*/}
+                {/*</h2>*/}
+                {/*<h2 className="text-large text-default-500 after:content-['】']">*/}
+                {/*    Good programmers write code that humans can understand.*/}
+                {/*</h2>*/}
                 <Spacer y={4}/>
-                <div className="flex w-full justify-center gap-2">
+                <div className="flex w-full  gap-2">
                     <Button variant={'faded'} color={"primary"} radius={"md"}>About us</Button>
                     <Button color="secondary" radius={"md"}>Open positions</Button>
                 </div>
                 <Spacer y={8}/>
-                <GitHubCalendar username={"Eucotopia"} />
+                <GitHubCalendar username={"Eucotopia"} year={new Date().getFullYear()} />
             </div>
             <div className={"mt-8"}>
                 <BrandsScrollingBannerWithTwoRows/>
