@@ -9,6 +9,7 @@ import {LinkMenu} from "@/extentions/tiptap/components/menus/LinkMenu";
 
 export const BlockEditor = ({editor}: { editor: Editor | null }) => {
     const menuContainerRef = useRef(null)
+    console.log("BlockEditor", editor)
     if (!editor) {
         return null
     }

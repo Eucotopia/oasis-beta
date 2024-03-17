@@ -1,17 +1,18 @@
 import ExtensionKit from "@/extentions/tiptap/extentions/extension-kit";
-import {useEditor} from "@tiptap/react";
-import {useEffect} from "react";
+import {Content, useEditor} from "@tiptap/react";
 
-export const useBlockEditor = ({onContentChange, content}: {
+export const useBlockEditor = ({onContentChange, blogContent}: {
     onContentChange?: (html: string) => void,
-    content?: string
+    blogContent?: Content
 }) => {
+    console.log('blogContent', blogContent)
+    console.log('type', typeof blogContent)
     const editor = useEditor({
         autofocus: true,
         extensions: [
             ...ExtensionKit()
         ],
-        content: content ? content : '',
+        content:  blogContent,
         editorProps: {
             attributes: {
                 autocomplete: 'off',
@@ -30,7 +31,6 @@ export const useBlockEditor = ({onContentChange, content}: {
     //         onContentChange && onContentChange(editor.getHTML())
     //     })
     // })
-
     const characterCount = editor?.storage.characterCount || {characters: () => 0, words: () => 0}
     return {editor, characterCount}
 }

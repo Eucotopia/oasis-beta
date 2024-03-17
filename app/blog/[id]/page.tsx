@@ -20,16 +20,14 @@ export default function Page({params}: { params: { id: string } }) {
         isLoading,
     } = useGetBlogByIdQuery(Number(params.id))
 
-
-    const {
-        data: prePost,
-    } = useGetBlogByIdQuery(Number(params.id) - 1)
-
-    const {
-        data: lastPost,
-    } = useGetBlogByIdQuery(Number(params.id) + 1)
-
-    const {editor, characterCount} = useBlockEditor({content: post?.data.content})
+    // const {
+    //     data: prePost,
+    // } = useGetBlogByIdQuery(Number(params.id) - 1)
+    //
+    // const {
+    //     data: lastPost,
+    // } = useGetBlogByIdQuery(Number(params.id) + 1)
+    const {editor, characterCount} = useBlockEditor({blogContent: post?.data.content})
     if (isLoading) {
         return <div>Loading</div>
     }
@@ -44,7 +42,6 @@ export default function Page({params}: { params: { id: string } }) {
             <div className="flex flex-col items-center">
                 <div >
                     <div className="bg-fixed bg-cover" style={{background: `url('${post?.data.cover}')`}}/>
-                    <div>{post?.data.cover}</div>
                 </div>
 
                 <div className={"flex flex-row gap-6"}>
@@ -56,7 +53,7 @@ export default function Page({params}: { params: { id: string } }) {
                     </div>
                     <div className={"p-6 bg-amber-700 rounded-xl"}>
                         <p>热度</p>
-                        <p className={"before:content-['🔥']"}>8499</p>
+                        <p className={"before:content-['🔥']"}>{characterCount.words()}</p>
                     </div>
                     <div className={"p-6 bg-amber-700 rounded-xl"}>
                         <p>本文共计</p>
@@ -71,33 +68,33 @@ export default function Page({params}: { params: { id: string } }) {
                 </div>
                 <div className={"w-[840px]"}>
                     <BlockEditor editor={editor}/>
-                    <div
-                        className={"flex flex-row justify-around"}
-                    >
-                        <Button
-                            as={Link}
-                            size={"lg"}
-                            variant={"ghost"}
-                            href={`/blog/${Number(params.id) - 1}`}
-                            isDisabled={prePost === undefined || prePost === null}
-                            className={'text gap-4 p-6'}
-                            startContent={<HandPointLeft height={100} width={100}/>}
-                        >
-                            <p>{prePost?.data.title}</p>
-                        </Button>
-                        <Button
-                            as={Link}
-                            size={"lg"}
-                            variant={"ghost"}
-                            isDisabled={lastPost === undefined || lastPost === null}
-                            href={`/blog/${Number(params.id) + 1}`}
-                            className={'text gap-4 p-6'}
+                    {/*<div*/}
+                    {/*    className={"flex flex-row justify-around"}*/}
+                    {/*>*/}
+                    {/*    <Button*/}
+                    {/*        as={Link}*/}
+                    {/*        size={"lg"}*/}
+                    {/*        variant={"ghost"}*/}
+                    {/*        href={`/blog/${Number(params.id) - 1}`}*/}
+                    {/*        isDisabled={prePost === undefined || prePost === null}*/}
+                    {/*        className={'text gap-4 p-6'}*/}
+                    {/*        startContent={<HandPointLeft height={100} width={100}/>}*/}
+                    {/*    >*/}
+                    {/*        <p>{prePost?.data.title}</p>*/}
+                    {/*    </Button>*/}
+                    {/*    <Button*/}
+                    {/*        as={Link}*/}
+                    {/*        size={"lg"}*/}
+                    {/*        variant={"ghost"}*/}
+                    {/*        isDisabled={lastPost === undefined || lastPost === null}*/}
+                    {/*        href={`/blog/${Number(params.id) + 1}`}*/}
+                    {/*        className={'text gap-4 p-6'}*/}
 
-                            endContent={<HandPointRight height={100} width={100}/>}
-                        >
-                            <p>{lastPost?.data.title}</p>
-                        </Button>
-                    </div>
+                    {/*        endContent={<HandPointRight height={100} width={100}/>}*/}
+                    {/*    >*/}
+                    {/*        <p>{lastPost?.data.title}</p>*/}
+                    {/*    </Button>*/}
+                    {/*</div>*/}
                 </div>
                 <div className={"mt-20"}>
                     <RelatedArticles id={Number(params.id)}/>
