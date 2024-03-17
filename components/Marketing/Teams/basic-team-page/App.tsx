@@ -120,8 +120,8 @@ export default function Component() {
         </h2>
         <Spacer y={4} />
         <div className="flex w-full justify-center gap-2">
-          <Button variant="ghost">About us</Button>
-          <Button color="secondary">Open positions</Button>
+          <Button variant={'faded'} color={"primary"} radius={"md"}>About us</Button>
+          <Button color="secondary" radius={"md"}>Open positions</Button>
         </div>
       </div>
       <div className="mt-12 grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

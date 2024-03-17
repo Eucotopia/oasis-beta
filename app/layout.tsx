@@ -4,7 +4,6 @@ import {siteConfig} from "@/config/site";
 import {fontSans} from "@/config/fonts";
 import {Providers} from "./providers";
 import {Navbar} from "@/components/navbar";
-import {Link} from "@nextui-org/link";
 import clsx from "clsx";
 import FooterWithColumnsAndNewsletter from "@/components/Marketing/Footers/footer-with-columns-and-newsletter/App";
 
@@ -26,19 +25,20 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children}: { children: React.ReactNode }) {
+
     return (
         <html lang="en" suppressHydrationWarning>
         <head/>
         <body
             className={clsx(
-                "min-h-screen bg-background font-sans antialiased",
+                "min-h-screen font-sans antialiased bg-background",
                 fontSans.variable,
             )}
         >
         <Providers themeProps={{
             attribute: "class",
-            defaultTheme: "dark",
-            themes: ['light', 'dark', 'purple-dark']
+            defaultTheme: "purple-dark",
+            themes: ['light', 'dark', 'purple-dark', 'political', 'posthog', 'blossomTheme', 'darkBlue', 'fluentTheme']
         }}>
             <div className="relative flex flex-col h-screen">
                 <Navbar/>
@@ -46,7 +46,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                     {children}
                 </main>
                 <footer className="w-full flex items-center justify-center py-3">
-                <FooterWithColumnsAndNewsletter/>
+                    <FooterWithColumnsAndNewsletter/>
                 </footer>
             </div>
         </Providers>

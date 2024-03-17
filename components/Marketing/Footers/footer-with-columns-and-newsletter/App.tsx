@@ -8,6 +8,9 @@ import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "./social";
 import ThemeSwitch from "./theme-switch";
+import PopoverFeedback from "@/components/Application/Feedbacks/popover-feedback/App";
+import {siteConfig} from "@/config/site";
+import {DiscordIcon, GithubIcon, TwitterIcon} from "@/components/icons";
 
 type SocialIconProps = Omit<IconProps, "icon">;
 
@@ -93,12 +96,22 @@ export default function Component() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique
             </p>
             <div className="flex space-x-6">
-              {footerNavigation.social.map((item) => (
-                <Link key={item.name} isExternal className="text-default-400" href={item.href}>
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon aria-hidden="true" className="w-6" />
-                </Link>
-              ))}
+              <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
+                <TwitterIcon className="text-default-500"/>
+              </Link>
+              <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
+                <DiscordIcon className="text-default-500"/>
+              </Link>
+              <Link isExternal href={siteConfig.links.github} aria-label="Github">
+                <GithubIcon className="text-default-500"/>
+              </Link>
+              {/*{footerNavigation.social.map((item) => (*/}
+              {/*  <Link key={item.name} isExternal className="text-default-500" href={item.href}>*/}
+              {/*    <span className="sr-only">{item.name}</span>*/}
+              {/*    <item.icon aria-hidden="true" className="w-6" />*/}
+              {/*  </Link>*/}
+              {/*))}*/}
+              {/*<PopoverFeedback/>*/}
             </div>
           </div>
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">

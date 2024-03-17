@@ -1,11 +1,10 @@
 'use client'
 import React from "react";
-import PopoverFeedback from "@/components/Application/Feedbacks/popover-feedback/App";
-
+import GitHubCalendar from "react-github-calendar";
 export default function App() {
     return (
         <>
-            <PopoverFeedback/>
+            <GitHubCalendar username={"Eucotopia"}/>
         </>
     );
 }

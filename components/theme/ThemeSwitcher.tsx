@@ -7,10 +7,11 @@ import {useCurrentTheme} from "@/hooks/useCurrentTheme";
 
 export default function ThemeSwitcher() {
     const dispatch = useAppDispatch()
+    const {theme, setTheme} = useTheme()
     const currentTheme = useCurrentTheme();
     const [mounted, setMounted] = useState(false)
 
-    const [selectedKeys, setSelectedKeys] = React.useState(new Set([currentTheme.currentTheme]));
+    const [selectedKeys, setSelectedKeys] = React.useState(new Set([currentTheme.currentTheme,'dark']));
     useEffect(() => {
         setMounted(true)
         setSelectedKeys(new Set([currentTheme.currentTheme]));
@@ -19,7 +20,6 @@ export default function ThemeSwitcher() {
         () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
         [selectedKeys]
     );
-    const {theme, setTheme} = useTheme()
 
     return (
         <>
@@ -47,6 +47,11 @@ export default function ThemeSwitcher() {
                     <DropdownItem key="light">Light</DropdownItem>
                     <DropdownItem key="dark">Dark</DropdownItem>
                     <DropdownItem key="purple-dark">purple-dark</DropdownItem>
+                    <DropdownItem key="political">political</DropdownItem>
+                    <DropdownItem key="posthog">posthog</DropdownItem>
+                    <DropdownItem key="blossomTheme">blossomTheme</DropdownItem>
+                    <DropdownItem key="darkBlue">darkBlue</DropdownItem>
+                    <DropdownItem key="fluentTheme">fluentTheme</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
         </>

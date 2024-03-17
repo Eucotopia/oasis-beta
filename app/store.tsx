@@ -25,8 +25,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     [postApi.reducerPath]: postApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
-    [categoryApi.reducerPath]: categoryApi.reducer
-    // [themeApi.reducerPath]: themeApi.reducer
+    [categoryApi.reducerPath]: categoryApi.reducer,
+    [themeApi.reducerPath]: themeApi.reducer
 })
 // 创建持久化的配置persist的信息
 const persistedReducer = persistReducer(persistConfig, rootReducer)
