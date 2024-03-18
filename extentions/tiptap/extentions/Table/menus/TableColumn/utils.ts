@@ -17,9 +17,10 @@ export const isColumnGripSelected = ({
   from: number
 }) => {
   const domAtPos = view.domAtPos(from).node as HTMLElement
+  console.log("test3",domAtPos)
   const nodeDOM = view.nodeDOM(from) as HTMLElement
   const node = nodeDOM || domAtPos
-
+  console.log("test4",node)
   if (!editor.isActive(Table.name) || !node || isTableSelected(state.selection)) {
     return false
   }

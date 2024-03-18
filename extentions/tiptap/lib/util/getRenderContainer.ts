@@ -21,6 +21,7 @@ export const getRenderContainer = (editor: Editor, nodeType: string) => {
     }
 
     const node = view.domAtPos(from).node as HTMLElement
+    console.log("test2",node)
     let container: HTMLElement | null = node
 
     if (!container.tagName) {

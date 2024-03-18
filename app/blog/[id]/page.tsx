@@ -53,7 +53,7 @@ export default function Page({params}: { params: { id: string } }) {
                     </div>
                     <div className={"p-6 bg-amber-700 rounded-xl"}>
                         <p>热度</p>
-                        <p className={"before:content-['🔥']"}>{characterCount.words()}</p>
+                        <p className={"before:content-['🔥']"}>{characterCount.characters()}</p>
                     </div>
                     <div className={"p-6 bg-amber-700 rounded-xl"}>
                         <p>本文共计</p>
