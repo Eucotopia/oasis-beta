@@ -18,10 +18,13 @@ export const columnApi = createApi({
         },
     }),
     endpoints: (builder) => ({
-        getColumnById: builder.query<ResultResponse<ColumnType[]>, number>({
+        getColumnById: builder.query<ResultResponse<ColumnType>, number>({
             query: (id) => ({url: `/${id}`}),
+        }),
+        getColumns: builder.query<ResultResponse<ColumnType[]>, void>({
+            query: () => ({url: ''}),
         })
     }),
 })
 
-export const {useGetColumnByIdQuery} = columnApi
+export const {useGetColumnByIdQuery,useGetColumnsQuery} = columnApi

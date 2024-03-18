@@ -1,124 +1,22 @@
 'use client'
 import React from "react";
-import Reviews from "@/components/E-commerce/Reviews/reviews-with-search-and-sort/App";
-import {useGetColumnByIdQuery} from "@/features/api/columnApi";
-import {Button, Spacer} from "@nextui-org/react";
-import TeamMemberCard, {TeamMember} from "@/components/Marketing/Teams/basic-team-page/team-member-card";
-const teamMembers: TeamMember[] = [
-    {
-        name: "John Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258114e29026708c",
-        role: "CEO",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@john-doe",
-            linkedin: "john-doe",
-            github: "@john-doe",
-        },
-    },
-    {
-        name: "Jane Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258ab4e29066708c",
-        role: "CTO",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@jane-doe",
-            linkedin: "jane-doe",
-            github: "@jane-doe",
-        },
-    },
-    {
-        name: "Robert Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258114e29066708c",
-        role: "Principal Designer",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@robert-doe",
-            linkedin: "robert-doe",
-            github: "@robert-doe",
-        },
-    },
-    {
-        name: "Mark Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258a14e29066708c",
-        role: "Principal Engineer",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@mark-doe",
-            linkedin: "mark-doe",
-            github: "@mark-doe",
-        },
-    },
-    {
-        name: "Frank Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258114e29526708c",
-        role: "Frontend Engineer",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@frank-doe",
-            linkedin: "frank-doe",
-            github: "@frank-doe",
-        },
-    },
-    {
-        name: "Zoe Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258114e29926708c",
-        role: "Backend Engineer",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@zoe-doe",
-            linkedin: "zoe-doe",
-            github: "@zoe-doe",
-        },
-    },
-    {
-        name: "Bob Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258114e29b26708c",
-        role: "Product Manager",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@bob-doe",
-            linkedin: "bob-doe",
-            github: "@bob-doe",
-        },
-    },
-    {
-        name: "Francis Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258b14e29326708c",
-        role: "Product Designer",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@francis-doe",
-            linkedin: "francis-doe",
-            github: "@francis-doe",
-        },
-    },
-    {
-        name: "Milan Doe",
-        avatar: "https://i.pravatar.cc/150?u=a04258114e29326708c",
-        role: "Customer Support",
-        bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.",
-        social: {
-            twitter: "@milan-doe",
-            linkedin: "milan-doe",
-            github: "@milan-doe",
-        },
-    },
-];
+import {useGetColumnByIdQuery, useGetColumnsQuery} from "@/features/api/columnApi";
+import {Avatar, Button, Spacer} from "@nextui-org/react";
 export default function App() {
-    const {data:columns} = useGetColumnByIdQuery(1);
+    const {data:columns} = useGetColumnsQuery();
+    console.log(columns?.data)
     return (
         <>
             <section className="flex max-w-7xl flex-col items-center py-24">
                 <div className="mt-12 grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                     {
                         columns?.data.map((column, index) => (
-                            <ColumnCard key={index} {...column} />
+                            <Avatar className="h-20 w-20" src={column.avatar} key={index}/>
                         ))
                     }
-                    {teamMembers.map((member, index) => (
-                        <TeamMemberCard key={index} {...member} />
-                    ))}
+                    {/*{teamMembers.map((member, index) => (*/}
+                    {/*    <TeamMemberCard key={index} {...member} />*/}
+                    {/*))}*/}
                 </div>
             </section>
         </>
