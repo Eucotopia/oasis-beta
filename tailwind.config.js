@@ -75,6 +75,7 @@ module.exports = {
             },
             minWidth: {
                 'content': '1280px',
+                'screen': '1280px',
             },
             keyframes: {
                 meteor: {

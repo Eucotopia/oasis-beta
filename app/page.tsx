@@ -9,15 +9,17 @@ import React from "react";
 import FullStack from "@/components/code/FullStack";
 import SpotlightCard from "@/components/Application/Cards/spotlight-card/App"
 import {FUIMeteor} from "@/components/toast/FUIMEtetor";
-import RocketCover from "@/components/about/RocketCover";
+import {Spacer} from "@nextui-org/react";
+import PeopleImage from "@/components/pitcure/people/PeopleImage"
 export default function Home() {
     return (
         <section
             className="flex flex-col items-center justify-center gap-4 overflow-hidden">
-            <RocketCover/>
+            {/*<RocketCover/>*/}
+            <PeopleImage/>
             {/*流星雨*/}
             <FUIMeteor/>
-
+            <Spacer y={10}/>
             <LeftLoginWithImageBackground/>
             <div className={"mt-8"}>
                 <BasicTeamPage/>
@@ -37,7 +39,6 @@ export default function Home() {
             <div className={"mt-8"}>
                 <SpotlightCard/>
             </div>
-
         </section>
     );
 }
