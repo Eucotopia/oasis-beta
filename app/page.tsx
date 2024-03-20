@@ -8,10 +8,16 @@ import LeftLoginWithImageBackground from "@/components/Application/Authenticatio
 import React from "react";
 import FullStack from "@/components/code/FullStack";
 import SpotlightCard from "@/components/Application/Cards/spotlight-card/App"
+import {FUIMeteor} from "@/components/toast/FUIMEtetor";
+import RocketCover from "@/components/about/RocketCover";
 export default function Home() {
     return (
         <section
             className="flex flex-col items-center justify-center gap-4 overflow-hidden">
+            <RocketCover/>
+            {/*流星雨*/}
+            <FUIMeteor/>
+
             <LeftLoginWithImageBackground/>
             <div className={"mt-8"}>
                 <BasicTeamPage/>

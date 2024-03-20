@@ -77,6 +77,14 @@ module.exports = {
                 'content': '1280px',
             },
             keyframes: {
+                meteor: {
+                    "0%": { transform: "rotate(215deg) translateX(0)", opacity: 1 },
+                    "70%": { opacity: 1 },
+                    "100%": {
+                        transform: "rotate(215deg) translateX(-1000px)",
+                        opacity: 0,
+                    },
+                },
                 "scrolling-banner": {
                     from: {transform: "translateX(0)"},
                     to: {transform: "translateX(calc(-50% - var(--gap)/2))"},
@@ -87,6 +95,7 @@ module.exports = {
                 },
             },
             animation: {
+                "meteor-effect": "meteor 15s linear infinite",
                 "scrolling-banner": "scrolling-banner var(--duration) linear infinite",
                 "scrolling-banner-vertical": "scrolling-banner-vertical var(--duration) linear infinite",
             },

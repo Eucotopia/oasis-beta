@@ -18,6 +18,7 @@ export default function App() {
 
     return (
         <>
+            <Button className={'bg-blue-600'}>123123</Button>
             <Code color={"primary"}>123123</Code>
             <div className={"text-danger-800"}> asdf</div>
             <Button color={"primary"}>new Theme</Button>
