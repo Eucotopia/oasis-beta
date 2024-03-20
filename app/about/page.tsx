@@ -1,11 +1,15 @@
 'use client'
 import React from "react";
+import Clump from "@/components/cover/clumup/App"
 import GitHubCalendar from "react-github-calendar";
-import FullStack from "@/components/about/FullStack";
+import {Spacer} from "@nextui-org/react";
+import {Button} from "@nextui-org/button";
 export default function App() {
     return (
         <>
-            <FullStack/>
+            <Clump/>
+            <Spacer y={8}/>
+            <Button variant={'shadow'} color={'danger'}>adf</Button>
             {/*<GitHubCalendar username={"Eucotopia"}/>*/}
         </>
     );
