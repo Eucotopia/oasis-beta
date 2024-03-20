@@ -30,7 +30,7 @@ export default function App() {
             </context.Provider>
             <mesh scale={200}>
                 <sphereGeometry />
-                <meshStandardMaterial color="#999" roughness={0.7} side={THREE.BackSide} />
+                {/*<meshStandardMaterial color="#999" roughness={0.7} side={THREE.BackSide} />*/}
             </mesh>
             <ContactShadows opacity={0.25} color="black" position={[0, -10, 0]} scale={50} blur={2.5} far={40} />
             <OrbitControls makeDefault autoRotate enableZoom={false} enablePan={false} minPolarAngle={Math.PI / 1.7} maxPolarAngle={Math.PI / 1.7} />

@@ -11,8 +11,11 @@ const baubleMaterial = new THREE.MeshStandardMaterial({color: "white", roughness
 
 const App = () => (
     <div className={"relative h-screen w-screen"}>
-        <div>
-            <h1>Your time is limited,so dont&apos;t waste it living someone else&apos;s life</h1>
+        <div className="absolute top-40 left-128 z-50 transform -translate-x-1/2 -translate-y-1/2 text-center">
+            <h1 className="text-6xl font-bold text-white p-4 " style={{ display: 'flex', flexDirection: 'column' }}>
+                <span>Your time is limited,</span>
+                <span>so don't waste it living someone else's life</span>
+            </h1>
         </div>
         <div className={"absolute top-0 left-52"}>
             <Canvas shadows gl={{antialias: false}} dpr={[1, 1.5]}
