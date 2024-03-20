@@ -11,14 +11,16 @@ import SpotlightCard from "@/components/Application/Cards/spotlight-card/App"
 import {FUIMeteor} from "@/components/toast/FUIMEtetor";
 import {Spacer} from "@nextui-org/react";
 import PeopleImage from "@/components/pitcure/people/PeopleImage"
+import Test1 from "@/components/cover/Test1"
+import Test2 from "@/components/cover/cloud/Test2"
 export default function Home() {
     return (
         <section
             className="flex flex-col items-center justify-center gap-4 overflow-hidden">
-            {/*<RocketCover/>*/}
-            <PeopleImage/>
+            {/*<Test1/>*/}
+            <Test2/>
             {/*流星雨*/}
-            <FUIMeteor/>
+            {/*<FUIMeteor/>*/}
             <Spacer y={10}/>
             <LeftLoginWithImageBackground/>
             <div className={"mt-8"}>
@@ -30,6 +32,7 @@ export default function Home() {
             <div className={"mt-8"}>
                 <FullStack/>
             </div>
+            <PeopleImage/>
             <div className={"mt-8"}>
                 <BrandsScrollingBannerWithTwoRows/>
             </div>

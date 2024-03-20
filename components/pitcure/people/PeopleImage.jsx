@@ -4,18 +4,18 @@ import {Canvas, useFrame} from '@react-three/fiber'
 import {Image, Environment, ScrollControls, useScroll, useTexture} from '@react-three/drei'
 import {easing} from 'maath'
 import './util'
-import './styles.css'
+import './styles1.css'
 
 const App = () => (
-    <Canvas camera={{position: [0, 0, 100], fov: 15}} style={{height: '100vh', width: '100vw'}} className={'bg-background'}>
+    <Canvas camera={{position: [0, 0, 100], fov: 15}} style={{height: '100vh', width: '100vw'}}>
         <fog attach="fog" args={['#a79', 8.5, 12]}/>
-        <ScrollControls pages={4} infinite={false}>
+        <ScrollControls pages={4} infinite={false} style={{overflow: 'auto'}}>
             <Rig rotation={[0, 0, 0.15]}>
                 <Carousel/>
             </Rig>
             <Banner position={[0, -0.15, 0]}/>
         </ScrollControls>
-        {/*<Environment preset="dawn" background blur={0.5}/>*/}
+        <Environment preset="dawn" background blur={0.5}/>
     </Canvas>
 )
 
