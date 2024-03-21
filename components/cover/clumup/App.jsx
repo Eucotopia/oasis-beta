@@ -3,7 +3,7 @@ import {Canvas, useFrame, useThree} from "@react-three/fiber"
 import {Outlines, Environment, useTexture} from "@react-three/drei"
 import {Physics, useSphere} from "@react-three/cannon"
 import {EffectComposer, N8AO, SMAA} from "@react-three/postprocessing"
-import {title} from "@/components/primitives";
+import {tv} from "tailwind-variants";
 
 const rfs = THREE.MathUtils.randFloatSpread
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
@@ -11,8 +11,10 @@ const baubleMaterial = new THREE.MeshStandardMaterial({color: "white", roughness
 
 const App = () => (
     <div className={"relative h-screen w-screen"}>
-        <div className="absolute top-40 left-128 z-50 transform -translate-x-1/2 -translate-y-1/2 text-center">
-            <h1 className="text-6xl font-bold text-white p-4 " style={{ display: 'flex', flexDirection: 'column' }}>
+        {/*TODO 这里的样式需要改*/}
+        <div className="absolute top-60 left-128 z-50 transform -translate-x-1/2 -translate-y-1/2 text-center">
+            <h1 className="text-7xl font-bold p-4 font-cover bg-gradient-to-br from-primary-500 via-secondary-500 to-success-200 bg-clip-text text-transparent"
+                style={{display: 'flex', flexDirection: 'column'}}>
                 <span>Your time is limited,</span>
                 <span>so don't waste it living someone else's life</span>
             </h1>

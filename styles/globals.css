@@ -5,6 +5,12 @@
         src: url("../public/font/STXINGKA.TTF");
     }
 }
+@layer base{
+    @font-face {
+        font-family: NothingYouCouldDo;
+        src: url("../public/font/NothingYouCouldDo-Regular.ttf");
+    }
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

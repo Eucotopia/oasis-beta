@@ -105,7 +105,8 @@ module.exports = {
             },
             colors: {},
             fontFamily: {
-                h1: ['STXINGKA', 'sans-serif']
+                h1: ['STXINGKA', 'sans-serif'],
+                cover:['NothingYouCouldDo', 'sans-serif']
             },
         },
     },
