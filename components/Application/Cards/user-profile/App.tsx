@@ -13,14 +13,14 @@ export default function Component() {
                         className="h-20 w-20 translate-y-12"
                         src="https://i.pravatar.cc/150?u=a04258114e29026708c"
                     />
-                    {/*<Button*/}
-                    {/*  className="absolute right-3 top-3 bg-white/20 text-white dark:bg-black/20"*/}
-                    {/*  radius="full"*/}
-                    {/*  size="sm"*/}
-                    {/*  variant="light"*/}
-                    {/*>*/}
-                    {/*  Edit Profile*/}
-                    {/*</Button>*/}
+                    <Button
+                      className="absolute right-3 top-3 bg-white/20 text-white dark:bg-black/20"
+                      radius="full"
+                      size="sm"
+                      variant="light"
+                    >
+                      Edit Profile
+                    </Button>
                 </CardHeader>
                 <CardBody>
                     <div className="pb-4 pt-6">

@@ -1,12 +1,15 @@
 'use client'
 import React from "react";
 import CraftCover from "./CraftCover"
-import UserProfile from "@/components/Application/Cards/user-profile/App";
 import Mac from './Mac'
 import clsx from "clsx";
-
-import {Chip, Link, Tab, Tabs} from "@nextui-org/react";
+import UserProfile from './UserProfile'
+import {Avatar, Button, Card, CardHeader, Chip, Link, Listbox, ListboxItem, Tab, Tabs} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
+import GitHubCalendar from "react-github-calendar";
+import {ListItem} from "@tiptap/extension-list-item";
+import {motion} from "framer-motion";
+import {TypeAnimation} from "react-type-animation";
 
 const TableItem = [
     {
@@ -44,20 +47,28 @@ const TableItem = [
                 title: 'Java',
                 href: 'https://code.visualstudio.com/',
             }, {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
+                Icon: () => <Icon icon={'bxl:typescript'} width={35} height={35}/>,
+                title: 'TypeScript',
                 href: 'https://code.visualstudio.com/',
             }, {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
+                Icon: () => <Icon icon={'nonicons:html-16'} width={35} height={35}/>,
+                title: 'Html',
                 href: 'https://code.visualstudio.com/',
             }, {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
+                Icon: () => <Icon icon={'nonicons:css-16'} width={35} height={35}/>,
+                title: 'CSS',
                 href: 'https://code.visualstudio.com/',
             }, {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
+                Icon: () => <Icon icon={'bi:git'} width={35} height={35}/>,
+                title: 'Git',
+                href: 'https://code.visualstudio.com/',
+            }, {
+                Icon: () => <Icon icon={'simple-icons:cplusplus'} width={35} height={35}/>,
+                title: 'C++',
+                href: 'https://code.visualstudio.com/',
+            }, {
+                Icon: () => <Icon icon={'cib:swift'} width={35} height={35}/>,
+                title: 'Swift',
                 href: 'https://code.visualstudio.com/',
             }
         ]
@@ -66,24 +77,16 @@ const TableItem = [
         Icon: () => <Icon icon={'ph:code-bold'}/>,
         children: [
             {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
+                Icon: () => <Icon icon={'simple-icons:springboot'} width={35} height={35}/>,
+                title: 'SpringBoot',
+                href: 'https://spring.io/',
+            }, {
+                Icon: () => <Icon icon={'nonicons:vue-16'} width={35} height={35}/>,
+                title: 'Vue',
                 href: 'https://code.visualstudio.com/',
             }, {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
-                href: 'https://code.visualstudio.com/',
-            }, {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
-                href: 'https://code.visualstudio.com/',
-            }, {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
-                href: 'https://code.visualstudio.com/',
-            }, {
-                Icon: () => <Icon icon={'ri:java-line'} width={35} height={35}/>,
-                title: 'Java',
+                Icon: () => <Icon icon={'simple-icons:react'} width={35} height={35}/>,
+                title: 'React/NextJS',
                 href: 'https://code.visualstudio.com/',
             }
         ]
@@ -111,11 +114,52 @@ export default function App() {
                     <CraftCover/>
                 </div>
             </div>
-            <div className={"flex flex-col bg-gradient-to-b from-slate-700 to-slate-800  h-screen"}>
+            <div
+                className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>
+                <div className={'absolute top-0 left-20'}>
+                    <UserProfile/>
+                </div>
+                <div className={'absolute top-32 right-52'}>
+                    <motion.div
+                        initial={{opacity: 0, scale: 0.5}}
+                        animate={{opacity: 1, scale: 1}}
+                        transition={{duration: 0.5}}
+                        className={'col-span-8 place-self-center text-center sm:text-left justify-self-start'}
+                    >
+                        <p className={'text-3xl text-gray-500'}>LENNY BAYER</p>
+                        <h1 className={'text-9xl font-bold'}>Developer</h1>
+                        <div
+                            className={"text-5xl text-transparent bg-clip-text bg-gradient-to-br from-secondary-600 via-primary-400 to-content1 before:content-['+']"}>
+                            <TypeAnimation
+                                sequence={[
+                                    "Fullstack Developer",
+                                    1000,
+                                    "Web Developer",
+                                    1000,
+                                    "Software Engineer",
+                                    1000,
+                                    "UI/UX Designer",
+                                    1000
+                                ]}
+                                wrapper="span"
+                                speed={50}
+                                style={{fontSize: '1em', display: 'inline-block'}}
+                                repeat={Infinity}
+                            />
+                        </div>
+                    </motion.div>
+                    <div className={'flex flex-row justify-center gap-12 mt-8'}>
+                        <Button>asd</Button>
+                        <Button>asd</Button>
+                    </div>
+                </div>
+            </div>
+            <div className={"flex flex-col bg-gradient-to-b from-slate-500 to-slate-800  h-screen items-center"}>
                 <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>SKILLS</h1>
-                <h1 className={'text-gray-500 text-3xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>If
+                <h1 className={'text-gray-500 text-4xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center mb-8'}>If
                     you really want to abuse yourself, learn programming</h1>
-                <div className={'relative '}>
+                <GitHubCalendar username={"Eucotopia"} year={new Date().getFullYear()}/>
+                <div className={'relative w-screen'}>
                     <div className={'absolute left-40 top-20 h-screen'}>
                         <div className="flex w-full flex-col p-6">
                             <Tabs
@@ -138,7 +182,7 @@ export default function App() {
                                                     <div className="flex items-center space-x-2 ">
                                                         {<item.Icon/>}
                                                         <span>{item.key.toUpperCase()}</span>
-                                                        <Chip size="sm" variant="faded">{item.children.length}</Chip>
+                                                        <Chip size="md" variant="faded">{item.children.length}</Chip>
                                                     </div>
                                                 }
                                             >
@@ -148,6 +192,7 @@ export default function App() {
                                                             <>
                                                                 <a href={child.href}
                                                                    key={index}
+                                                                   target={'_blank'}
                                                                    className={'hover:scale-105'}>
                                                                     <div
                                                                         className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>
@@ -163,96 +208,6 @@ export default function App() {
                                         )
                                     })
                                 }
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'simple-icons:excalidraw'} width={35} height={35}/>*/}
-                                {/*            <p>Excalidraw</p>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*    /!*强调爱好*!/*/}
-                                {/*    /!*1. 忠实地 Apple 爱好者，android 狗都不用*!/*/}
-                                {/*    /!*2. 忠实地 JetBrains 爱好者*!/*/}
-                                {/*</Tab>*/}
-                                {/*<Tab*/}
-                                {/*    key="languages"*/}
-                                {/*    title={*/}
-                                {/*        <div className="flex items-center space-x-2">*/}
-                                {/*            <Icon icon={'ph:code-bold'}/>*/}
-                                {/*            <span>Languages</span>*/}
-                                {/*            <Chip size="sm" variant="faded">9</Chip>*/}
-                                {/*        </div>*/}
-                                {/*    }*/}
-                                {/*>*/}
-                                {/*    <div className={"text-2xl grid-cols-1 grid gap-4 md:grid-cols-3"}>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'ri:java-line'} width={35} height={35}/>*/}
-                                {/*            <p>Java</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'bi:git'} width={35} height={35}/>*/}
-                                {/*            <p>Git</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'simple-icons:cplusplus'} width={35} height={35}/>*/}
-                                {/*            <p>C++</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'cib:swift'} width={35} height={35}/>*/}
-                                {/*            <p>Swift</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'bxl:typescript'} width={35} height={35}/>*/}
-                                {/*            <p>TypeScript</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'nonicons:html-16'} width={35} height={35}/>*/}
-                                {/*            <p>Html</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'nonicons:css-16'} width={35} height={35}/>*/}
-                                {/*            <p>CSS</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'mdi:sql-query'} width={35} height={35}/>*/}
-                                {/*            <p>Sql</p>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*</Tab>*/}
-                                {/*<Tab*/}
-                                {/*    key="frameworks"*/}
-                                {/*    title={*/}
-                                {/*        <div className="flex items-center space-x-2">*/}
-                                {/*            <Icon icon={'carbon:workspace'}/>*/}
-                                {/*            <span>FRAMEWORKS</span>*/}
-                                {/*            <Chip size="sm" variant="faded">3</Chip>*/}
-                                {/*        </div>*/}
-                                {/*    }*/}
-                                {/*>*/}
-                                {/*    <div className={"text-2xl grid-cols-1 grid gap-4 md:grid-cols-3"}>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'simple-icons:springboot'} width={35} height={35}/>*/}
-                                {/*            <p>SpringBoot</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'simple-icons:react'} width={35} height={35}/>*/}
-                                {/*            <p>React/Next</p>*/}
-                                {/*        </div>*/}
-                                {/*        <div*/}
-                                {/*            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-                                {/*            <Icon icon={'nonicons:vue-16'} width={35} height={35}/>*/}
-                                {/*            <p>Vue</p>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*</Tab>*/}
                             </Tabs>
                         </div>
                     </div>
@@ -261,8 +216,7 @@ export default function App() {
                     </div>
                 </div>
             </div>
-            <UserProfile/>
-            {/*<GitHubCalendar username={"Eucotopia"}/>*/}
+
         </>
     );
 }
