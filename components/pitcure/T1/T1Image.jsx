@@ -4,10 +4,10 @@ import {Canvas, useFrame} from '@react-three/fiber'
 import {Image, Environment, ScrollControls, useScroll, useTexture} from '@react-three/drei'
 import {easing} from 'maath'
 import './util'
-import './styles1.css'
+import './styles.css'
 
 const App = () => (
-    <Canvas camera={{position: [0, 0, 100], fov: 15}} style={{height: '100vh', width: '100vw'}}>
+    <Canvas camera={{position: [0, 0, 100], fov: 15}} style={{height: '100vh', width: '100vw'}} >
         <fog attach="fog" args={['#a79', 8.5, 12]}/>
         <ScrollControls pages={4} infinite={false} style={{overflow: 'auto'}}>
             <Rig rotation={[0, 0, 0.15]}>
@@ -35,7 +35,7 @@ function Carousel({radius = 1.4, count = 8}) {
     return Array.from({length: count}, (_, i) => (
         <Card
             key={i}
-            url={`/image/people/img${Math.floor(i % 10) + 1}.jpg`}
+            url={`/image/T1/T1_${Math.floor(i % 11) + 1}.jpg`}
             position={[Math.sin((i / count) * Math.PI * 2) * radius, 0, Math.cos((i / count) * Math.PI * 2) * radius]}
             rotation={[0, Math.PI + (i / count) * Math.PI * 2, 0]}
         />

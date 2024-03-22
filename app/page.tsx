@@ -10,9 +10,9 @@ import FullStack from "@/components/code/FullStack";
 import SpotlightCard from "@/components/Application/Cards/spotlight-card/App"
 import {FUIMeteor} from "@/components/toast/FUIMEtetor";
 import {Spacer} from "@nextui-org/react";
-import PeopleImage from "@/components/pitcure/people/PeopleImage"
-import Test1 from "@/components/cover/Test1"
+import T1Image from "@/components/pitcure/T1/T1Image"
 import Test2 from "@/components/cover/cloud/Test2"
+
 export default function Home() {
     return (
         <section
@@ -32,7 +32,7 @@ export default function Home() {
             <div className={"mt-8"}>
                 <FullStack/>
             </div>
-            <PeopleImage/>
+            <T1Image/>
             <div className={"mt-8"}>
                 <BrandsScrollingBannerWithTwoRows/>
             </div>

@@ -6,12 +6,12 @@ const Card_1 = () => {
         <>
             <Card className={"max-w-[250px] h-full bg-black flex flex-col items-center"}>
                 <Image
+                    className={'max-h-[150px]'}
                     width={250}
                     height={100}
                     radius={"none"}
-                    className={'object-cover mx-auto'}
                     alt="NextUI hero Image"
-                    src="/img_1.png"
+                    src="/image/iiiiii.svg"
                 />
                 <CardBody className={"flex flex-col text-white text-center items-center"}>
                     <div className={"font-bold text-2xl"}>
