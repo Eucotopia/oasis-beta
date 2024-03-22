@@ -3,9 +3,10 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
+import Computer from "@/components/pitcure/Computer";
 
 // import required modules
-import {EffectCoverflow} from 'swiper/modules';
+import {EffectCoverflow,Autoplay} from 'swiper/modules';
 
 export default function App() {
     return (
@@ -15,6 +16,10 @@ export default function App() {
                 grabCursor={true}
                 centeredSlides={true}
                 slidesPerView={'auto'}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
                 coverflowEffect={{
                     rotate: 50,
                     stretch: 0,
@@ -22,9 +27,8 @@ export default function App() {
                     modifier: 1,
                     slideShadows: true,
                 }}
-                pagination={true}
-                modules={[EffectCoverflow]}
-                className="h-screen py-14"
+                modules={[EffectCoverflow,Autoplay]}
+                className="h-screen  max-w-4xl justify-center"
             >
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
@@ -40,52 +44,55 @@ export default function App() {
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl '}/>
-                </SwiperSlide> <SwiperSlide style={{
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                width: '300px',
-                height: '300px',
-            }}>
-                <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl '}/>
-            </SwiperSlide>
+                    <img src="/image/T1/T1_11.jpg" className={'w-full block rounded-xl '}/>
+                </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl '}/>
-                </SwiperSlide> <SwiperSlide style={{
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                width: '300px',
-                height: '300px',
-            }}>
-                <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl '}/>
-            </SwiperSlide>
+                    <img src="/image/T1/T1_2.jpg" className={'w-full block rounded-xl'}/>
+                </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl '}/>
-                </SwiperSlide> <SwiperSlide style={{
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                width: '300px',
-                height: '300px',
-            }}>
-                <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl '}/>
-            </SwiperSlide>
+                    <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl'}/>
+                </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl '}/>
+                    <img src="/image/T1/T1_4.jpg" className={'w-full block rounded-xl '}/>
+                </SwiperSlide>
+                <SwiperSlide style={{
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    width: '300px',
+                    height: '300px',
+                }}>
+                    <img src="/image/T1/T1_5.jpg" className={'w-full block rounded-xl '}/>
+                </SwiperSlide>
+                <SwiperSlide style={{
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    width: '300px',
+                    height: '300px',
+                }}>
+                    <img src="/image/T1/T1_6.jpg" className={'w-full block rounded-xl '}/>
+                </SwiperSlide>
+                <SwiperSlide style={{
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    width: '300px',
+                    height: '300px',
+                }}>
+                    <img src="/image/T1/T1_7.jpg" className={'w-full block rounded-xl '}/>
                 </SwiperSlide>
 
             </Swiper>

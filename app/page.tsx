@@ -15,6 +15,7 @@ import T1Image from "@/components/pitcure/T1/T1Image"
 import Test2 from "@/components/cover/cloud/Test2"
 import Card_3 from "@/components/pitcure/hobby/Card_3";
 import Horizontal from "@/components/pitcure/horizontal/Horizontal"
+import CardTest from "@/components/pitcure/CardTest";
 
 export default function Home() {
     return (

@@ -1,10 +1,9 @@
 import * as THREE from 'three'
-import {useEffect, useRef, useState} from 'react'
+import {useRef, useState} from 'react'
 import {Canvas, useFrame, useThree} from '@react-three/fiber'
 import {Image, ScrollControls, Scroll, useScroll} from '@react-three/drei'
 import {proxy, useSnapshot} from 'valtio'
 import {easing} from 'maath'
-import './styles.css'
 
 const material = new THREE.LineBasicMaterial({color: 'white'})
 const geometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -0.5, 0), new THREE.Vector3(0, 0.5, 0)])
@@ -82,7 +81,7 @@ export default function App() {
             <Canvas gl={{antialias: false}} dpr={[1, 1.5]} onPointerMissed={() => (state.clicked = null)}
                     style={{
                         height: '100vh',
-                        width: '50vw',
+                        width: '100vw',
                     }}>
                 <Items/>
             </Canvas>

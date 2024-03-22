@@ -34,7 +34,7 @@ export default function App() {
             </mesh>
             <ContactShadows opacity={0.25} color="black" position={[0, -10, 0]} scale={50} blur={2.5} far={40} />
             <OrbitControls makeDefault autoRotate enableZoom={false} enablePan={false} minPolarAngle={Math.PI / 1.7} maxPolarAngle={Math.PI / 1.7} />
-            <Environment files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/blue_lagoon_night_1k.hdr" />
+            <Environment files="/hdr/blue_lagoon_night_1k.hdr" />
         </Canvas>
     )
 }
