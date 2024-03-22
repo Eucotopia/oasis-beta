@@ -8,10 +8,14 @@ import LeftLoginWithImageBackground from "@/components/Application/Authenticatio
 import React from "react";
 import FullStack from "@/components/code/FullStack";
 import SpotlightCard from "@/components/Application/Cards/spotlight-card/App"
+import Atropos from 'atropos/react';
 import {FUIMeteor} from "@/components/toast/FUIMEtetor";
 import {Spacer} from "@nextui-org/react";
 import T1Image from "@/components/pitcure/T1/T1Image"
 import Test2 from "@/components/cover/cloud/Test2"
+import Card_3 from "@/components/pitcure/hobby/Card_3";
+import Horizontal from "@/components/pitcure/horizontal/Horizontal"
+
 export default function Home() {
     return (
         <section
@@ -21,6 +25,7 @@ export default function Home() {
             {/*流星雨*/}
             {/*<FUIMeteor/>*/}
             <Spacer y={10}/>
+                <Horizontal/>
             <LeftLoginWithImageBackground/>
             <div className={"mt-8"}>
                 <BasicTeamPage/>
@@ -31,10 +36,13 @@ export default function Home() {
             <div className={"mt-8"}>
                 <FullStack/>
             </div>
-            <T1Image/>
+            <div>
+                <T1Image/>
+            </div>
             <div className={"mt-8"}>
                 <BrandsScrollingBannerWithTwoRows/>
             </div>
+            {/*<Card_3/>*/}
             <div className={"mt-8"}>
                 <FaqsWithDivider/>
             </div>

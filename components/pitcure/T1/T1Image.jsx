@@ -15,7 +15,7 @@ const App = () => (
             </Rig>
             <Banner position={[0, -0.15, 0]}/>
         </ScrollControls>
-        <Environment preset="dawn" background blur={0.5}/>
+        {/*<Environment preset="dawn" background blur={0.5}/>*/}
     </Canvas>
 )
 

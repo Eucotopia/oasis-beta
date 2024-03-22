@@ -1,10 +1,11 @@
-import {Card,Image,CardBody} from "@nextui-org/react";
+import {Card, Image, CardBody} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
 const Card_1 = () => {
     return (
         <>
-            <Card className={"max-w-[250px] h-full bg-black flex flex-col items-center"}>
+            <Card
+                className={"max-w-[250px] h-full bg-blue-300 backdrop-blur-3xl drop-shadow-2xl  flex flex-col items-center"}>
                 <Image
                     className={'max-h-[150px]'}
                     width={250}

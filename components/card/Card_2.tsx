@@ -8,7 +8,7 @@ const Card_2 = () => {
     return (
         <>
             <div
-                className={'flex flex-row  backdrop-blur-2xl rounded-2xl bg-gradient-to-br from-default-300 to-default-500 gap-4 max-h-[380px] shadow-2xl py-6 px-4'}>
+                className={'flex flex-row  backdrop-blur-2xl rounded-2xl bg-gradient-to-br from-content4 via-content3 to-content2 gap-4 max-h-[380px] shadow-2xl py-6 px-4'}>
                 <div className={"flex flex-col text-black"}>
                     <p className={"text-tiny text-gray-400"}>FEATURED COURSE</p>
                     <div className={'max-w-[270px] overflow-scroll scrollbar-hide scroll-smooth'}>
