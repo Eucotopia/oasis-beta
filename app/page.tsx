@@ -12,7 +12,6 @@ import {FUIMeteor} from "@/components/toast/FUIMEtetor";
 import {Spacer} from "@nextui-org/react";
 import T1Image from "@/components/pitcure/T1/T1Image"
 import Test2 from "@/components/cover/cloud/Test2"
-
 export default function Home() {
     return (
         <section
