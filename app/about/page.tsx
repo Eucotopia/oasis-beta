@@ -147,6 +147,7 @@ export default function App() {
                                                         return (
                                                             <>
                                                                 <a href={child.href}
+                                                                   key={index}
                                                                    className={'hover:scale-105'}>
                                                                     <div
                                                                         className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>

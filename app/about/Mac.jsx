@@ -5,6 +5,9 @@ import {Environment, useGLTF, ContactShadows} from '@react-three/drei'
 import {useSpring} from '@react-spring/core'
 import {a as three} from '@react-spring/three'
 import {a as web} from '@react-spring/web'
+import {suspend} from "suspend-react";
+
+const city = import('@pmndrs/assets/hdri/city.exr').then((module) => module.default);
 
 function Model({open, hinge, ...props}) {
     const group = useRef()
@@ -66,7 +69,7 @@ export default function App() {
                     <group rotation={[0, Math.PI, 0]} onClick={(e) => (e.stopPropagation(), setOpen(!open))}>
                         <Model open={open} hinge={props.open.to([0, 1], [1.575, -0.425])}/>
                     </group>
-                    <Environment preset="city"/>
+                    <Environment files={suspend(city)}/>
                 </Suspense>
                 <ContactShadows position={[0, -4.5, 0]} opacity={0.4} scale={20} blur={1.75} far={4.5}/>
             </Canvas>

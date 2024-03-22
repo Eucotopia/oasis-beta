@@ -4,13 +4,11 @@ import ThemeSwitcher from "@/components/theme/ThemeSwitcher";
 import {Button} from "@nextui-org/button";
 import {Code} from "@nextui-org/code";
 import {Card, Tooltip} from "@nextui-org/react";
-import Car from "@/components/pitcure/Car";
 import Mac from "@/app/about/Mac";
 export default function App() {
 
     return (
         <>
-            <Car/>
             <Mac/>
 
             <Button className={'bg-blue-600'}>123123</Button>
