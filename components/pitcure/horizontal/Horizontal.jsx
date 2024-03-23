@@ -65,7 +65,7 @@ function Items({w = 0.7, gap = 0.15}) {
     const {width} = useThree((state) => state.viewport)
     const xW = w + gap
     return (
-        <ScrollControls infinite horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width}>
+        <ScrollControls horizontal damping={0.1} pages={(width - xW + urls.length * xW) / width}>
             <Minimap/>
             <Scroll>
                 {urls.map((url, i) => <Item key={i} index={i} position={[i * xW, 0, 0]} scale={[w, 4, 1]}

@@ -4,12 +4,13 @@ import CraftCover from "./CraftCover"
 import Mac from './Mac'
 import clsx from "clsx";
 import UserProfile from './UserProfile'
-import {Avatar, Button, Card, CardHeader, Chip, Link, Listbox, ListboxItem, Tab, Tabs} from "@nextui-org/react";
+import {Avatar, Button, Card, CardHeader, Chip, Link, Listbox, ListboxItem, Spacer, Tab, Tabs} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 import GitHubCalendar from "react-github-calendar";
 import {ListItem} from "@tiptap/extension-list-item";
 import {motion} from "framer-motion";
 import {TypeAnimation} from "react-type-animation";
+import ExperienceTimeLine from "@/app/about/ExperienceTimeLine";
 
 const TableItem = [
     {
@@ -160,7 +161,7 @@ export default function App() {
                     you really want to abuse yourself, learn programming</h1>
                 <GitHubCalendar username={"Eucotopia"} year={new Date().getFullYear()}/>
                 <div className={'relative w-screen'}>
-                    <div className={'absolute left-40 top-20 h-screen'}>
+                    <div className={'absolute left-40 top-20'}>
                         <div className="flex w-full flex-col p-6">
                             <Tabs
                                 aria-label="Options"
@@ -215,6 +216,11 @@ export default function App() {
                         <Mac/>
                     </div>
                 </div>
+            </div>
+            <div
+                className={'flex flex-col bg-gradient-to-b from-slate-800 to-slate-500  items-center mt-8'}>
+                <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>EXPERIENCE</h1>
+                <ExperienceTimeLine/>
             </div>
 
         </>
