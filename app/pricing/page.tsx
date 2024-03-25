@@ -8,6 +8,8 @@ import T1Image from "@/components/pitcure/T1/T1Image";
 import Horizontal from "@/components/pitcure/horizontal/Horizontal";
 import CardTest from "@/components/pitcure/CardTest";
 import CardTest11 from "@/components/pitcure/CardTest11";
+import PlanList from "@/components/futrue/PlanList";
+
 const pexel = (id: number) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`
 const images = [
     // Front
@@ -29,6 +31,7 @@ export default function PricingPage() {
 
     return (
         <>
+            <PlanList/>
             <CardTest11 images={images}/>
             <SwiperTest/>
             <Card_1/>

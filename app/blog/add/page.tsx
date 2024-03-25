@@ -1,13 +1,11 @@
 'use client'
 import * as React from "react";
-import {useGetCategoriesQuery} from "@/features/api/categoryApi";
-import {useState} from "react";
-import AddPost from "@/components/post/AddPost";
+import {BlockEditor} from "@/components/tiptap/BlockEditor";
 
 export default function App() {
     return (
         <>
-            <AddPost/>
+            <BlockEditor/>
         </>
     )
 }
