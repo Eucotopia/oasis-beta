@@ -1,16 +1,9 @@
 'use client'
 import React from "react";
 import CraftCover from "./CraftCover"
-import Mac from './Mac'
 import clsx from "clsx";
-import UserProfile from './UserProfile'
-import {Avatar, Button, Card, CardHeader, Chip, Link, Listbox, ListboxItem, Spacer, Tab, Tabs} from "@nextui-org/react";
+import {Button} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
-import GitHubCalendar from "react-github-calendar";
-import {ListItem} from "@tiptap/extension-list-item";
-import {motion} from "framer-motion";
-import {TypeAnimation} from "react-type-animation";
-import ExperienceTimeLine from "@/app/about/ExperienceTimeLine";
 import {fontAboutHeading} from "@/config/fonts"
 
 const TableItem = [
