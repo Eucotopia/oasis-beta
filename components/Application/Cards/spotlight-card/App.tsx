@@ -4,7 +4,7 @@ import type {CardProps} from "@nextui-org/react";
 
 import React from "react";
 import {Card, CardBody, Image, CardHeader} from "@nextui-org/react";
-import {motion, useMotionValue, useMotionTemplate} from "framer-motion";
+import {m, useMotionValue, domAnimation, LazyMotion, useMotionTemplate} from "framer-motion";
 
 export default function Component(props: CardProps) {
   let mouseX = useMotionValue(0);
@@ -29,18 +29,20 @@ export default function Component(props: CardProps) {
       radius="lg"
       onMouseMove={onMouseMove}
     >
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-250 group-hover:opacity-100"
-        style={{
-          background: useMotionTemplate`
+      <LazyMotion features={domAnimation}>
+        <m.div
+            className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-250 group-hover:opacity-100"
+            style={{
+              background: useMotionTemplate`
             radial-gradient(
               450px circle at ${mouseX}px ${mouseY}px,
               rgba(120, 40, 200, 0.2),
               transparent 80%
             )
           `, // <- Add your own color here
-        }}
-      />
+            }}
+        />
+      </LazyMotion>
       <CardHeader className="relative h-60 p-0">
         <Image
           removeWrapper

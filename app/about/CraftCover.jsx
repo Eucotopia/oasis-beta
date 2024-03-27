@@ -71,7 +71,7 @@ export default function App() {
     const spaceman = useRef()
     const ship = useRef()
     return (
-        <Canvas shadows camera={{position: [0, 1.5, 3]}} style={{height: '100vh', width: '50vw'}}>
+        <Canvas shadows camera={{position: [0, 1.5, 3]}} style={{height: '100vh', width: '500px'}}>
             <ambientLight intensity={0.2}/>
             <directionalLight position={[-10, 0, -5]} intensity={1} color="red"/>
             <directionalLight position={[-1, -2, -5]} intensity={0.2} color="#0c8cbf"/>

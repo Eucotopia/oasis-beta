@@ -14,7 +14,7 @@ const yPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 1)
 
 const App = () => (
     <Canvas gl={{localClippingEnabled: true}} camera={{fov: 75, position: [0, 0, 1.5]}}
-            style={{height: '100vh', width: '40vw'}} eventPrefix="client">
+            style={{height: '100vh', width: '25vw'}} eventPrefix="client">
         {/*<color attach="background" args={['#f0f0f0']}/>*/}
         <Frame id="01" name="Jesse" author="McCree">
             <Sky/>

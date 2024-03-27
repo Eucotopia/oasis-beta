@@ -11,6 +11,7 @@ import {ListItem} from "@tiptap/extension-list-item";
 import {motion} from "framer-motion";
 import {TypeAnimation} from "react-type-animation";
 import ExperienceTimeLine from "@/app/about/ExperienceTimeLine";
+import {fontAboutHeading} from "@/config/fonts"
 
 const TableItem = [
     {
@@ -97,131 +98,130 @@ export default function App() {
     return (
         <>
             <div
-                className={clsx("relative w-screen h-screen bg-gradient-to-b from-background to-slate-700")}>
-                <div className={'absolute top-48 left-50 min-w-content text-center'}>
-                    <h1 className={'text-8xl font-bold'}>Jumpstart your career with</h1>
-                    <h1 className={'text-8xl font-bold bg-gradient-to-br from-secondary-600 via-primary-400 to-content1 bg-clip-text text-transparent self-center'}>Opspy.dev</h1>
-                    <h1 className={'text-2xl w-[700px] m-auto mt-6 text-gray-500'}>Find your next job in DevOps, SRE,
-                        and
-                        cloud engineering. We have a wide range of remote and on-site positions available.</h1>
-                    <div className={'flex flex-row justify-center mt-6'}>
-                        <Link isBlock href="https://opspy.dev" color="primary"
-                              className={'text-3xl font-bold '}>Learn more</Link>
-                        <Link isBlock href="https://opspy.dev" color="success"
-                              className={'text-3xl font-bold'}>Learn more</Link>
+                className={clsx("relative max-w-screen-2xl h-screen select-none", fontAboutHeading.className)}>
+                <div className={'absolute top-36 left-36 self-center text-center'}>
+                    <h1 className={"text-6xl mt-5"}>Always remember you&apos;re unique, </h1>
+                    <h1 className={"text-7xl mb-4 bg-gradient-to-br from-sky-500 to-blue-500 bg-clip-text text-transparent"}>just
+                        like everyone else</h1>
+                    <h1 className={'text-2xl text-gray-500'}>No matter how bad or good you think life is, wake up each
+                        day and be
+                        thankful. Someone somewhere is fighting to survive</h1>
+                    <div className={"flex flex-row gap-4 justify-center mt-10"}>
+                        <Button size={"lg"} variant={"flat"} color={"primary"}>Learn More</Button>
+                        <Button size={"lg"} variant={"flat"} color={'success'}>Learn More</Button>
                     </div>
                 </div>
-                <div className={'absolute top-20 right-16'}>
+                <div className={'absolute top-16 right-36'}>
                     <CraftCover/>
                 </div>
             </div>
-            <div
-                className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>
-                <div className={'absolute top-0 left-20'}>
-                    <UserProfile/>
-                </div>
-                <div className={'absolute top-32 right-52'}>
-                    <motion.div
-                        initial={{opacity: 0, scale: 0.5}}
-                        animate={{opacity: 1, scale: 1}}
-                        transition={{duration: 0.5}}
-                        className={'col-span-8 place-self-center text-center sm:text-left justify-self-start'}
-                    >
-                        <p className={'text-3xl text-gray-500'}>LENNY BAYER</p>
-                        <h1 className={'text-9xl font-bold'}>Developer</h1>
-                        <div
-                            className={"text-5xl text-transparent bg-clip-text bg-gradient-to-br from-secondary-600 via-primary-400 to-content1 before:content-['+']"}>
-                            <TypeAnimation
-                                sequence={[
-                                    "Fullstack Developer",
-                                    1000,
-                                    "Web Developer",
-                                    1000,
-                                    "Software Engineer",
-                                    1000,
-                                    "UI/UX Designer",
-                                    1000
-                                ]}
-                                wrapper="span"
-                                speed={50}
-                                style={{fontSize: '1em', display: 'inline-block'}}
-                                repeat={Infinity}
-                            />
-                        </div>
-                    </motion.div>
-                    <div className={'flex flex-row justify-center gap-12 mt-8'}>
-                        <Button>asd</Button>
-                        <Button>asd</Button>
-                    </div>
-                </div>
-            </div>
-            <div className={"flex flex-col bg-gradient-to-b from-slate-500 to-slate-800  h-screen items-center"}>
-                <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>SKILLS</h1>
-                <h1 className={'text-gray-500 text-4xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center mb-8'}>If
-                    you really want to abuse yourself, learn programming</h1>
-                <GitHubCalendar username={"Eucotopia"} year={new Date().getFullYear()}/>
-                <div className={'relative w-screen'}>
-                    <div className={'absolute left-40 top-20'}>
-                        <div className="flex w-full flex-col p-6">
-                            <Tabs
-                                aria-label="Options"
-                                color="primary"
-                                variant="underlined"
-                                classNames={{
-                                    tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
-                                    cursor: "w-full bg-[#22d3ee]",
-                                    tab: "max-w-fit px-0 h-12",
-                                    tabContent: "group-data-[selected=true]:text-[#06b6d4] text-3xl",
-                                }}
-                            >
-                                {
-                                    TableItem.map((item, index) => {
-                                        return (
-                                            <Tab
-                                                key={item.key}
-                                                title={
-                                                    <div className="flex items-center space-x-2 ">
-                                                        {<item.Icon/>}
-                                                        <span>{item.key.toUpperCase()}</span>
-                                                        <Chip size="md" variant="faded">{item.children.length}</Chip>
-                                                    </div>
-                                                }
-                                            >
-                                                <div className={"text-2xl grid-cols-1 grid gap-4 md:grid-cols-3"}>
-                                                    {item.children.map((child, index) => {
-                                                        return (
-                                                            <>
-                                                                <a href={child.href}
-                                                                   key={index}
-                                                                   target={'_blank'}
-                                                                   className={'hover:scale-105'}>
-                                                                    <div
-                                                                        className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>
-                                                                        <child.Icon/>
-                                                                        <p>{child.title}</p>
-                                                                    </div>
-                                                                </a>
-                                                            </>
-                                                        )
-                                                    })}
-                                                </div>
-                                            </Tab>
-                                        )
-                                    })
-                                }
-                            </Tabs>
-                        </div>
-                    </div>
-                    <div className={'absolute -top-36 right-1'}>
-                        <Mac/>
-                    </div>
-                </div>
-            </div>
-            <div
-                className={'flex flex-col bg-gradient-to-b from-slate-800 to-slate-500  items-center mt-8'}>
-                <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>EXPERIENCE</h1>
-                <ExperienceTimeLine/>
-            </div>
+            {/*<div*/}
+            {/*    className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>*/}
+            {/*    <div className={'absolute top-0 left-20'}>*/}
+            {/*        <UserProfile/>*/}
+            {/*    </div>*/}
+            {/*    <div className={'absolute top-32 right-52'}>*/}
+            {/*        <motion.div*/}
+            {/*            initial={{opacity: 0, scale: 0.5}}*/}
+            {/*            animate={{opacity: 1, scale: 1}}*/}
+            {/*            transition={{duration: 0.5}}*/}
+            {/*            className={'col-span-8 place-self-center text-center sm:text-left justify-self-start'}*/}
+            {/*        >*/}
+            {/*            <p className={'text-3xl text-gray-500'}>LENNY BAYER</p>*/}
+            {/*            <h1 className={'text-9xl font-bold'}>Developer</h1>*/}
+            {/*            <div*/}
+            {/*                className={"text-5xl text-transparent bg-clip-text bg-gradient-to-br from-secondary-600 via-primary-400 to-content1 before:content-['+']"}>*/}
+            {/*                <TypeAnimation*/}
+            {/*                    sequence={[*/}
+            {/*                        "Fullstack Developer",*/}
+            {/*                        1000,*/}
+            {/*                        "Web Developer",*/}
+            {/*                        1000,*/}
+            {/*                        "Software Engineer",*/}
+            {/*                        1000,*/}
+            {/*                        "UI/UX Designer",*/}
+            {/*                        1000*/}
+            {/*                    ]}*/}
+            {/*                    wrapper="span"*/}
+            {/*                    speed={50}*/}
+            {/*                    style={{fontSize: '1em', display: 'inline-block'}}*/}
+            {/*                    repeat={Infinity}*/}
+            {/*                />*/}
+            {/*            </div>*/}
+            {/*        </motion.div>*/}
+            {/*        <div className={'flex flex-row justify-center gap-12 mt-8'}>*/}
+            {/*            <Button>asd</Button>*/}
+            {/*            <Button>asd</Button>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<div className={"flex flex-col bg-gradient-to-b from-slate-500 to-slate-800  h-screen items-center"}>*/}
+            {/*    <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>SKILLS</h1>*/}
+            {/*    <h1 className={'text-gray-500 text-4xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center mb-8'}>If*/}
+            {/*        you really want to abuse yourself, learn programming</h1>*/}
+            {/*    <GitHubCalendar username={"Eucotopia"} year={new Date().getFullYear()}/>*/}
+            {/*    <div className={'relative w-screen'}>*/}
+            {/*        <div className={'absolute left-40 top-20'}>*/}
+            {/*            <div className="flex w-full flex-col p-6">*/}
+            {/*                <Tabs*/}
+            {/*                    aria-label="Options"*/}
+            {/*                    color="primary"*/}
+            {/*                    variant="underlined"*/}
+            {/*                    classNames={{*/}
+            {/*                        tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",*/}
+            {/*                        cursor: "w-full bg-[#22d3ee]",*/}
+            {/*                        tab: "max-w-fit px-0 h-12",*/}
+            {/*                        tabContent: "group-data-[selected=true]:text-[#06b6d4] text-3xl",*/}
+            {/*                    }}*/}
+            {/*                >*/}
+            {/*                    {*/}
+            {/*                        TableItem.map((item, index) => {*/}
+            {/*                            return (*/}
+            {/*                                <Tab*/}
+            {/*                                    key={item.key}*/}
+            {/*                                    title={*/}
+            {/*                                        <div className="flex items-center space-x-2 ">*/}
+            {/*                                            {<item.Icon/>}*/}
+            {/*                                            <span>{item.key.toUpperCase()}</span>*/}
+            {/*                                            <Chip size="md" variant="faded">{item.children.length}</Chip>*/}
+            {/*                                        </div>*/}
+            {/*                                    }*/}
+            {/*                                >*/}
+            {/*                                    <div className={"text-2xl grid-cols-1 grid gap-4 md:grid-cols-3"}>*/}
+            {/*                                        {item.children.map((child, index) => {*/}
+            {/*                                            return (*/}
+            {/*                                                <>*/}
+            {/*                                                    <a href={child.href}*/}
+            {/*                                                       key={index}*/}
+            {/*                                                       target={'_blank'}*/}
+            {/*                                                       className={'hover:scale-105'}>*/}
+            {/*                                                        <div*/}
+            {/*                                                            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
+            {/*                                                            <child.Icon/>*/}
+            {/*                                                            <p>{child.title}</p>*/}
+            {/*                                                        </div>*/}
+            {/*                                                    </a>*/}
+            {/*                                                </>*/}
+            {/*                                            )*/}
+            {/*                                        })}*/}
+            {/*                                    </div>*/}
+            {/*                                </Tab>*/}
+            {/*                            )*/}
+            {/*                        })*/}
+            {/*                    }*/}
+            {/*                </Tabs>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*        <div className={'absolute -top-36 right-1'}>*/}
+            {/*            <Mac/>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<div*/}
+            {/*    className={'flex flex-col bg-gradient-to-b from-slate-800 to-slate-500  items-center mt-8'}>*/}
+            {/*    <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>EXPERIENCE</h1>*/}
+            {/*    <ExperienceTimeLine/>*/}
+            {/*</div>*/}
 
         </>
     );

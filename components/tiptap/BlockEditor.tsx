@@ -1,6 +1,5 @@
 import {Editor, EditorContent} from "@tiptap/react";
 import './styles/index.css'
-import {useRef} from "react";
 import {useBlockEditor} from "@/components/tiptap/useBlockEditor";
 
 export const BlockEditor = () => {
@@ -10,7 +9,7 @@ export const BlockEditor = () => {
     }
     return (
         <>
-            <EditorContent editor={editor}/>
+            <EditorContent editor={editor} style={{color: 'red', height: '300px', width: '300px'}}/>
         </>
     );
 }
