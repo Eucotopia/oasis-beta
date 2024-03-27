@@ -36,7 +36,7 @@ export default function App() {
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl '}/>
+                    <img src="/image/T1/T1_1.jpg" className={'w-full block rounded-xl '}/>
                 </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
@@ -44,7 +44,7 @@ export default function App() {
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_11.jpg" className={'w-full block rounded-xl '}/>
+                    <img src="/image/T1/T1_1.jpg" className={'w-full block rounded-xl '}/>
                 </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
@@ -60,7 +60,7 @@ export default function App() {
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_3.jpg" className={'w-full block rounded-xl'}/>
+                    <img src="/image/T1/T1_2.jpg" className={'w-full block rounded-xl'}/>
                 </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
@@ -68,7 +68,7 @@ export default function App() {
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_4.jpg" className={'w-full block rounded-xl '}/>
+                    <img src="/image/T1/T1_1.jpg" className={'w-full block rounded-xl '}/>
                 </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
@@ -76,7 +76,7 @@ export default function App() {
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_5.jpg" className={'w-full block rounded-xl '}/>
+                    <img src="/image/T1/T1_1.jpg" className={'w-full block rounded-xl '}/>
                 </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
@@ -84,7 +84,7 @@ export default function App() {
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_6.jpg" className={'w-full block rounded-xl '}/>
+                    <img src="/image/T1/T1_2.jpg" className={'w-full block rounded-xl '}/>
                 </SwiperSlide>
                 <SwiperSlide style={{
                     backgroundPosition: 'center',
@@ -92,7 +92,7 @@ export default function App() {
                     width: '300px',
                     height: '300px',
                 }}>
-                    <img src="/image/T1/T1_7.jpg" className={'w-full block rounded-xl '}/>
+                    <img src="/image/T1/T1_2.jpg" className={'w-full block rounded-xl '}/>
                 </SwiperSlide>
 
             </Swiper>
