@@ -2,9 +2,12 @@
 import React from "react";
 import CraftCover from "./CraftCover"
 import clsx from "clsx";
-import {Button} from "@nextui-org/react";
+import {Button, Link} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 import {fontAboutHeading} from "@/config/fonts"
+import {siteConfig} from "@/config/site";
+import {DiscordIcon, GithubIcon, TwitterIcon} from "@/components/icons";
+import ProductList from "@/components/E-commerce/Product-List/product-list-with-popular-items/App"
 
 const TableItem = [
     {
@@ -100,13 +103,23 @@ export default function App() {
                         day and be
                         thankful. Someone somewhere is fighting to survive</h1>
                     <div className={"flex flex-row gap-4 justify-center mt-10"}>
-                        <Button size={"lg"} variant={"flat"} color={"primary"}>Learn More</Button>
-                        <Button size={"lg"} variant={"flat"} color={'success'}>Learn More</Button>
+                        <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
+                            <TwitterIcon className="text-default-500"/>
+                        </Link>
+                        <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
+                            <DiscordIcon className="text-default-500"/>
+                        </Link>
+                        <Link isExternal href={siteConfig.links.github} aria-label="Github">
+                            <GithubIcon className="text-default-500"/>
+                        </Link>
                     </div>
                 </div>
                 <div className={'absolute top-16 right-36'}>
                     <CraftCover/>
                 </div>
+            </div>
+            <div className={'self-center'}>
+                <ProductList/>
             </div>
             {/*<div*/}
             {/*    className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>*/}
