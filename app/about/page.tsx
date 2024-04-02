@@ -7,7 +7,7 @@ import {Icon} from "@iconify/react";
 import {fontAboutHeading} from "@/config/fonts"
 import {siteConfig} from "@/config/site";
 import {DiscordIcon, GithubIcon, TwitterIcon} from "@/components/icons";
-import ProductList from "@/components/E-commerce/Product-List/product-list-with-popular-items/App"
+import GoodThings from "@/components/list/goodthings/App"
 
 const TableItem = [
     {
@@ -118,9 +118,7 @@ export default function App() {
                     <CraftCover/>
                 </div>
             </div>
-            <div className={'self-center'}>
-                <ProductList/>
-            </div>
+                <GoodThings/>
             {/*<div*/}
             {/*    className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>*/}
             {/*    <div className={'absolute top-0 left-20'}>*/}
