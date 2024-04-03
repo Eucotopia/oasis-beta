@@ -12,7 +12,6 @@ import {useGetProductsQuery} from "@/features/api/productApi";
 export default function Component() {
     const isMobile = useMediaQuery("(max-width: 768px)");
     const {data} = useGetProductsQuery();
-    console.log(data)
     const products = data?.data
     const productsWithRatingsAndDescription1 = products?.slice(0, Math.ceil(products.length / 4));
     const productsWithRatingsAndDescription2 = products?.slice(Math.ceil(products.length / 4), Math.ceil(products.length / 2));
@@ -20,7 +19,7 @@ export default function Component() {
     const productsWithRatingsAndDescription4 = products?.slice(Math.ceil(products.length * 3 / 4), products.length);
     const fistColumn = React.useMemo(
         () => (isMobile ? products : productsWithRatingsAndDescription1),
-        [isMobile, productsWithRatingsAndDescription1],
+        [isMobile, products, productsWithRatingsAndDescription1],
     );
     return (
         <>

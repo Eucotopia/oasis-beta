@@ -1,7 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {Category, ResultResponse} from '@/types'
+import {ResultResponse} from '@/types'
 import {RootState} from "@/app/store";
-import {ProductListItemColor} from "@/components/list/goodthings/product-list-item";
 
 export type ProductItem = {
     id: string;
