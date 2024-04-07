@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Table,
     TableHeader,
@@ -17,14 +17,9 @@ import {
     Pagination,
     Selection,
     ChipProps,
-    SortDescriptor, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
+    SortDescriptor, useDisclosure, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter
 } from "@nextui-org/react";
-import {UserType} from "@/types";
-import SettingsTabs from "@/components/Application/Cards/settings-tabs/App"
-import {useDeleteUserMutation} from "@/features/api/authApi";
-import {updateUser} from "@/features/user/userSlice";
-import {useAppDispatch} from "@/hooks/store";
-import {columns, statusOptions} from "./data";
+import {columns, users, statusOptions} from "./data2";
 import {ChevronDownIcon} from "../icons";
 import {VerticalDotsIcon} from "../icons";
 import {PlusIcon} from "../icons";
@@ -36,10 +31,41 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
     paused: "danger",
     vacation: "warning",
 };
-const INITIAL_VISIBLE_COLUMNS = ["username", "role", "status", "actions", "id", "age", "email", "address"];
-export default function UserTable({userList}: { userList: UserType[] }) {
-    const dispatch = useAppDispatch()
-    const [deleteUser, {isLoading}] = useDeleteUserMutation()
+
+const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
+
+type User = typeof users[0];
+
+export default function Equipment() {
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [file, setFile] = useState(null);
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // @ts-ignore
+        console.log(e.target.files[0])
+        // @ts-ignore
+        setSelectedFile(e.target.files[0]);
+    };
+    const handleUpload = () => {
+        if (selectedFile) {
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+
+            // 发送文件到后端
+            fetch('http://localhost:8080/image/upload', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => console.log(response))
+                .then(data => {
+                    // 处理上传成功后的操作
+                })
+                .catch(error => {
+                    console.error('图片上传失败', error);
+                    // 处理上传失败后的操作
+                });
+        }
+    };
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
     const [visibleColumns, setVisibleColumns] = React.useState<Selection>(new Set(INITIAL_VISIBLE_COLUMNS));
@@ -61,11 +87,11 @@ export default function UserTable({userList}: { userList: UserType[] }) {
     }, [visibleColumns]);
 
     const filteredItems = React.useMemo(() => {
-        let filteredUsers = [...userList];
+        let filteredUsers = [...users];
 
         if (hasSearchFilter) {
             filteredUsers = filteredUsers.filter((user) =>
-                user.username.toLowerCase().includes(filterValue.toLowerCase()),
+                user.name.toLowerCase().includes(filterValue.toLowerCase()),
             );
         }
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
@@ -75,45 +101,32 @@ export default function UserTable({userList}: { userList: UserType[] }) {
         }
 
         return filteredUsers;
-    }, [userList, filterValue, statusFilter]);
-    const aa: UserType = {
-        id: 1,
-        password: "123",
-        "motto": "hello",
-        createTime: "2022-12-12",
-        username: "Zoey Lang",
-        role: "Tech Lead",
-        address: "Development",
-        status: "paused",
-        age: 25,
-        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-        email: "zoey.lang@example.com",
-    }
+    }, [users, filterValue, statusFilter]);
+
     const pages = Math.ceil(filteredItems.length / rowsPerPage);
+
     const items = React.useMemo(() => {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
 
         return filteredItems.slice(start, end);
     }, [page, filteredItems, rowsPerPage]);
-    const updateUsers = (users: UserType) => {
-        dispatch(updateUser({data: aa}))
-    }
+
     const sortedItems = React.useMemo(() => {
-        return [...items].sort((a: UserType, b: UserType) => {
-            const first = a[sortDescriptor.column as keyof UserType] as number;
-            const second = b[sortDescriptor.column as keyof UserType] as number;
+        return [...items].sort((a: User, b: User) => {
+            const first = a[sortDescriptor.column as keyof User] as number;
+            const second = b[sortDescriptor.column as keyof User] as number;
             const cmp = first < second ? -1 : first > second ? 1 : 0;
 
             return sortDescriptor.direction === "descending" ? -cmp : cmp;
         });
     }, [sortDescriptor, items]);
 
-    const renderCell = React.useCallback((user: UserType, columnKey: React.Key) => {
-        const cellValue = user[columnKey as keyof UserType];
+    const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
+        const cellValue = user[columnKey as keyof User];
 
         switch (columnKey) {
-            case "username":
+            case "name":
                 return (
                     <User
                         avatarProps={{radius: "lg", src: user.avatar}}
@@ -127,19 +140,18 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                 return (
                     <div className="flex flex-col">
                         <p className="text-bold text-small capitalize">{cellValue}</p>
-                        <p className="text-bold text-tiny capitalize text-default-400">{user.address}</p>
+                        <p className="text-bold text-tiny capitalize text-default-400">{user.team}</p>
                     </div>
                 );
             case "status":
                 return (
-                    <Chip className="capitalize" color={statusColorMap[user.status]}
-                          size="sm" variant="flat">
+                    <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
                         {cellValue}
                     </Chip>
                 );
             case "actions":
                 return (
-                    <div className="relative flex justify-center items-center gap-2 ">
+                    <div className="relative flex justify-end items-center gap-2">
                         <Dropdown>
                             <DropdownTrigger>
                                 <Button isIconOnly size="sm" variant="light">
@@ -147,12 +159,9 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                                 </Button>
                             </DropdownTrigger>
                             <DropdownMenu>
-                                <DropdownItem onClick={() => updateUsers(user)}>View</DropdownItem>
-                                <DropdownItem onPress={onOpen}>Edit</DropdownItem>
-                                <DropdownItem onClick={() => {
-                                    deleteUser(user.id)
-
-                                }}>Delete</DropdownItem>
+                                <DropdownItem>View</DropdownItem>
+                                <DropdownItem>Edit</DropdownItem>
+                                <DropdownItem>Delete</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
@@ -195,19 +204,13 @@ export default function UserTable({userList}: { userList: UserType[] }) {
 
     const topContent = React.useMemo(() => {
         return (
-            <div className="flex flex-col gap-4 ">
+            <div className="flex flex-col gap-4">
                 <div className="flex justify-between gap-3 items-end">
                     <Input
                         isClearable
                         className="w-full sm:max-w-[44%]"
                         placeholder="Search by name..."
-                        startContent={<SearchIcon aria-hidden="true"
-                                                  fill="none"
-                                                  focusable="false"
-                                                  height="1em"
-                                                  role="presentation"
-                                                  viewBox="0 0 24 24"
-                                                  width="1em"/>}
+                        startContent={<SearchIcon/>}
                         value={filterValue}
                         onClear={() => onClear()}
                         onValueChange={onSearchChange}
@@ -215,13 +218,7 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                     <div className="flex gap-3">
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" aria-hidden="true"
-                                                                     fill="none"
-                                                                     focusable="false"
-                                                                     height="1em"
-                                                                     role="presentation"
-                                                                     viewBox="0 0 24 24"
-                                                                     width="1em"/>} variant="flat">
+                                <Button endContent={<ChevronDownIcon className="text-small"/>} variant="flat">
                                     Status
                                 </Button>
                             </DropdownTrigger>
@@ -261,13 +258,13 @@ export default function UserTable({userList}: { userList: UserType[] }) {
                                 ))}
                             </DropdownMenu>
                         </Dropdown>
-                        <Button color="primary" endContent={<PlusIcon/>}>
+                        <Button color="primary" endContent={<PlusIcon/>} onPress={onOpen}>
                             Add New
                         </Button>
                     </div>
                 </div>
                 <div className="flex justify-between items-center">
-                    <span className="text-default-400 text-small">Total {userList.length} users</span>
+                    <span className="text-default-400 text-small">Total {users.length} users</span>
                     <label className="flex items-center text-default-400 text-small">
                         Rows per page:
                         <select
@@ -288,13 +285,13 @@ export default function UserTable({userList}: { userList: UserType[] }) {
         visibleColumns,
         onSearchChange,
         onRowsPerPageChange,
-        userList.length,
+        users.length,
         hasSearchFilter,
     ]);
 
     const bottomContent = React.useMemo(() => {
         return (
-            <div className="py-2 px-2 flex justify-between items-cente ">
+            <div className="py-2 px-2 flex justify-between items-center">
         <span className="w-[30%] text-small text-default-400">
           {selectedKeys === "all"
               ? "All items selected"
@@ -320,39 +317,43 @@ export default function UserTable({userList}: { userList: UserType[] }) {
             </div>
         );
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     return (
         <>
             <Modal
-                backdrop="opaque"
                 isOpen={isOpen}
+                placement={"center"}
                 onOpenChange={onOpenChange}
-                motionProps={{
-                    variants: {
-                        enter: {
-                            y: 0,
-                            opacity: 1,
-                            transition: {
-                                duration: 0.3,
-                                ease: "easeOut",
-                            },
-                        },
-                        exit: {
-                            y: -20,
-                            opacity: 0,
-                            transition: {
-                                duration: 0.2,
-                                ease: "easeIn",
-                            },
-                        },
-                    }
-                }}
             >
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <SettingsTabs/>
+                            <ModalHeader className="flex flex-col gap-1">Add New Equipment</ModalHeader>
+                            <ModalBody>
+                                <input type="file" onChange={handleFileChange} name="image" className="hidden"
+                                       id="upload-input"/>
+                                <label htmlFor="upload-input"
+                                       className="rounded-full w-20 h-20 bg-gray-200 flex items-center justify-center cursor-pointer">
+                                    {
+                                        selectedFile ? <img src={"http://localhost:8080/image/1fc2f1ff0bebc3f1aa6c4f51dbd4ad2.jpg"} alt=""/>
+                                            : <PlusIcon/>
+                                    }
+                                    {/*<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">*/}
+                                    {/*    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />*/}
+                                    {/*</svg>*/}
+                                </label>
+                                <input type={'file'} onChange={handleFileChange} name={"image"}
+                                       className={"rounded-full w-20 h-full"}/>
+                                <button onClick={handleUpload}>上传图片</button>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="danger" variant="light" onPress={onClose}>
+                                    Close
+                                </Button>
+                                <Button color="primary" onPress={onClose}>
+                                    Action
+                                </Button>
+                            </ModalFooter>
                         </>
                     )}
                 </ModalContent>

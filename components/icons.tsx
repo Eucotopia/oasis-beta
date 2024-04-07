@@ -1,6 +1,49 @@
 import * as React from "react";
 import {IconSvgProps} from "@/types";
-
+export const ChevronDownIcon = ({strokeWidth = 1.5, ...otherProps}: IconSvgProps) => (
+    <svg
+        aria-hidden="true"
+        fill="none"
+        focusable="false"
+        height="1em"
+        role="presentation"
+        viewBox="0 0 24 24"
+        width="1em"
+        {...otherProps}
+    >
+        <path
+            d="m19.92 8.95-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeMiterlimit={10}
+            strokeWidth={strokeWidth}
+        />
+    </svg>
+);
+export const PlusIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
+    <svg
+        aria-hidden="true"
+        fill="none"
+        focusable="false"
+        height={size || height}
+        role="presentation"
+        viewBox="0 0 24 24"
+        width={size || width}
+        {...props}
+    >
+        <g
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+        >
+            <path d="M6 12h12"/>
+            <path d="M12 18V6"/>
+        </g>
+    </svg>
+);
 export const Logo: React.FC<IconSvgProps> = ({
                                                  size = 36,
                                                  width,
@@ -157,31 +200,20 @@ export const HeartFilledIcon = ({
         />
     </svg>
 );
-
-export const SearchIcon = (props: IconSvgProps) => (
+export const VerticalDotsIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
     <svg
         aria-hidden="true"
         fill="none"
         focusable="false"
-        height="1em"
+        height={size || height}
         role="presentation"
         viewBox="0 0 24 24"
-        width="1em"
+        width={size || width}
         {...props}
     >
         <path
-            d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-        />
-        <path
-            d="M22 22L20 20"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
+            d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            fill="currentColor"
         />
     </svg>
 );
@@ -263,17 +295,34 @@ export const EditDocumentIcon: React.FC<IconSvgProps> = (props) => (
         />
     </svg>
 );
-export const PlusIcon: React.FC<IconSvgProps> = (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" height="" width="12"
-         viewBox="0 0 448 512">
+export const SearchIcon = (props: IconSvgProps) => (
+    <svg
+        aria-hidden="true"
+        fill="none"
+        focusable="false"
+        height="1em"
+        role="presentation"
+        viewBox="0 0 24 24"
+        width="1em"
+        {...props}
+    >
         <path
-
-            clipRule="evenodd"
-            fill="currentColor"
-            fillRule="evenodd"
-            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+            d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+        />
+        <path
+            d="M22 22L20 20"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+        />
     </svg>
 );
+
 export const GripVerticalIcon: React.FC<IconSvgProps> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
          viewBox="0 0 448 512">

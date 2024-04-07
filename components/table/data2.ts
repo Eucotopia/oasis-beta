@@ -1,10 +1,10 @@
 import React from "react";
 const columns = [
     {name: "ID", uid: "id", sortable: true},
-    {name: "USERNAME", uid: "username", sortable: true},
+    {name: "NAME", uid: "name", sortable: true},
     {name: "AGE", uid: "age", sortable: true},
     {name: "ROLE", uid: "role", sortable: true},
-    {name: "ADDRESS", uid: "address"},
+    {name: "TEAM", uid: "team"},
     {name: "EMAIL", uid: "email"},
     {name: "STATUS", uid: "status", sortable: true},
     {name: "ACTIONS", uid: "actions"},
@@ -18,14 +18,14 @@ const statusOptions = [
 
 const users = [
     {
-        id: 1,                                             // id
-        name: "Tony Reichert",                            //nickname
-        role: "CEO",                                      // role
+        id: 1,
+        name: "Tony Reichert",
+        role: "CEO",
         team: "Management",
         status: "active",
-        age: "29",                                         //age
-        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",   //image
-        email: "tony.reichert@example.com",               //userame
+        age: "29",
+        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+        email: "tony.reichert@example.com",
     },
     {
         id: 2,
