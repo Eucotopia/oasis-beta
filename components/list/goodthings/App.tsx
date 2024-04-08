@@ -17,10 +17,6 @@ export default function Component() {
     const productsWithRatingsAndDescription2 = products?.slice(Math.ceil(products.length / 4), Math.ceil(products.length / 2));
     const productsWithRatingsAndDescription3 = products?.slice(Math.ceil(products.length / 2), Math.ceil(products.length * 3 / 4));
     const productsWithRatingsAndDescription4 = products?.slice(Math.ceil(products.length * 3 / 4), products.length);
-    console.log(productsWithRatingsAndDescription1)
-    console.log(productsWithRatingsAndDescription2)
-    console.log(productsWithRatingsAndDescription3)
-    console.log(productsWithRatingsAndDescription4)
     const fistColumn = React.useMemo(
         () => (isMobile ? products : productsWithRatingsAndDescription1),
         [isMobile, products, productsWithRatingsAndDescription1],
@@ -31,14 +27,14 @@ export default function Component() {
                 className="gap-4 mx-auto w-full max-w-6xl px-6 py-20 sm:py-32 lg:px-8 lg:py-40">
                 <div className={'text-center mb-10'}>
                     <h2 className="font-medium text-secondary">We&apos;re hiring!</h2>
-                    <h1 className="text-4xl font-medium tracking-tight">Message Board.</h1>
+                    <h1 className="text-4xl font-medium tracking-tight">Daily Equipment.</h1>
                     <Spacer y={4}/>
                     <h2 className="text-large text-default-500">
-                        Our philosophy is to build a great team and then empower them to do great things.
+                        If a worker wants to do his job well, he must first sharpen his tools.
                     </h2>
                     <Spacer y={4}/>
                     <div className="flex w-full justify-center gap-2">
-                        <Button variant={'faded'} color={"primary"} radius={"md"}>About us</Button>
+                        <Button variant={'faded'} color={"primary"} radius={"md"}>Details</Button>
                         <Button color="secondary" radius={"md"}>Open positions</Button>
                     </div>
                 </div>

@@ -15,7 +15,9 @@ import {
 import {usePathname} from "next/navigation";
 import React from "react";
 
-export default function DashboardLayout({children}: { children: React.ReactNode; }) {
+export default function DashboardLayout({children}: {
+    children: React.ReactNode;
+}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const pathname = usePathname();
     let currentPath = pathname.slice(pathname.lastIndexOf("/") + 1);
@@ -25,9 +27,9 @@ export default function DashboardLayout({children}: { children: React.ReactNode;
                 <div className="flex h-dvh w-full">
                     <Modal
                         classNames={{
-                            base: "justify-start sm:m-0 p-0 h-dvh max-h-full",
-                            wrapper: "sm:items-start sm:justify-start max-w-[288px]",
-                            body: "p-0",
+                            base: "justify-start sm:m-0 p-0 h-dvh max-h-full ",
+                            wrapper: "sm:items-start sm:justify-start max-w-[288px] ",
+                            body: "p-0 scrollbar-hide ",
                             closeButton: "z-50",
                         }}
                         isOpen={isOpen}
@@ -49,17 +51,17 @@ export default function DashboardLayout({children}: { children: React.ReactNode;
                                 },
                             },
                         }}
-                        radius="none"
+                        radius="lg"
                         scrollBehavior="inside"
                         onOpenChange={onOpenChange}
                     >
-                        <ModalContent className={"rounded-2xl"}>
+                        <ModalContent>
                             <ModalBody>
                                 <div
-                                    className="relative flex h-full w-72 flex-1 flex-col border-r-small border-divider p-6">
+                                    className="relative flex h-full w-72 flex-1 flex-col border-r-small border-divider p-6  ">
                                     <div className="flex items-center gap-2 px-2">
                                         <div
-                                            className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground">
+                                            className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground ">
                                             <AcmeLogo className="text-background"/>
                                         </div>
                                         <span className="text-small font-bold uppercase">Acme</span>
@@ -67,7 +69,7 @@ export default function DashboardLayout({children}: { children: React.ReactNode;
 
                                     <Spacer y={8}/>
 
-                                    <div className="flex items-center gap-3 px-2">
+                                    <div className="flex items-center gap-3 px-2 ">
                                         <Avatar isBordered size="sm"
                                                 src="https://i.pravatar.cc/150?u=a04258114e29026708c"/>
                                         <div className="flex flex-col">
