@@ -29,12 +29,13 @@ export interface LoginRequest {
     username: string
     password: string
 }
+
 export type ColumnType = {
-    id:number,
-    name:string,
-    description:string,
-    avatar:string,
-    Posts:Post[],
+    id: number,
+    name: string,
+    description: string,
+    avatar: string,
+    Posts: Post[],
 }
 export type UserLoginType = {
     username: string,
@@ -75,5 +76,13 @@ export interface ResultResponse<T> {
     code: string
     data: T
     message: string
+}
+
+export interface Equipment {
+    id: number
+    name: string
+    description: string
+    price: number
+    image: string
 }
 

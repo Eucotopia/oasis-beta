@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {
     Table,
     TableHeader,
@@ -17,14 +17,19 @@ import {
     Pagination,
     Selection,
     ChipProps,
-    SortDescriptor, useDisclosure, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter
+    SortDescriptor, useDisclosure, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Image, Textarea
 } from "@nextui-org/react";
 import {columns, users, statusOptions} from "./data2";
+import RatingRadioGroup from "@/components/rating/rating-radio-group";
+
 import {ChevronDownIcon} from "../icons";
 import {VerticalDotsIcon} from "../icons";
 import {PlusIcon} from "../icons";
 import {SearchIcon} from "../icons";
 import {capitalize} from "../utils";
+import {useUploadMutation} from "@/features/api/fileApi";
+import {ProductItem, useAddProductMutation} from "@/features/api/productApi";
+
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
     active: "success",
@@ -37,34 +42,58 @@ const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 type User = typeof users[0];
 
 export default function Equipment() {
+    const [product, setProduct] = useState<ProductItem>({
+        name: '',
+        href: '',
+        price: '',
+        rating: "1",
+        description: '',
+        imageSrc: '',
+        information: '',
+    })
+    const [addProduct] = useAddProductMutation()
+    const handleProductChange = ({
+                                     target: {
+                                         name,
+                                         value
+                                     }
+                                 }: ChangeEvent<HTMLInputElement>) => setProduct((prev) => ({
+        ...prev,
+        [name]: value
+    }))
+    const [uploadFile, {isLoading}] = useUploadMutation();
     const [selectedFile, setSelectedFile] = useState(null);
-    const [file, setFile] = useState(null);
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // @ts-ignore
-        console.log(e.target.files[0])
         // @ts-ignore
         setSelectedFile(e.target.files[0]);
     };
-    const handleUpload = () => {
+    const handleUpload = async () => {
         if (selectedFile) {
             const formData = new FormData();
             formData.append('image', selectedFile);
-
-            // 发送文件到后端
-            fetch('http://localhost:8080/image/upload', {
-                method: 'POST',
-                body: formData,
-            })
-                .then(response => console.log(response))
-                .then(data => {
-                    // 处理上传成功后的操作
-                })
-                .catch(error => {
-                    console.error('图片上传失败', error);
-                    // 处理上传失败后的操作
-                });
+            const imageUrl = await uploadFile(formData).unwrap();
+            console.log(imageUrl.data)
+            // @ts-ignore
+            handleProductChange({target: {name: 'imageSrc', value: imageUrl.data}})
         }
     };
+    const addProductHandler = async () => {
+        console.log(product)
+        await addProduct(product).unwrap()
+        setProduct({
+            name: '',
+            href: '',
+            price: '',
+            rating: "1",
+            description: '',
+            imageSrc: '',
+            information: '',
+        })
+    }
+    const setRating = (value: string) => {
+        // @ts-ignore
+        handleProductChange({target: {name: 'rating', value: value}})
+    }
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
@@ -330,32 +359,85 @@ export default function Equipment() {
                         <>
                             <ModalHeader className="flex flex-col gap-1">Add New Equipment</ModalHeader>
                             <ModalBody>
-                                <input type="file" onChange={handleFileChange} name="image" className="hidden"
-                                       id="upload-input"/>
-                                <label htmlFor="upload-input"
-                                       className="rounded-full w-20 h-20 bg-gray-200 flex items-center justify-center cursor-pointer">
-                                    {
-                                        selectedFile ? <img src={"http://localhost:8080/image/1fc2f1ff0bebc3f1aa6c4f51dbd4ad2.jpg"} alt=""/>
-                                            : <PlusIcon/>
-                                    }
-                                    {/*<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">*/}
-                                    {/*    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />*/}
-                                    {/*</svg>*/}
-                                </label>
-                                <input type={'file'} onChange={handleFileChange} name={"image"}
-                                       className={"rounded-full w-20 h-full"}/>
-                                <button onClick={handleUpload}>上传图片</button>
+                                {/*上传图片*/}
+                                <div>
+                                    <input type="file" onChange={handleFileChange} name="image" className="hidden"
+                                           id="upload-input"/>
+                                    <label htmlFor="upload-input"
+                                           className="rounded-full w-20 h-20 bg-gray-200 flex items-center justify-center cursor-pointer">
+                                        {
+                                            selectedFile && product.imageSrc ? (
+                                                    <Image src={product.imageSrc} isLoading={isLoading} height={100}
+                                                           radius={"full"}
+                                                           alt=""/>
+                                                )
+                                                : (<PlusIcon/>)
+                                        }
+                                    </label>
+                                    <input type={'file'} onChange={handleFileChange} name={"image"}
+                                           className={"rounded-full w-20 h-full"}/>
+                                    <button onClick={handleUpload}>上传图片</button>
+                                </div>
+                                {/*name*/}
+                                <div>
+                                    <h3 className="text-medium font-medium leading-8 text-default-600">name</h3>
+                                    <Input type={'text'} placeholder={"please type equipment name"} variant={"faded"}
+                                           color={"default"} name={"name"} onChange={handleProductChange}/>
+                                </div>
+                                {/*href*/}
+                                <div>
+                                    <h3 className="text-medium font-medium leading-8 text-default-600">href</h3>
+                                    <Input type={'text'} placeholder={"please type equipment address"} variant={"faded"}
+                                           color={"default"} name={"href"} onChange={handleProductChange}/>
+                                </div>
+                                {/*price*/}
+                                <div>
+                                    <h3 className="text-medium font-medium leading-8 text-default-600">price</h3>
+                                    <Input type={'number'} placeholder={"please type equipment price"} variant={"faded"}
+                                           color={"default"} name={"price"} onChange={handleProductChange}/>
+                                </div>
+                                {/*description*/}
+                                <div>
+                                    <Textarea
+                                        isRequired
+                                        label="Description"
+                                        labelPlacement="outside"
+                                        placeholder="Enter your description"
+                                        className="max-w-xs"
+                                        name="description"
+                                        onChange={handleProductChange}
+                                    />
+                                </div>
+                                {/*information*/}
+                                <div>
+                                    <Textarea
+                                        isRequired
+                                        label="Information"
+                                        labelPlacement="outside"
+                                        placeholder="Enter your information"
+                                        className="max-w-xs"
+                                        name="information"
+                                        onChange={handleProductChange}
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="text-medium font-medium leading-8 text-default-600">Property
+                                        Rating</h3>
+                                    <RatingRadioGroup className="mt-2 w-72" value={product.rating}
+                                                      setValue={setRating}/>
+                                </div>
                             </ModalBody>
                             <ModalFooter>
                                 <Button color="danger" variant="light" onPress={onClose}>
                                     Close
                                 </Button>
-                                <Button color="primary" onPress={onClose}>
+                                <Button color="primary" onPress={onClose} onClick={addProductHandler}>
                                     Action
                                 </Button>
                             </ModalFooter>
                         </>
-                    )}
+                    )
+                    }
                 </ModalContent>
             </Modal>
             <Table
@@ -394,5 +476,6 @@ export default function Equipment() {
                 </TableBody>
             </Table>
         </>
-    );
+    )
+        ;
 }

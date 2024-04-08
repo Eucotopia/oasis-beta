@@ -17,6 +17,10 @@ export default function Component() {
     const productsWithRatingsAndDescription2 = products?.slice(Math.ceil(products.length / 4), Math.ceil(products.length / 2));
     const productsWithRatingsAndDescription3 = products?.slice(Math.ceil(products.length / 2), Math.ceil(products.length * 3 / 4));
     const productsWithRatingsAndDescription4 = products?.slice(Math.ceil(products.length * 3 / 4), products.length);
+    console.log(productsWithRatingsAndDescription1)
+    console.log(productsWithRatingsAndDescription2)
+    console.log(productsWithRatingsAndDescription3)
+    console.log(productsWithRatingsAndDescription4)
     const fistColumn = React.useMemo(
         () => (isMobile ? products : productsWithRatingsAndDescription1),
         [isMobile, products, productsWithRatingsAndDescription1],

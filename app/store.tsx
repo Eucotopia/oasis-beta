@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage'
 import {authApi} from "@/features/api/authApi";
 import {postApi} from "@/features/api/postApi";
 import {productApi} from "@/features/api/productApi";
+import {fileApi} from "@/features/api/fileApi";
 import themeReducer from '@/features/theme/themeSlice'
 import postReducer from "@/features/post/postSlice";
 // import {themeApi} from "@/features/api/themeApi";
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     [postApi.reducerPath]: postApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
+    [fileApi.reducerPath]: fileApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     // [themeApi.reducerPath]: themeApi.reducer,
@@ -40,7 +42,7 @@ export const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
-    }).concat(authApi.middleware).concat(thunk).concat(postApi.middleware).concat(categoryApi.middleware).concat(columnApi.middleware).concat(productApi.middleware)
+    }).concat(authApi.middleware).concat(thunk).concat(postApi.middleware).concat(categoryApi.middleware).concat(columnApi.middleware).concat(productApi.middleware).concat(fileApi.middleware)
 })
 
 export const persistor = persistStore(store)

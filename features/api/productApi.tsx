@@ -3,11 +3,11 @@ import {ResultResponse} from '@/types'
 import {RootState} from "@/app/store";
 
 export type ProductItem = {
-    id: string;
+    id?: string;
     name: string;
     href: string;
-    price: number;
-    rating: number;
+    price: string;
+    rating: string;
     description: string;
     imageSrc: string;
     information: string;
@@ -30,7 +30,14 @@ export const productApi = createApi({
         getProducts: builder.query<ResultResponse<ProductItem[]>, void>({
             query: () => ({url: ''}),
         }),
+        addProduct: builder.mutation<ResultResponse<string>, ProductItem>({
+            query: (product) => ({
+                url: '',
+                method: 'POST',
+                body: product,
+            }),
+        })
     }),
 })
 
-export const {useGetProductsQuery} = productApi
+export const {useGetProductsQuery,useAddProductMutation} = productApi
