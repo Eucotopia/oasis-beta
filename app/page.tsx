@@ -16,6 +16,7 @@ import Test2 from "@/components/cover/cloud/Test2"
 import Card_3 from "@/components/pitcure/hobby/Card_3";
 import Horizontal from "@/components/pitcure/horizontal/Horizontal"
 import CardTest from "@/components/pitcure/CardTest";
+import Github from "@/components/github/App"
 
 export default function Home() {
     return (
@@ -36,6 +37,7 @@ export default function Home() {
             </div>
             <div className={"mt-8"}>
                 <FullStack/>
+                <Github/>
             </div>
             <div>
                 <T1Image/>

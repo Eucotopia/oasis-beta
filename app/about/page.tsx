@@ -2,13 +2,14 @@
 import React from "react";
 import CraftCover from "./CraftCover"
 import clsx from "clsx";
-import {Button, Link} from "@nextui-org/react";
+import {Button, Link, Spacer} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 import {fontAboutHeading} from "@/config/fonts"
 import {siteConfig} from "@/config/site";
 import {DiscordIcon, GithubIcon, TwitterIcon} from "@/components/icons";
 import GoodThings from "@/components/list/goodthings/App"
-
+import {TracingBeamDemo} from "@/components/timeline/TracingBeamDemo"
+import Github from "@/components/github/App"
 const TableItem = [
     {
         key: 'tools',
@@ -118,7 +119,22 @@ export default function App() {
                     <CraftCover/>
                 </div>
             </div>
-                <GoodThings/>
+            <GoodThings/>
+            <div className={'text-center mb-10'}>
+                <h2 className="font-medium text-secondary">We&apos;re hiring!</h2>
+                <h1 className="text-4xl font-medium tracking-tight">Daily Equipment.</h1>
+                <Spacer y={4}/>
+                <h2 className="text-large text-default-500">
+                    If a worker wants to do his job well, he must first sharpen his tools.
+                </h2>
+                <Spacer y={4}/>
+                <div className="flex w-full justify-center gap-2">
+                    <Button variant={'faded'} color={"primary"} radius={"md"}>Details</Button>
+                    <Button color="secondary" radius={"md"}>Open positions</Button>
+                </div>
+            </div>
+            <TracingBeamDemo/>
+            <Github/>
             {/*<div*/}
             {/*    className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>*/}
             {/*    <div className={'absolute top-0 left-20'}>*/}
@@ -226,7 +242,6 @@ export default function App() {
             {/*    <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>EXPERIENCE</h1>*/}
             {/*    <ExperienceTimeLine/>*/}
             {/*</div>*/}
-
         </>
     );
 }
