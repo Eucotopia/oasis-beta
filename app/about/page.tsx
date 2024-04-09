@@ -6,12 +6,12 @@ import {Button, Chip, Link, Spacer, Tab, Tabs} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 import {fontAboutHeading} from "@/config/fonts"
 import {siteConfig} from "@/config/site";
-import {DiscordIcon, GithubIcon, TwitterIcon} from "@/components/icons";
+import {DiscordIcon, GithubIcon, MusicIcon, TwitterIcon} from "@/components/icons";
 import GoodThings from "@/components/list/goodthings/App"
 import {TracingBeamDemo} from "@/components/timeline/TracingBeamDemo"
 import Github from "@/components/github/App"
-import GitHubCalendar from "react-github-calendar";
 import Skill from "@/components/skills/App"
+import {} from "@nextui-org/shared-icons"
 
 const TableItem = [
     {
@@ -94,6 +94,24 @@ const TableItem = [
         ]
     }
 ]
+const words = [
+    {
+        text: "Build",
+    },
+    {
+        text: "awesome",
+    },
+    {
+        text: "apps",
+    },
+    {
+        text: "with",
+    },
+    {
+        text: "Aceternity.",
+        className: "text-blue-500 dark:text-blue-500",
+    },
+];
 export default function App() {
     return (
         <>
@@ -138,7 +156,57 @@ export default function App() {
             </div>
             <TracingBeamDemo/>
             <Github/>
-            <Skill/>
+            <div className={"flex flex-col justify-between items-center"}>
+                <Tabs
+                    aria-label="Options"
+                    color="primary"
+                    variant="underlined"
+                    classNames={{
+                        // 设置标签页样式
+                        tabList: "gap-20 w-full relative rounded-none p-0 border-b border-divider",
+                        cursor: "w-full bg-[#22d3ee]",
+                        tab: "max-w-fit px-0 h-12",
+                        tabContent: "group-data-[selected=true]:text-[#06b6d4]"
+                    }}
+                >
+                    <Tab
+                        key="photos"
+                        title={
+                            <div className="flex items-center space-x-2">
+                                <Icon icon="fluent:code-block-48-filled" width={24}/>
+                                <span>Photos</span>
+                                <Chip size="sm" variant="faded">9</Chip>
+                            </div>
+                        }
+                    >
+                        <Skill/>
+                    </Tab>
+                    <Tab
+                        key="music"
+                        title={
+                            <div className="flex items-center space-x-2">
+                                <MusicIcon/>
+                                <span>Music</span>
+                                <Chip size="sm" variant="faded">3</Chip>
+                            </div>
+                        }
+                    >
+                        <Skill/>
+                    </Tab>
+                    <Tab
+                        key="videos"
+                        title={
+                            <div className="flex items-center space-x-2">
+                                <Icon icon="mingcute:game-2-fill" width={24}/>
+                                <span>Videos</span>
+                                <Chip size="sm" variant="faded">1</Chip>
+                            </div>
+                        }
+                    >
+                        <Skill/>
+                    </Tab>
+                </Tabs>
+            </div>
             {/*<div*/}
             {/*    className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>*/}
             {/*    <div className={'absolute top-0 left-20'}>*/}

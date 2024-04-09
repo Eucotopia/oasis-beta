@@ -1,8 +1,5 @@
 @import url('https://rsms.me/inter/inter.css');
-/*隐藏滚动条*/
-::-webkit-scrollbar {
-    display: none;
-}
+
 
 * {
   box-sizing: border-box;

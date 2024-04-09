@@ -29,7 +29,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <head/>
         <body
             className={clsx(
-                "min-h-screen font-sans antialiased bg-background",
+                "min-h-screen font-sans antialiased bg-background ",
                 fontSans.variable,
             )}
         >
@@ -38,7 +38,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             defaultTheme: "purple-dark",
             themes: ['light', 'dark', 'purple-dark', 'political', 'posthog', 'blossomTheme', 'darkBlue', 'fluentTheme']
         }}>
-            <div className="relative flex flex-col h-screen">
+            <div className="relative flex flex-col h-screen ">
                 <Navbar/>
                 <main className="container mx-auto max-w-full flex-grow">
                     {children}

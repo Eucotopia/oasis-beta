@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { StickyScroll } from "./StickyScroll";
-import Image from "next/image";
-
+import Image from "next/image"
 const content = [
     {
         title: "Collaborative Editing",
@@ -21,10 +20,10 @@ const content = [
         content: (
             <div className="h-full w-full  flex items-center justify-center text-white">
                 <Image
-                    src="/linear.webp"
+                    src="/0.jpg"
                     width={300}
                     height={300}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover hover:scale-110 transition-all duration-300"
                     alt="linear board demo"
                 />
             </div>
@@ -53,7 +52,7 @@ const content = [
 ];
 export default function App() {
     return (
-        <div className="p-48">
+        <div className="p-20">
             <StickyScroll content={content} />
         </div>
     );
