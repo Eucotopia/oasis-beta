@@ -11,9 +11,9 @@ export function TracingBeamDemo() {
             <div className="max-w-2xl mx-auto antialiased pt-4 relative">
                 {dummyContent.map((item, index) => (
                     <div key={`content-${index}`} className="mb-10">
-                        <h2 className="bg-black text-white rounded-full text-sm w-fit px-4 py-1 mb-4">
-                            {item.badge}
-                        </h2>
+                        {/*<h2 className="bg-black text-white rounded-full text-sm w-fit px-4 py-1 mb-4">*/}
+                        {/*    {item.badge}*/}
+                        {/*</h2>*/}
 
                         <p className={twMerge("text-xl mb-4")}>
                             {item.title}
@@ -39,7 +39,7 @@ export function TracingBeamDemo() {
 
 const dummyContent = [
     {
-        title: "Lorem Ipsum Dolor Sit Amet",
+        title: "An unfortunate child was born on the the laba Rice Porridge Festival",
         description: (
             <>
                 <p>
@@ -53,7 +53,7 @@ const dummyContent = [
         ),
         badge: "React",
         image:
-            "https://images.pexels.com/photos/17037983/pexels-photo-17037983/free-photo-of-sunbeds-on-beach.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "https://cdn.pixabay.com/photo/2017/10/22/18/31/halloween-2878777_960_720.jpg",
     },
     {
         title: "Lorem Ipsum Dolor Sit Amet",
@@ -69,7 +69,7 @@ const dummyContent = [
         ),
         badge: "Changelog",
         image:
-            "https://images.pexels.com/photos/17037983/pexels-photo-17037983/free-photo-of-sunbeds-on-beach.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "https://cdn.pixabay.com/photo/2024/02/21/08/06/coast-8587004_960_720.jpg",
     },
     {
         title: "Lorem Ipsum Dolor Sit Amet",
@@ -87,6 +87,6 @@ const dummyContent = [
         ),
         badge: "Launch Week",
         image:
-            "https://images.pexels.com/photos/17037983/pexels-photo-17037983/free-photo-of-sunbeds-on-beach.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "https://cdn.pixabay.com/photo/2024/02/21/08/06/coast-8587004_960_720.jpg",
     },
 ];
