@@ -2,7 +2,7 @@
 import React from "react";
 import CraftCover from "./CraftCover"
 import clsx from "clsx";
-import {Button, Link, Spacer} from "@nextui-org/react";
+import {Button, Chip, Link, Spacer, Tab, Tabs} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 import {fontAboutHeading} from "@/config/fonts"
 import {siteConfig} from "@/config/site";
@@ -10,6 +10,9 @@ import {DiscordIcon, GithubIcon, TwitterIcon} from "@/components/icons";
 import GoodThings from "@/components/list/goodthings/App"
 import {TracingBeamDemo} from "@/components/timeline/TracingBeamDemo"
 import Github from "@/components/github/App"
+import GitHubCalendar from "react-github-calendar";
+import Skill from "@/components/skills/App"
+
 const TableItem = [
     {
         key: 'tools',
@@ -135,6 +138,7 @@ export default function App() {
             </div>
             <TracingBeamDemo/>
             <Github/>
+            <Skill/>
             {/*<div*/}
             {/*    className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>*/}
             {/*    <div className={'absolute top-0 left-20'}>*/}
@@ -194,47 +198,21 @@ export default function App() {
             {/*                        tabContent: "group-data-[selected=true]:text-[#06b6d4] text-3xl",*/}
             {/*                    }}*/}
             {/*                >*/}
-            {/*                    {*/}
-            {/*                        TableItem.map((item, index) => {*/}
-            {/*                            return (*/}
-            {/*                                <Tab*/}
-            {/*                                    key={item.key}*/}
-            {/*                                    title={*/}
-            {/*                                        <div className="flex items-center space-x-2 ">*/}
-            {/*                                            {<item.Icon/>}*/}
-            {/*                                            <span>{item.key.toUpperCase()}</span>*/}
-            {/*                                            <Chip size="md" variant="faded">{item.children.length}</Chip>*/}
-            {/*                                        </div>*/}
-            {/*                                    }*/}
-            {/*                                >*/}
-            {/*                                    <div className={"text-2xl grid-cols-1 grid gap-4 md:grid-cols-3"}>*/}
-            {/*                                        {item.children.map((child, index) => {*/}
-            {/*                                            return (*/}
-            {/*                                                <>*/}
-            {/*                                                    <a href={child.href}*/}
-            {/*                                                       key={index}*/}
-            {/*                                                       target={'_blank'}*/}
-            {/*                                                       className={'hover:scale-105'}>*/}
-            {/*                                                        <div*/}
-            {/*                                                            className={"flex flex-col items-center bg-gradient-to-br from-background to-slate-700 p-4 rounded-2xl drop-shadow-2xl backdrop-blur-2xl"}>*/}
-            {/*                                                            <child.Icon/>*/}
-            {/*                                                            <p>{child.title}</p>*/}
-            {/*                                                        </div>*/}
-            {/*                                                    </a>*/}
-            {/*                                                </>*/}
-            {/*                                            )*/}
-            {/*                                        })}*/}
-            {/*                                    </div>*/}
-            {/*                                </Tab>*/}
-            {/*                            )*/}
-            {/*                        })*/}
-            {/*                    }*/}
+
+            {/*                    <Tab*/}
+            {/*                        key={"1"}*/}
+            {/*                        title="adasd"*/}
+            {/*                    >*/}
+            {/*                       <Skill/>*/}
+            {/*                    </Tab>*/}
+
             {/*                </Tabs>*/}
             {/*            </div>*/}
+
             {/*        </div>*/}
-            {/*        <div className={'absolute -top-36 right-1'}>*/}
-            {/*            <Mac/>*/}
-            {/*        </div>*/}
+            {/*        /!*<div className={'absolute -top-36 right-1'}>*!/*/}
+            {/*        /!*    <Mac/>*!/*/}
+            {/*        /!*</div>*!/*/}
             {/*    </div>*/}
             {/*</div>*/}
             {/*<div*/}
