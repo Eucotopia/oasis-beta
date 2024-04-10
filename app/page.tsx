@@ -17,6 +17,7 @@ import Card_3 from "@/components/pitcure/hobby/Card_3";
 import Horizontal from "@/components/pitcure/horizontal/Horizontal"
 import CardTest from "@/components/pitcure/CardTest";
 import Github from "@/components/github/App"
+import {LayoutGridDemo} from "@/components/grid/LayoutGridDemo";
 
 export default function Home() {
     return (
@@ -24,6 +25,7 @@ export default function Home() {
             className="flex flex-col items-center justify-center gap-4 overflow-hidden">
             {/*<Test1/>*/}
             <Test2/>
+
             {/*流星雨*/}
             {/*<FUIMeteor/>*/}
             <Spacer y={10}/>
@@ -39,19 +41,20 @@ export default function Home() {
                 <FullStack/>
                 <Github/>
             </div>
-            <div>
-                <T1Image/>
-            </div>
+            {/*<div>*/}
+            {/*    <T1Image/>*/}
+            {/*</div>*/}
             <div className={"mt-8"}>
                 <BrandsScrollingBannerWithTwoRows/>
+            </div>
+            <div className={"mt-8"}>
+                <SpotlightCard/>
             </div>
             {/*<Card_3/>*/}
             <div className={"mt-8"}>
                 <FaqsWithDivider/>
             </div>
-            <div className={"mt-8"}>
-                <SpotlightCard/>
-            </div>
+
         </section>
     );
 }

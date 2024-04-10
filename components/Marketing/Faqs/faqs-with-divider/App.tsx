@@ -3,7 +3,7 @@
 import React from "react";
 import {Accordion, AccordionItem, Button} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import faqs from "./faqs";
 
 export default function Component() {

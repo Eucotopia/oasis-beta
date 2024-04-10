@@ -12,6 +12,7 @@ import {TracingBeamDemo} from "@/components/timeline/TracingBeamDemo"
 import Github from "@/components/github/App"
 import Skill from "@/components/skills/App"
 import {} from "@nextui-org/shared-icons"
+import {LayoutGridDemo} from "@/components/grid/LayoutGridDemo";
 
 const TableItem = [
     {
@@ -159,20 +160,19 @@ export default function App() {
             <div className={"flex flex-col justify-between items-center"}>
                 <Tabs
                     aria-label="Options"
-                    color="primary"
-                    variant="underlined"
+                    variant="solid"
                     classNames={{
                         // 设置标签页样式
-                        tabList: "gap-20 w-full relative rounded-none p-0 border-b border-divider",
-                        cursor: "w-full bg-[#22d3ee]",
-                        tab: "max-w-fit px-0 h-12",
-                        tabContent: "group-data-[selected=true]:text-[#06b6d4]"
+                        // tabList: "w-full relative rounded-none p-0 flex-col overflow-scroll h-40",
+                        // cursor: "w-full ",
+                        // tab: "max-w-fit px-0 h-12 ",
+                        // tabContent: "group-data-[selected=true]:text-[#06b6d4]"
                     }}
                 >
                     <Tab
                         key="photos"
                         title={
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 ">
                                 <Icon icon="fluent:code-block-48-filled" width={24}/>
                                 <span>Photos</span>
                                 <Chip size="sm" variant="faded">9</Chip>
