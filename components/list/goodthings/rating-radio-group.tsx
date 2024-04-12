@@ -5,7 +5,7 @@ import type {RadioGroupProps} from "@nextui-org/react";
 import React from "react";
 import {RadioGroup} from "@nextui-org/react";
 
-import {cn} from "./cn";
+import {cn} from "@/config/variants";
 
 import RatingRadioItem from "./rating-radio-item";
 

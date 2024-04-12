@@ -6,7 +6,7 @@ import React from "react";
 import {VisuallyHidden, useRadio, useRadioGroupContext} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-import {cn} from "./cn";
+import {cn} from "@/config/variants";
 
 const RatingRadioItem = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   const {

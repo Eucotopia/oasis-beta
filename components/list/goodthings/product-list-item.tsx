@@ -3,7 +3,7 @@
 import React from "react";
 import {Image} from "@nextui-org/react";
 
-import {cn} from "./cn";
+import {cn} from "@/config/variants";
 
 import RatingRadioGroup from "./rating-radio-group";
 import {ProductItem} from "@/features/api/productApi";

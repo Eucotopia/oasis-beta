@@ -8,7 +8,6 @@ import {productApi} from "@/features/api/productApi";
 import {fileApi} from "@/features/api/fileApi";
 import themeReducer from '@/features/theme/themeSlice'
 import postReducer from "@/features/post/postSlice";
-// import {themeApi} from "@/features/api/themeApi";
 import {thunk} from "redux-thunk";
 import {categoryApi} from "@/features/api/categoryApi";
 import userReducer from '@/features/user/userSlice'
@@ -31,7 +30,6 @@ const rootReducer = combineReducers({
     [fileApi.reducerPath]: fileApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
-    // [themeApi.reducerPath]: themeApi.reducer,
     [columnApi.reducerPath]: columnApi.reducer
 })
 // 创建持久化的配置persist的信息

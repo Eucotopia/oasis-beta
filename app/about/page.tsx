@@ -1,18 +1,19 @@
 'use client'
 import React from "react";
-import CraftCover from "./CraftCover"
 import clsx from "clsx";
-import {Button, Chip, Link, Spacer, Tab, Tabs} from "@nextui-org/react";
+import {Button, Chip, Divider, Image, Link, Spacer, Tab, Tabs} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 import {fontAboutHeading} from "@/config/fonts"
 import {siteConfig} from "@/config/site";
 import {DiscordIcon, GithubIcon, MusicIcon, TwitterIcon} from "@/components/icons";
-import GoodThings from "@/components/list/goodthings/App"
-import {TracingBeamDemo} from "@/components/timeline/TracingBeamDemo"
-import Github from "@/components/github/App"
+import {TracingBeam} from "@/components/timeline/TracingBeam";
+import {motion} from "framer-motion";
+import {useMediaQuery} from "usehooks-ts";
+import {useGetProductsQuery} from "@/features/api/productApi";
 import Skill from "@/components/skills/App"
-import {} from "@nextui-org/shared-icons"
-import {LayoutGridDemo} from "@/components/grid/LayoutGridDemo";
+import ScrollingBanner
+    from "@/components/Application/Scrolling-Banners/brands-scrolling-banner-with-two-rows/scrolling-banner";
+import ProductListItem from "@/components/list/goodthings/product-list-item";
 
 const TableItem = [
     {
@@ -114,35 +115,100 @@ const words = [
     },
 ];
 export default function App() {
+    const isMobile = useMediaQuery("(max-width: 768px)");
+    const {data} = useGetProductsQuery();
+    const products = data?.data
+    const productsWithRatingsAndDescription1 = products?.slice(0, Math.ceil(products.length / 4));
+    const productsWithRatingsAndDescription2 = products?.slice(Math.ceil(products.length / 4), Math.ceil(products.length / 2));
+    const productsWithRatingsAndDescription3 = products?.slice(Math.ceil(products.length / 2), Math.ceil(products.length * 3 / 4));
+    const productsWithRatingsAndDescription4 = products?.slice(Math.ceil(products.length * 3 / 4), products.length);
+    const fistColumn = React.useMemo(
+        () => (isMobile ? products : productsWithRatingsAndDescription1),
+        [isMobile, products, productsWithRatingsAndDescription1],
+    );
     return (
         <>
-            <div
-                className={clsx("relative max-w-screen-2xl h-screen select-none", fontAboutHeading.className)}>
-                <div className={'absolute top-36 left-36 self-center text-center'}>
-                    <h1 className={"text-6xl mt-5"}>Always remember you&apos;re unique, </h1>
-                    <h1 className={"text-7xl mb-4 bg-gradient-to-br from-sky-500 to-blue-500 bg-clip-text text-transparent"}>just
-                        like everyone else</h1>
-                    <h1 className={'text-2xl text-gray-500'}>No matter how bad or good you think life is, wake up each
-                        day and be
-                        thankful. Someone somewhere is fighting to survive</h1>
-                    <div className={"flex flex-row gap-4 justify-center mt-10"}>
-                        <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
-                            <TwitterIcon className="text-default-500"/>
-                        </Link>
-                        <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-                            <DiscordIcon className="text-default-500"/>
-                        </Link>
-                        <Link isExternal href={siteConfig.links.github} aria-label="Github">
-                            <GithubIcon className="text-default-500"/>
-                        </Link>
+            {/*cover*/}
+            <motion.div
+                className={clsx('h-screen font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4', fontAboutHeading.className)}>
+                <motion.h1 className={"text-6xl mt-5"}>Always remember you&apos;re unique,</motion.h1>
+                <motion.h1
+                    className={"text-7xl mb-4 bg-gradient-to-br from-sky-500 to-blue-500 bg-clip-text text-transparent"}>just
+                    like everyone else
+                </motion.h1>
+                <motion.h1 className={'text-2xl text-gray-500'}>No matter how bad or good you think life is,
+                    wake up each
+                    day and be
+                    thankful. Someone somewhere is fighting to survive
+                </motion.h1>
+                <motion.div className={"flex flex-row gap-4 justify-center mt-10"}>
+                    <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
+                        <TwitterIcon className="text-default-500"/>
+                    </Link>
+                    <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
+                        <DiscordIcon className="text-default-500"/>
+                    </Link>
+                    <Link isExternal href={siteConfig.links.github} aria-label="Github">
+                        <GithubIcon className="text-default-500"/>
+                    </Link>
+                </motion.div>
+            </motion.div>
+            {/*GoodThings*/}
+            <section
+                className="gap-4 mx-auto w-full max-w-6xl px-6 py-20 sm:py-32 lg:px-8 lg:py-40">
+                <div className={'text-center mb-10'}>
+                    <h2 className="font-medium text-secondary">We&apos;re hiring!</h2>
+                    <h1 className="text-4xl font-medium tracking-tight">Daily Equipment.</h1>
+                    <Spacer y={4}/>
+                    <h2 className="text-large text-default-500">
+                        If a worker wants to do his job well, he must first sharpen his tools.
+                    </h2>
+                    <Spacer y={4}/>
+                    <div className="flex w-full justify-center gap-2">
+                        <Button variant={'faded'} color={"primary"} radius={"md"}>Details</Button>
+                        <Button color="secondary" radius={"md"}>Open positions</Button>
                     </div>
                 </div>
-                <div className={'absolute top-16 right-36'}>
-                    <CraftCover/>
+                <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4">
+                    <ScrollingBanner isVertical duration={isMobile ? 12 : 20} shouldPauseOnHover={true}>
+                        {fistColumn?.map((product) => (
+                            <ProductListItem key={product.id} {...product} className="snap-start"/>
+                        ))}
+                    </ScrollingBanner>
+                    <ScrollingBanner
+                        isVertical
+                        className="hidden sm:flex"
+                        duration={15}
+                        shouldPauseOnHover={true}
+                    >
+                        {productsWithRatingsAndDescription2?.map((product) => (
+                            <ProductListItem key={product.id} {...product} className="snap-start"/>
+                        ))}
+                    </ScrollingBanner>
+                    <ScrollingBanner
+                        isVertical
+                        className="hidden md:flex"
+                        duration={18}
+                        shouldPauseOnHover={true}
+                    >
+                        {productsWithRatingsAndDescription3?.map((product) => (
+                            <ProductListItem key={product.id} {...product} className="snap-start"/>
+                        ))}
+                    </ScrollingBanner>
+                    <ScrollingBanner
+                        isVertical
+                        className="hidden lg:flex"
+                        duration={20}
+                        shouldPauseOnHover={true}
+                    >
+                        {productsWithRatingsAndDescription4?.map((product) => (
+                            <ProductListItem key={product.id} {...product} className="snap-start"/>
+                        ))}
+                    </ScrollingBanner>
                 </div>
-            </div>
-            <GoodThings/>
-            <div className={'text-center mb-10'}>
+            </section>
+            {/*/!*Personal experience*!/*/}
+            <div className={"text-center "}>
                 <h2 className="font-medium text-secondary">We&apos;re hiring!</h2>
                 <h1 className="text-4xl font-medium tracking-tight">Daily Equipment.</h1>
                 <Spacer y={4}/>
@@ -155,9 +221,110 @@ export default function App() {
                     <Button color="secondary" radius={"md"}>Open positions</Button>
                 </div>
             </div>
-            <TracingBeamDemo/>
-            <Github/>
-            <div className={"flex flex-col justify-between items-center"}>
+            <TracingBeam className="px-6">
+                <div className="max-w-2xl mx-auto antialiased pt-4 relative ">
+                    <div>
+                        <Chip
+                            variant="shadow"
+                            color="success"
+                            radius={"sm"}
+                            startContent={<Icon icon="mingcute:birthday-2-fill"/>}
+                        >
+                            2001/01/02
+                        </Chip>
+                        <p className={'text-xl mb-4 mt-2'}>An unfortunate child was born on the the laba Rice
+                            Porridge
+                            Festival</p>
+                        <p className={"text-medium "}>
+                            According to what my mother said, they were on their way home that day and my mother
+                            gave
+                            birth to me while lying on a wooden handcart. I came into the world without an assistant
+                            or
+                            a doctor.
+                        </p>
+                        <p className={"text-medium "}>
+                            According to what my mother said, they were on their way home that day and my mother
+                            gave
+                            birth to me while lying on a wooden handcart. I came into the world without an assistant
+                            or
+                            a doctor.
+                        </p>
+                    </div>
+                    <Divider className="my-4 text-red-500"/>
+                    <div>
+                        <div className={"flex flex-row justify-between"}>
+                            <Chip
+                                variant="shadow"
+                                color="primary"
+                                radius={"sm"}
+                                startContent={<Icon icon="mingcute:birthday-2-fill"/>}
+                            >
+                                2013/09/01
+                            </Chip>
+                            <Chip
+                                variant="shadow"
+                                color="danger"
+                                radius={"sm"}
+                                startContent={<Icon icon="mingcute:birthday-2-fill"/>}
+                            >
+                                2016/06/28
+                            </Chip>
+                        </div>
+                        <p className={'text-xl mb-4 mt-2'}>Maybe it&apos;s the happiest time in my life.</p>
+                        <Image src={"/school_3.jpg"} height={300}/>
+                        <p className={"text-medium mt-2"}>
+                            There will always be a moment in a man&apos;s life when he grows up, but sooner or later.
+                            Although growth requires a price, once it grows, the pain will accompany it for life.
+                            Both lucky and sad,For me, this moment comes a little early.
+                        </p>
+                        <p className={"text-medium "}>
+                            This period of time is the best I can recall. There are many guys with distinctive
+                            personalities here, and dealing with them makes life full of fun. They are righteous and
+                            mischievous.
+                        </p>
+                    </div>
+                    <Divider className="my-4 text-red-500"/>
+                    <div>
+                        <div className={"flex flex-row justify-between"}>
+                            <Chip
+                                variant="shadow"
+                                color="primary"
+                                radius={"sm"}
+                                startContent={<Icon icon="mingcute:birthday-2-fill"/>}
+                            >
+                                2016/09/01
+                            </Chip>
+                            <Chip
+                                variant="shadow"
+                                color="danger"
+                                radius={"sm"}
+                                startContent={<Icon icon="mingcute:birthday-2-fill"/>}
+                            >
+                                2019/06/28
+                            </Chip>
+                        </div>
+                        <p className={'text-xl mb-4 mt-2'}>From now on, my life has lost its color and cannot even
+                            be
+                            found.</p>
+                        <Image src={"/school_4.jpg"} height={300}/>
+                        <p className={"text-medium mt-2"}>
+                            This was the most painful time in my life, where I lost my color and never got it back.
+                            It&apos;s
+                            hard to imagine that a teenager in his teens could become so negative and depressed
+                            here. Of
+                            course it&apos;s not its fault, it&apos;s my fault.
+                        </p>
+                        <p className={"text-medium "}>
+                            Perhaps to this day, I am still suffering because I failed to study well here, but who
+                            can
+                            explain the reason for my unsatisfactory life? This is not a place worth staying in. It
+                            suppresses me, disrespects me, and destroys my confidence.
+                        </p>
+                    </div>
+                </div>
+            </TracingBeam>
+            {/*hobbies and professions*/}
+            <section className={"flex flex-col justify-between items-center mt-8"}>
                 <Tabs
                     aria-label="Options"
                     variant="solid"
@@ -206,88 +373,9 @@ export default function App() {
                         <Skill/>
                     </Tab>
                 </Tabs>
-            </div>
-            {/*<div*/}
-            {/*    className={'relative h-screen w-screen  overflow-hidden bg-gradient-to-b from-slate-700 to-slate-500 '}>*/}
-            {/*    <div className={'absolute top-0 left-20'}>*/}
-            {/*        <UserProfile/>*/}
-            {/*    </div>*/}
-            {/*    <div className={'absolute top-32 right-52'}>*/}
-            {/*        <motion.div*/}
-            {/*            initial={{opacity: 0, scale: 0.5}}*/}
-            {/*            animate={{opacity: 1, scale: 1}}*/}
-            {/*            transition={{duration: 0.5}}*/}
-            {/*            className={'col-span-8 place-self-center text-center sm:text-left justify-self-start'}*/}
-            {/*        >*/}
-            {/*            <p className={'text-3xl text-gray-500'}>LENNY BAYER</p>*/}
-            {/*            <h1 className={'text-9xl font-bold'}>Developer</h1>*/}
-            {/*            <div*/}
-            {/*                className={"text-5xl text-transparent bg-clip-text bg-gradient-to-br from-secondary-600 via-primary-400 to-content1 before:content-['+']"}>*/}
-            {/*                <TypeAnimation*/}
-            {/*                    sequence={[*/}
-            {/*                        "Fullstack Developer",*/}
-            {/*                        1000,*/}
-            {/*                        "Web Developer",*/}
-            {/*                        1000,*/}
-            {/*                        "Software Engineer",*/}
-            {/*                        1000,*/}
-            {/*                        "UI/UX Designer",*/}
-            {/*                        1000*/}
-            {/*                    ]}*/}
-            {/*                    wrapper="span"*/}
-            {/*                    speed={50}*/}
-            {/*                    style={{fontSize: '1em', display: 'inline-block'}}*/}
-            {/*                    repeat={Infinity}*/}
-            {/*                />*/}
-            {/*            </div>*/}
-            {/*        </motion.div>*/}
-            {/*        <div className={'flex flex-row justify-center gap-12 mt-8'}>*/}
-            {/*            <Button>asd</Button>*/}
-            {/*            <Button>asd</Button>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {/*<div className={"flex flex-col bg-gradient-to-b from-slate-500 to-slate-800  h-screen items-center"}>*/}
-            {/*    <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>SKILLS</h1>*/}
-            {/*    <h1 className={'text-gray-500 text-4xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center mb-8'}>If*/}
-            {/*        you really want to abuse yourself, learn programming</h1>*/}
-            {/*    <GitHubCalendar username={"Eucotopia"} year={new Date().getFullYear()}/>*/}
-            {/*    <div className={'relative w-screen'}>*/}
-            {/*        <div className={'absolute left-40 top-20'}>*/}
-            {/*            <div className="flex w-full flex-col p-6">*/}
-            {/*                <Tabs*/}
-            {/*                    aria-label="Options"*/}
-            {/*                    color="primary"*/}
-            {/*                    variant="underlined"*/}
-            {/*                    classNames={{*/}
-            {/*                        tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",*/}
-            {/*                        cursor: "w-full bg-[#22d3ee]",*/}
-            {/*                        tab: "max-w-fit px-0 h-12",*/}
-            {/*                        tabContent: "group-data-[selected=true]:text-[#06b6d4] text-3xl",*/}
-            {/*                    }}*/}
-            {/*                >*/}
-
-            {/*                    <Tab*/}
-            {/*                        key={"1"}*/}
-            {/*                        title="adasd"*/}
-            {/*                    >*/}
-            {/*                       <Skill/>*/}
-            {/*                    </Tab>*/}
-
-            {/*                </Tabs>*/}
-            {/*            </div>*/}
-
-            {/*        </div>*/}
-            {/*        /!*<div className={'absolute -top-36 right-1'}>*!/*/}
-            {/*        /!*    <Mac/>*!/*/}
-            {/*        /!*</div>*!/*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {/*<div*/}
-            {/*    className={'flex flex-col bg-gradient-to-b from-slate-800 to-slate-500  items-center mt-8'}>*/}
-            {/*    <h1 className={'text-8xl font-bold bg-gradient-to-r from-background to-slate-900 text-transparent bg-clip-text w-full text-center'}>EXPERIENCE</h1>*/}
-            {/*    <ExperienceTimeLine/>*/}
-            {/*</div>*/}
+            </section>
+            {/*<GitHubCalendar username={"Eucotopia"} year={new Date().getFullYear()}/>*/}
+            {/*<Github/>*/}
         </>
     );
 }
