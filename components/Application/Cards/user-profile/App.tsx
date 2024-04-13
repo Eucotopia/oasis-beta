@@ -32,7 +32,7 @@ export default function Component() {
                             <Chip variant="flat" color={"danger"}>Full Stack Developer</Chip>
                         </div>
                         <p className="py-2 text-small text-foreground">
-                            If you live each day as it was your last, someday you'll most certainly be right
+                            If you live each day as it was your last, someday you&apos;ll most certainly be right
                         </p>
                         <div className="flex gap-2">
                             <p>

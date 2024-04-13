@@ -72,7 +72,6 @@ export default function Equipment() {
             const formData = new FormData();
             formData.append('image', selectedFile);
             const imageUrl = await uploadFile(formData).unwrap();
-            console.log(imageUrl.data)
             // @ts-ignore
             handleProductChange({target: {name: 'imageSrc', value: imageUrl.data}})
         }

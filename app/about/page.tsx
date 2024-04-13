@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
 import clsx from "clsx";
-import {Button, Chip, Divider, Image, Link, Spacer, Tab, Tabs} from "@nextui-org/react";
+import {Button, Chip, Divider, Link, Image, Spacer, Tab, Tabs, Input} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 import {fontAboutHeading} from "@/config/fonts"
 import {siteConfig} from "@/config/site";
@@ -10,10 +10,93 @@ import {TracingBeam} from "@/components/timeline/TracingBeam";
 import {motion} from "framer-motion";
 import {useMediaQuery} from "usehooks-ts";
 import {useGetProductsQuery} from "@/features/api/productApi";
-import Skill from "@/components/skills/App"
+
 import ScrollingBanner
     from "@/components/Application/Scrolling-Banners/brands-scrolling-banner-with-two-rows/scrolling-banner";
 import ProductListItem from "@/components/list/goodthings/product-list-item";
+import {StickyScroll} from "@/components/hobby/StickyScroll";
+import {Game, Music, Program, T1} from "@/components/hobby/Content"
+import {LayoutGrid} from "@/components/grid/LayoutGrid";
+
+const SkeletonOne = () => {
+    return (
+        <div>
+            <p className="font-bold text-4xl text-white">House in the woods</p>
+            <p className="font-normal text-base text-white"></p>
+            <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+                A serene and tranquil retreat, this house in the woods offers a peaceful
+                escape from the hustle and bustle of city life.
+            </p>
+        </div>
+    );
+};
+
+const SkeletonTwo = () => {
+    return (
+        <div>
+            <p className="font-bold text-4xl text-white">House above the clouds</p>
+            <p className="font-normal text-base text-white"></p>
+            <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+                Perched high above the world, this house offers breathtaking views and a
+                unique living experience. It&apos;s a place where the sky meets home,
+                and tranquility is a way of life.
+            </p>
+        </div>
+    );
+};
+const SkeletonThree = () => {
+    return (
+        <div>
+            <p className="font-bold text-4xl text-white">Greens all over</p>
+            <p className="font-normal text-base text-white"></p>
+            <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+                A house surrounded by greenery and nature&apos;s beauty. It&apos;s the
+                perfect place to relax, unwind, and enjoy life.
+            </p>
+        </div>
+    );
+};
+const SkeletonFour = () => {
+    return (
+        <div>
+            <p className="font-bold text-4xl text-white">Rivers are serene</p>
+            <p className="font-normal text-base text-white"></p>
+            <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+                A house by the river is a place of peace and tranquility. It&apos;s the
+                perfect place to relax, unwind, and enjoy life.
+            </p>
+        </div>
+    );
+};
+
+const cards = [
+    {
+        id: 1,
+        content: <SkeletonOne/>,
+        className: "md:col-span-2",
+        thumbnail:"/hobby/t1/2016Worlds.jpg"
+    },
+    {
+        id: 2,
+        content: <SkeletonTwo/>,
+        className: "col-span-1",
+        thumbnail: "/lol.jpg"
+    },
+    {
+        id: 3,
+        content: <SkeletonThree/>,
+        className: "col-span-1",
+        thumbnail:
+            "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 4,
+        content: <SkeletonFour/>,
+        className: "md:col-span-2",
+        thumbnail:
+            "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    }
+];
 
 const TableItem = [
     {
@@ -157,16 +240,16 @@ export default function App() {
             <section
                 className="gap-4 mx-auto w-full max-w-6xl px-6 py-20 sm:py-32 lg:px-8 lg:py-40">
                 <div className={'text-center mb-10'}>
-                    <h2 className="font-medium text-secondary">We&apos;re hiring!</h2>
-                    <h1 className="text-4xl font-medium tracking-tight">Daily Equipment.</h1>
-                    <Spacer y={4}/>
-                    <h2 className="text-large text-default-500">
+                    <h1
+                        className="tracking-tight inline font-semibold from-[#FF705B] to-[#FFB457] text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-b">Daily
+                        items.</h1>
+                    <h2 className="w-full my-2 text-lg lg:text-xl font-normal text-default-500 max-w-full mt-4 md:w-full text-center flex justify-center items-center">
                         If a worker wants to do his job well, he must first sharpen his tools.
                     </h2>
                     <Spacer y={4}/>
-                    <div className="flex w-full justify-center gap-2">
-                        <Button variant={'faded'} color={"primary"} radius={"md"}>Details</Button>
-                        <Button color="secondary" radius={"md"}>Open positions</Button>
+                    <div className="flex w-full justify-center gap-4">
+                        <Button variant={'shadow'} color={"primary"} radius={"lg"}>Details</Button>
+                        <Button color="secondary" radius={"lg"} variant={"ghost"}>More</Button>
                     </div>
                 </div>
                 <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4">
@@ -209,23 +292,25 @@ export default function App() {
             </section>
             {/*/!*Personal experience*!/*/}
             <div className={"text-center "}>
-                <h2 className="font-medium text-secondary">We&apos;re hiring!</h2>
-                <h1 className="text-4xl font-medium tracking-tight">Daily Equipment.</h1>
-                <Spacer y={4}/>
-                <h2 className="text-large text-default-500">
+                <h1 className="tracking-tight inline font-semibold from-[#6FEE8D] to-[#17c964] text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-b">To
+                    be or</h1>
+                <br/>
+                <h1 className="tracking-tight inline font-semibold from-[#FF72E1] to-[#F54C7A] text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-b">not
+                    to be.</h1>
+                <h2 className="w-full my-2 text-lg lg:text-xl font-normal text-default-500 max-w-full mt-4 md:w-full text-center flex justify-center items-center">
                     If a worker wants to do his job well, he must first sharpen his tools.
                 </h2>
                 <Spacer y={4}/>
-                <div className="flex w-full justify-center gap-2">
-                    <Button variant={'faded'} color={"primary"} radius={"md"}>Details</Button>
-                    <Button color="secondary" radius={"md"}>Open positions</Button>
+                <div className="flex w-full justify-center gap-4">
+                    <Button variant={'shadow'} color={"primary"} radius={"lg"}>Details</Button>
+                    <Button color="secondary" radius={"lg"} variant={"ghost"}>More</Button>
                 </div>
             </div>
             <TracingBeam className="px-6">
                 <div className="max-w-2xl mx-auto antialiased pt-4 relative ">
                     <div>
                         <Chip
-                            variant="shadow"
+                            variant={"solid"}
                             color="success"
                             radius={"sm"}
                             startContent={<Icon icon="mingcute:birthday-2-fill"/>}
@@ -254,7 +339,7 @@ export default function App() {
                     <div>
                         <div className={"flex flex-row justify-between"}>
                             <Chip
-                                variant="shadow"
+                                variant="bordered"
                                 color="primary"
                                 radius={"sm"}
                                 startContent={<Icon icon="mingcute:birthday-2-fill"/>}
@@ -262,7 +347,7 @@ export default function App() {
                                 2013/09/01
                             </Chip>
                             <Chip
-                                variant="shadow"
+                                variant="bordered"
                                 color="danger"
                                 radius={"sm"}
                                 startContent={<Icon icon="mingcute:birthday-2-fill"/>}
@@ -271,7 +356,7 @@ export default function App() {
                             </Chip>
                         </div>
                         <p className={'text-xl mb-4 mt-2'}>Maybe it&apos;s the happiest time in my life.</p>
-                        <Image src={"/school_3.jpg"} height={300}/>
+                        <Image src={"/school_3.jpg"} height={300} alt={""}/>
                         <p className={"text-medium mt-2"}>
                             There will always be a moment in a man&apos;s life when he grows up, but sooner or later.
                             Although growth requires a price, once it grows, the pain will accompany it for life.
@@ -287,16 +372,16 @@ export default function App() {
                     <div>
                         <div className={"flex flex-row justify-between"}>
                             <Chip
-                                variant="shadow"
-                                color="primary"
+                                variant="faded"
+                                color="success"
                                 radius={"sm"}
                                 startContent={<Icon icon="mingcute:birthday-2-fill"/>}
                             >
                                 2016/09/01
                             </Chip>
                             <Chip
-                                variant="shadow"
-                                color="danger"
+                                variant="faded"
+                                color="warning"
                                 radius={"sm"}
                                 startContent={<Icon icon="mingcute:birthday-2-fill"/>}
                             >
@@ -324,53 +409,74 @@ export default function App() {
                 </div>
             </TracingBeam>
             {/*hobbies and professions*/}
-            <section className={"flex flex-col justify-between items-center mt-8"}>
+            <section
+                className="flex flex-col gap-4 mx-auto w-full max-w-6xl px-6 py-20 sm:py-32 lg:px-8 lg:py-40 items-center ">
+                <div className={"text-center "}>
+                    <h1 className="tracking-tight inline font-semibold from-[#6FEE8D] to-[#17c964] text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-b">To
+                        be or</h1>
+                    <br/>
+                    <h1 className="tracking-tight inline font-semibold from-[#FF72E1] to-[#F54C7A] text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-b">not
+                        to be.</h1>
+                    <h2 className="w-full my-2 text-lg lg:text-xl font-normal text-default-500 max-w-full mt-4 md:w-full text-center flex justify-center items-center">
+                        If a worker wants to do his job well, he must first sharpen his tools.
+                    </h2>
+                </div>
                 <Tabs
                     aria-label="Options"
-                    variant="solid"
+                    color={"default"}
+                    variant={"underlined"}
                     classNames={{
-                        // 设置标签页样式
-                        // tabList: "w-full relative rounded-none p-0 flex-col overflow-scroll h-40",
-                        // cursor: "w-full ",
-                        // tab: "max-w-fit px-0 h-12 ",
-                        // tabContent: "group-data-[selected=true]:text-[#06b6d4]"
+                        tabList: "flex p-1 h-fit items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-transparent dark:bg-transparent rounded-medium w-full justify-start gap-8 max-w-xl",
+                        cursor: "w-full bg-primary",
+                        tab: "max-w-fit px-0 h-24",
                     }}
                 >
                     <Tab
-                        key="photos"
+                        key="game"
                         title={
-                            <div className="flex items-center space-x-2 ">
-                                <Icon icon="fluent:code-block-48-filled" width={24}/>
-                                <span>Photos</span>
-                                <Chip size="sm" variant="faded">9</Chip>
+                            <div className="flex items-center flex-col group-data-[selected=true]:text-primary ">
+                                <Icon icon="ion:game-controller-outline" width={44} height={44}/>
+                                <p className={"text-medium"}>Game</p>
                             </div>
                         }
                     >
-                        <Skill/>
+                        <StickyScroll content={Game}/>
                     </Tab>
                     <Tab
                         key="music"
                         title={
-                            <div className="flex items-center space-x-2">
-                                <MusicIcon/>
-                                <span>Music</span>
-                                <Chip size="sm" variant="faded">3</Chip>
+                            <div className="flex items-center flex-col group-data-[selected=true]:text-danger">
+                                <Icon icon="mingcute:music-fill" width={44} height={44}/>
+                                <p className={"text-medium"}>Music</p>
                             </div>
                         }
                     >
-                        <Skill/>
+                        <StickyScroll content={Music}/>
+
                     </Tab>
                     <Tab
-                        key="videos"
+                        key="program"
                         title={
-                            <div className="flex items-center space-x-2">
-                                <Icon icon="mingcute:game-2-fill" width={24}/>
-                                <span>Videos</span>
-                                <Chip size="sm" variant="faded">1</Chip>
+                            <div className="flex items-center flex-col group-data-[selected=true]:text-warning">
+                                <Icon icon="solar:programming-outline" width={44} height={44}/>
+                                <p className={"text-medium"}>Program</p>
                             </div>
                         }
                     >
-                        <Skill/>
+                        <StickyScroll content={Program}/>
+
+                    </Tab>
+                    <Tab
+                        key="t1"
+                        title={
+                            <div className="flex items-center flex-col group-data-[selected=true]:text-info">
+                                <Icon icon="solar:programming-outline" width={44} height={44}/>
+                                <p className={"text-medium"}>T1</p>
+                            </div>
+                        }
+                    >
+                        <LayoutGrid cards={cards}/>
+                        {/*<StickyScroll content={T1}/>*/}
                     </Tab>
                 </Tabs>
             </section>

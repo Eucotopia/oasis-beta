@@ -2,11 +2,7 @@
 import Card_1 from "@/components/card/Card_1";
 import Card_2 from "@/components/card/Card_2";
 import React, {Suspense, useRef, useState} from 'react';
-import {Spinner} from "@nextui-org/react";
 import SwiperTest from "@/components/pitcure/SwiperTest"
-import T1Image from "@/components/pitcure/T1/T1Image";
-import Horizontal from "@/components/pitcure/horizontal/Horizontal";
-import CardTest from "@/components/pitcure/CardTest";
 import CardTest11 from "@/components/pitcure/CardTest11";
 import PlanList from "@/components/futrue/PlanList";
 
@@ -31,11 +27,11 @@ export default function PricingPage() {
 
     return (
         <>
-            <PlanList/>
-            <CardTest11 images={images}/>
-            <SwiperTest/>
-            <Card_1/>
-            <Card_2/>
+            {/*<PlanList/>*/}
+            {/*<CardTest11 images={images}/>*/}
+            {/*<SwiperTest/>*/}
+            {/*<Card_1/>*/}
+            {/*<Card_2/>*/}
         </>
     );
 }

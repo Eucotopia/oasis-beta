@@ -16,7 +16,7 @@ const App = () => (
             <h1 className="text-7xl font-bold p-4 font-cover bg-gradient-to-br from-primary-500 via-secondary-500 to-success-200 bg-clip-text text-transparent"
                 style={{display: 'flex', flexDirection: 'column'}}>
                 <span>Your time is limited,</span>
-                <span>so don't waste it living someone else's life</span>
+                <span>so don&apos;t waste it living someone else&apos;s life</span>
             </h1>
         </div>
         <div className={"absolute top-0 left-52"}>

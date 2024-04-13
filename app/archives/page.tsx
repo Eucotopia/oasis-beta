@@ -5,7 +5,6 @@ import {Button} from "@nextui-org/button";
 import {Code} from "@nextui-org/code";
 import UserProfile from "@/components/Application/Cards/user-profile/App";
 import {ParallaxScroll} from "@/components/grid/ParallaxScroll";
-import { LayoutGridDemo } from "@/components/grid/LayoutGridDemo";
 const images = [
     "https://images.pexels.com/photos/2622290/pexels-photo-2622290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     "https://images.pexels.com/photos/2622290/pexels-photo-2622290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -38,7 +37,6 @@ export default function App() {
         <>
             <ParallaxScroll images={images}/>
             <UserProfile/>
-            <LayoutGridDemo/>
             <Button className={'bg-blue-600'}>123123</Button>
             <Code color={"primary"}>123123</Code>
             <div className={"text-danger-800"}> asdf</div>
