@@ -30,4 +30,4 @@ export const categoryApi = createApi({
     }),
 })
 
-export const {useGetCountQuery, useGetCategoriesQuery,useGetRootCategoriesQuery} = categoryApi
+export const {useGetCountQuery, useGetCategoriesQuery, useGetRootCategoriesQuery} = categoryApi

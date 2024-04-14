@@ -4,16 +4,20 @@ import {
     ModalContent,
     Button,
     useDisclosure,
-    Divider, Input, CardBody, CardFooter, cn, Card, Link
+    Divider, Input, CardBody, CardFooter, cn, Card, Link, Autocomplete, AutocompleteItem
 } from "@nextui-org/react";
 import {PostDTO} from "@/types";
 import {useAddBlogMutation} from "@/features/api/postApi";
-import {useGetCategoriesQuery} from "@/features/api/categoryApi";
+import {useGetCategoriesQuery, useGetRootCategoriesQuery} from "@/features/api/categoryApi";
 import {Icon} from "@iconify/react";
 import {BlockEditor} from "@/components/tiptap/BlockEditor";
 import {useBlockEditor} from "@/components/tiptap/useBlockEditor";
+import {CheckboxGroup} from "@nextui-org/checkbox";
+import TagGroupItem from "@/components/tag-group-filter/tag-group-item";
 
 const AddPost = () => {
+    const {data: rootCategories} = useGetRootCategoriesQuery()
+
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [addBlog, isLoading] = useAddBlogMutation()
     const [open, setOpen] = useState<boolean>(false)
@@ -116,7 +120,19 @@ const AddPost = () => {
                                         open ? (
                                             <div
                                                 className="h-full w-full items-start justify-center overflow-scroll px-4 pb-24 pt-20">
-                                                <div className="flex flex-col gap-2">
+                                                <Input type={"file"} />
+                                                <div className="flex flex-row gap-6">
+                                                    <Input
+                                                        autoFocus
+                                                        fullWidth
+                                                        aria-label="Affiliate code"
+                                                        classNames={{
+                                                            inputWrapper: "group-data-[focus-visible=true]:outline-foreground",
+                                                        }}
+                                                        label="Enter post title"
+                                                        labelPlacement="outside"
+                                                        placeholder="E.g. ACME123"
+                                                    />
                                                     <Input
                                                         autoFocus
                                                         fullWidth
@@ -129,12 +145,62 @@ const AddPost = () => {
                                                         placeholder="E.g. ACME123"
                                                     />
                                                 </div>
+                                                <Autocomplete
+                                                    defaultItems={rootCategories?.data}
+                                                    label="Favorite Animal"
+                                                    placeholder="Search an animal"
+                                                    className="max-w-xs"
+                                                >
+                                                    {(category) => <AutocompleteItem
+                                                        key={category.id}>{category.name}</AutocompleteItem>}
+                                                </Autocomplete>
+                                                <div className="my-auto flex max-w-lg flex-col gap-2">
+                                                    <h3 className="text-medium font-medium leading-8 text-default-600">Tags</h3>
+                                                    <CheckboxGroup aria-label="Select amenities" className="gap-1"
+                                                                   orientation="horizontal">
+                                                        <TagGroupItem icon="ic:baseline-apple" value="wifi">
+                                                            Apple
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:fridge-bold" value="kitchen">
+                                                            Kitchen
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="uil:android" value="washer">
+                                                            Washer
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:washing-machine-minimalistic-bold"
+                                                                      value="dryer">
+                                                            Dryer
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:tv-bold" value="tv">
+                                                            TV
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:wheel-bold" value="free_parking">
+                                                            Free Parking
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:swimming-bold" value="pool">
+                                                            Pool
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:treadmill-bold" value="gym">
+                                                            Gym
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:bath-bold" value="spa">
+                                                            Spa
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:sun-bold" value="beachfront">
+                                                            Beachfront
+                                                        </TagGroupItem>
+                                                        <TagGroupItem icon="solar:cat-bold" value="pet_friendly">
+                                                            Pet Friendly
+                                                        </TagGroupItem>
+                                                    </CheckboxGroup>
+                                                </div>
                                                 <Divider className="mb-8 mt-10"/>
+
                                                 <Button color="danger" variant="light" onPress={onClose}>
                                                     Close
                                                 </Button>
                                                 <Button color="primary" onPress={onClose}>
-                                                    Action
+                                                    Publish
                                                 </Button>
                                             </div>
                                         ) : (

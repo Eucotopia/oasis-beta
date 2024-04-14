@@ -7,7 +7,7 @@ import BrandsScrollingBannerWithTwoRows
 import LeftLoginWithImageBackground from "@/components/left-login-with-image-background/App";
 import React from "react";
 import FullStack from "@/components/code/FullStack";
-import SpotlightCard from "@/components/Schedule/App"
+import SpotlightCard from "@/components/schedule/App"
 import {Spacer} from "@nextui-org/react";
 import Horizontal from "@/components/pitcure/horizontal/Horizontal"
 import Github from "@/components/github/App"
@@ -31,9 +31,6 @@ export default function Home() {
                 <FullStack/>
                 <Github/>
             </div>
-            {/*<div>*/}
-            {/*    <T1Image/>*/}
-            {/*</div>*/}
             <div className={"mt-8"}>
                 <BrandsScrollingBannerWithTwoRows/>
             </div>
