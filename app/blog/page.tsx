@@ -4,7 +4,7 @@ import {title} from "@/components/primitives";
 import {Card, CardBody, CardFooter, CardHeader, Image} from "@nextui-org/react";
 import {useGetRootCategoriesQuery} from "@/features/api/categoryApi";
 import {Link} from "@nextui-org/link";
-import PlaceListItem from "@/components/E-commerce/Product-List/place-list-grid/App";
+import PlaceListItem from "@/components/place-list-grid/App";
 import {useGetHostArticlesQuery} from "@/features/api/postApi";
 
 export default function App() {
@@ -60,7 +60,7 @@ export default function App() {
                         <span className="inline-block md:hidden">FAQs</span>
                         <span className="hidden md:inline-block">Frequently asked questions</span>
                     </h2>
-                    <PlaceListItem posts={hostArticles?.data}/>
+                    {/*<PlaceListItem posts={hostArticles?.data}/>*/}
                 </div>
             </section>
         </>

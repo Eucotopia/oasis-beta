@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import PopoverFeedback from "@/components/Application/Feedbacks/popover-feedback/App";
+import PopoverFeedback from "@/components/popover-feedback/App";
 import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
 
 export default function App() {

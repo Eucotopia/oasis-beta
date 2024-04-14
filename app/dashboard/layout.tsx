@@ -1,5 +1,5 @@
 'use client'
-import {AcmeLogo} from "@/components/Application/Sidebars/sidebar-off-canvas-responsive/acme";
+import {AcmeLogo} from "@/components/sidebar-off-canvas-responsive/acme";
 import Sidebar from "@/components/Slidebar/sidebar";
 import {sectionNestedItems} from "@/components/Slidebar/sidebar-items";
 import {Icon} from "@iconify/react";

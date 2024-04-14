@@ -20,7 +20,7 @@ import {
     SortDescriptor, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
 } from "@nextui-org/react";
 import {UserType} from "@/types";
-import SettingsTabs from "@/components/Application/Cards/settings-tabs/App"
+import SettingsTabs from "@/components/settings-tabs/App"
 import {useDeleteUserMutation} from "@/features/api/authApi";
 import {updateUser} from "@/features/user/userSlice";
 import {useAppDispatch} from "@/hooks/store";

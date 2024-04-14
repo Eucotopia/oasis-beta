@@ -1,21 +1,20 @@
 'use client'
-import React from "react";
+import React, {useState} from "react";
 import clsx from "clsx";
 import {Button, Chip, Divider, Link, Image, Spacer, Tab, Tabs, Input} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 import {fontAboutHeading} from "@/config/fonts"
 import {siteConfig} from "@/config/site";
-import {DiscordIcon, GithubIcon, MusicIcon, TwitterIcon} from "@/components/icons";
+import {DiscordIcon, GithubIcon, TwitterIcon} from "@/components/icons";
 import {TracingBeam} from "@/components/timeline/TracingBeam";
 import {motion} from "framer-motion";
 import {useMediaQuery} from "usehooks-ts";
 import {useGetProductsQuery} from "@/features/api/productApi";
-
 import ScrollingBanner
-    from "@/components/Application/Scrolling-Banners/brands-scrolling-banner-with-two-rows/scrolling-banner";
+    from "@/components/brands-scrolling-banner-with-two-rows/scrolling-banner";
 import ProductListItem from "@/components/list/goodthings/product-list-item";
 import {StickyScroll} from "@/components/hobby/StickyScroll";
-import {Game, Music, Program, T1} from "@/components/hobby/Content"
+import {Game, Music, People, Program, T1} from "@/components/hobby/Content"
 import {LayoutGrid} from "@/components/grid/LayoutGrid";
 
 const SkeletonOne = () => {
@@ -68,13 +67,12 @@ const SkeletonFour = () => {
         </div>
     );
 };
-
 const cards = [
     {
         id: 1,
         content: <SkeletonOne/>,
         className: "md:col-span-2",
-        thumbnail:"/hobby/t1/2016Worlds.jpg"
+        thumbnail: "/hobby/t1/2016Worlds.jpg"
     },
     {
         id: 2,
@@ -197,7 +195,27 @@ const words = [
         className: "text-blue-500 dark:text-blue-500",
     },
 ];
+const screens = [
+    {
+        title: "Artem",
+        color: "#ff0055"
+    },
+    {
+        title: "is",
+        color: "#0099ff"
+    },
+    {
+        title: "Awesome",
+        color: "#22cc88"
+    },
+    {
+        title: "CLUB",
+        color: "#ffaa00"
+    }
+];
+
 export default function App() {
+    const [selected, setSelected] = useState(0);
     const isMobile = useMediaQuery("(max-width: 768px)");
     const {data} = useGetProductsQuery();
     const products = data?.data
@@ -219,7 +237,8 @@ export default function App() {
                     className={"text-7xl mb-4 bg-gradient-to-br from-sky-500 to-blue-500 bg-clip-text text-transparent"}>just
                     like everyone else
                 </motion.h1>
-                <motion.h1 className={'text-2xl text-gray-500'}>No matter how bad or good you think life is,
+                <motion.h1 className={'text-2xl text-gray-500'}>No matter how bad or good you think life
+                    is,
                     wake up each
                     day and be
                     thankful. Someone somewhere is fighting to survive
@@ -412,13 +431,11 @@ export default function App() {
             <section
                 className="flex flex-col gap-4 mx-auto w-full max-w-6xl px-6 py-20 sm:py-32 lg:px-8 lg:py-40 items-center ">
                 <div className={"text-center "}>
-                    <h1 className="tracking-tight inline font-semibold from-[#6FEE8D] to-[#17c964] text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-b">To
-                        be or</h1>
+                    <h1 className="tracking-tight inline font-semibold from-[#6FEE8D] to-[#17c964] text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-b">What
+                        i like</h1>
                     <br/>
-                    <h1 className="tracking-tight inline font-semibold from-[#FF72E1] to-[#F54C7A] text-4xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-b">not
-                        to be.</h1>
                     <h2 className="w-full my-2 text-lg lg:text-xl font-normal text-default-500 max-w-full mt-4 md:w-full text-center flex justify-center items-center">
-                        If a worker wants to do his job well, he must first sharpen his tools.
+                        There will always be so much love in a person's life.
                     </h2>
                 </div>
                 <Tabs
@@ -464,7 +481,6 @@ export default function App() {
                         }
                     >
                         <StickyScroll content={Program}/>
-
                     </Tab>
                     <Tab
                         key="t1"
@@ -476,7 +492,17 @@ export default function App() {
                         }
                     >
                         <LayoutGrid cards={cards}/>
-                        {/*<StickyScroll content={T1}/>*/}
+                    </Tab>
+                    <Tab
+                        key="people"
+                        title={
+                            <div className="flex items-center flex-col group-data-[selected=true]:text-pink-400">
+                                <Icon icon="pepicons-pop:people" width={44} height={44}/>
+                                <p className={"text-medium"}>People</p>
+                            </div>
+                        }
+                    >
+                        <StickyScroll content={People}/>
                     </Tab>
                 </Tabs>
             </section>

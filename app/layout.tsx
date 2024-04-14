@@ -5,7 +5,7 @@ import {fontSans} from "@/config/fonts";
 import {Providers} from "./providers";
 import {Navbar} from "@/components/navbar";
 import clsx from "clsx";
-import FooterWithColumnsAndNewsletter from "@/components/Marketing/Footers/footer-with-columns-and-newsletter/App";
+import FooterWithColumnsAndNewsletter from "@/components/footer-with-columns-and-newsletter/App";
 
 export const metadata: Metadata = {
     title: {

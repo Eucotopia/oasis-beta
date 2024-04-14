@@ -1,13 +1,13 @@
 'use client'
-import TestimonialsScrollingBanner from "@/components/Application/Scrolling-Banners/testimonials-scrolling-banner/App";
-import FaqsWithDivider from "@/components/Marketing/Faqs/faqs-with-divider/App"
-import BasicTeamPage from "@/components/Marketing/Teams/basic-team-page/App"
+import TestimonialsScrollingBanner from "@/components/testimonials-scrolling-banner/App";
+import FaqsWithDivider from "@/components/faqs-with-divider/App"
+import BasicTeamPage from "@/components/basic-team-page/App"
 import BrandsScrollingBannerWithTwoRows
-    from '@/components/Application/Scrolling-Banners/brands-scrolling-banner-with-two-rows/App'
-import LeftLoginWithImageBackground from "@/components/Application/Authentication/left-login-with-image-background/App";
+    from '@/components/brands-scrolling-banner-with-two-rows/App'
+import LeftLoginWithImageBackground from "@/components/left-login-with-image-background/App";
 import React from "react";
 import FullStack from "@/components/code/FullStack";
-import SpotlightCard from "@/components/Application/Cards/spotlight-card/App"
+import SpotlightCard from "@/components/Schedule/App"
 import {Spacer} from "@nextui-org/react";
 import Horizontal from "@/components/pitcure/horizontal/Horizontal"
 import Github from "@/components/github/App"

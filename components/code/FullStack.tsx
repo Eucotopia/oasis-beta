@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Link, Spacer} from "@nextui-org/react";
 import {Icon, type IconProps} from "@iconify/react";
 import GitHubCalendar from "react-github-calendar";
-import SettingTable from "@/components/Application/Cards/settings-tabs/App"
+import SettingTable from "@/components/settings-tabs/App"
 type SocialIconProps = Omit<IconProps, "icon">;
 const socialItems = [
     {
