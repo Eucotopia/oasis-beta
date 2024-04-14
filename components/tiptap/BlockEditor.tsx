@@ -1,15 +1,10 @@
 import {Editor, EditorContent} from "@tiptap/react";
 import './styles/index.css'
-import {useBlockEditor} from "@/components/tiptap/useBlockEditor";
 
-export const BlockEditor = () => {
-    const {editor, characterCount} = useBlockEditor()
-    if (!editor) {
-        return null
-    }
+export const BlockEditor = ({height, editor}: { height: string, editor: Editor }) => {
     return (
         <>
-            <EditorContent editor={editor} style={{color: 'red', height: '300px', width: '300px'}}/>
+            <EditorContent editor={editor} style={{minHeight: height}}/>
         </>
     );
 }

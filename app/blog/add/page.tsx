@@ -5,7 +5,6 @@ import {BlockEditor} from "@/components/tiptap/BlockEditor";
 export default function App() {
     return (
         <>
-            <BlockEditor/>
         </>
     )
 }
