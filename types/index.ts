@@ -38,7 +38,7 @@ export type ColumnType = {
     Posts: Post[],
 }
 export type UserLoginType = {
-    username: string,
+    email: string,
     password: string
 }
 export type UserRegisterType = {
@@ -65,11 +65,18 @@ export type Post = {
 
 export type PostDTO = {
     title: string,
-    content: string,
+    content: string | undefined,
     summary: string,
     isTop: boolean,
+    rating: string,
     cover: string,
-    categoryId: string
+    categoryId: string,
+    tagId: string[],
+    isPrivate: boolean
+}
+export type Tag = {
+    id: number,
+    name: string
 }
 
 export interface ResultResponse<T> {

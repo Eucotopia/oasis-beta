@@ -12,6 +12,7 @@ import {thunk} from "redux-thunk";
 import {categoryApi} from "@/features/api/categoryApi";
 import userReducer from '@/features/user/userSlice'
 import {columnApi} from '@/features/api/columnApi'
+import {tagApi} from "@/features/api/tagApi";
 
 // 定义配置信息
 const persistConfig = {
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
     [fileApi.reducerPath]: fileApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
-    [columnApi.reducerPath]: columnApi.reducer
+    [columnApi.reducerPath]: columnApi.reducer,
+    [tagApi.reducerPath]: tagApi.reducer
 })
 // 创建持久化的配置persist的信息
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -40,7 +42,7 @@ export const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false,
-    }).concat(authApi.middleware).concat(thunk).concat(postApi.middleware).concat(categoryApi.middleware).concat(columnApi.middleware).concat(productApi.middleware).concat(fileApi.middleware)
+    }).concat(authApi.middleware).concat(thunk).concat(postApi.middleware).concat(categoryApi.middleware).concat(columnApi.middleware).concat(productApi.middleware).concat(fileApi.middleware).concat(tagApi.middleware)
 })
 
 export const persistor = persistStore(store)

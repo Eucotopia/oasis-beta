@@ -4,7 +4,7 @@ import {
     ModalContent,
     Button,
     useDisclosure,
-    Divider, Input, CardBody, CardFooter, cn, Card, Link, Autocomplete, AutocompleteItem
+    Divider, Input, CardBody, CardFooter, cn, Card, Link, Autocomplete, AutocompleteItem, Image, Switch
 } from "@nextui-org/react";
 import {PostDTO} from "@/types";
 import {useAddBlogMutation} from "@/features/api/postApi";
@@ -14,10 +14,32 @@ import {BlockEditor} from "@/components/tiptap/BlockEditor";
 import {useBlockEditor} from "@/components/tiptap/useBlockEditor";
 import {CheckboxGroup} from "@nextui-org/checkbox";
 import TagGroupItem from "@/components/tag-group-filter/tag-group-item";
+import {PlusIcon} from "@/components/icons";
+import {useUploadMutation} from "@/features/api/fileApi";
+import RatingRadioGroup from "@/components/rating/rating-radio-group";
+import {useGetTagQuery} from "@/features/api/tagApi";
 
 const AddPost = () => {
+    const {data: tags} = useGetTagQuery()
     const {data: rootCategories} = useGetRootCategoriesQuery()
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // @ts-ignore
+        setSelectedFile(e.target.files[0]);
+    };
+    const [uploadFile] = useUploadMutation();
 
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleUpload = async () => {
+        if (selectedFile) {
+            const formData = new FormData();
+            formData.append('image', selectedFile);
+            const imageUrl = await uploadFile(formData).unwrap();
+            console.log(imageUrl)
+            // @ts-ignore
+            handleChange({target: {name: 'cover', value: imageUrl.data}})
+        }
+    };
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [addBlog, isLoading] = useAddBlogMutation()
     const [open, setOpen] = useState<boolean>(false)
@@ -28,24 +50,35 @@ const AddPost = () => {
         }))
     }
     const [isSelected, setIsSelected] = React.useState(false);
-    // const {editor, characterCount} = useBlockEditor({onContentChange: handleChildContent})
     const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setPostState((prev) => ({
         ...prev,
         [name]: value
     }))
-
     const [postState, setPostState] = useState<PostDTO>({
         title: "",
         content: "",
         summary: "",
         isTop: false,
-        cover: "https://nextui.org/images/album-cover.png",
-        categoryId: ''
+        cover: "",
+        categoryId: '',
+        rating: "5",
+        isPrivate: false,
+        tagId: []
     })
-    const HandeCategoryIdChange = (id: string) => {
+    const setRating = (value: string) => {
+        // @ts-ignore
+        handleChange({target: {name: 'rating', value: value}})
+    }
+    const handeCategoryIdChange = (id: string) => {
         setPostState(prevState => ({
             ...prevState,
             categoryId: id
+        }))
+    }
+    const handeTagChange = (id: string[]) => {
+        setPostState(prevState => ({
+            ...prevState,
+            tagId: id
         }))
     }
     const onIsTopChange = () => {
@@ -54,29 +87,36 @@ const AddPost = () => {
             isTop: !prevState.isTop
         }))
     }
-
+    const onIsPrivateChange = () => {
+        setPostState(prevState => ({
+            ...prevState,
+            isPrivate: !prevState.isPrivate
+        }))
+    }
     const {data: categories} = useGetCategoriesQuery()
     // if (!editor) {
     //     return undefined
     // }
-    // const addPost = async () => {
-    //     const updatedPostState = {
-    //         ...postState,
-    //         content: editor?.getHTML()
-    //     };
-    //     const blog = await addBlog(updatedPostState).unwrap()
-    //     if (blog.code === "200") {
-    //         setPostState(prevState => ({
-    //             title: "",
-    //             content: "",
-    //             summary: "",
-    //             isTop: true,
-    //             cover: "https://nextui.org/images/album-cover.png",
-    //             categoryId: ''
-    //         }))
-    //     }
-    // }
     const {editor, characterCount} = useBlockEditor()
+    const addPost = async () => {
+        const updatedPostState = {
+            ...postState,
+            content: editor?.getHTML()
+        };
+        const blog = await addBlog(updatedPostState).unwrap()
+        setPostState(prevState => ({
+            title: "",
+            content: "",
+            summary: "",
+            isTop: false,
+            cover: "",
+            categoryId: '',
+            rating: "5",
+            isPrivate: false,
+            tagId: []
+        }))
+        setSelectedFile(null)
+    }
     if (!editor) {
         return null
     }
@@ -120,12 +160,34 @@ const AddPost = () => {
                                         open ? (
                                             <div
                                                 className="h-full w-full items-start justify-center overflow-scroll px-4 pb-24 pt-20">
-                                                <Input type={"file"} />
+                                                {/*cover*/}
+                                                <div>
+                                                    <input type="file" onChange={handleFileChange} name="image"
+                                                           className="hidden"
+                                                           id="upload-input"/>
+                                                    <label htmlFor="upload-input"
+                                                           className="rounded-full w-20 h-20 bg-gray-200 flex items-center justify-center cursor-pointer">
+                                                        {
+                                                            selectedFile && postState.cover ? (
+                                                                    <Image src={postState.cover}
+                                                                           height={100}
+                                                                           radius={"full"}
+                                                                           alt=""/>
+                                                                )
+                                                                : (<PlusIcon/>)
+                                                        }
+                                                    </label>
+                                                    <input type={'file'} onChange={handleFileChange} name={"image"}
+                                                           className={"rounded-full w-20 h-full"}/>
+                                                    <button onClick={handleUpload}>上传图片</button>
+                                                </div>
                                                 <div className="flex flex-row gap-6">
                                                     <Input
                                                         autoFocus
                                                         fullWidth
                                                         aria-label="Affiliate code"
+                                                        name={"title"}
+                                                        onChange={handleChange}
                                                         classNames={{
                                                             inputWrapper: "group-data-[focus-visible=true]:outline-foreground",
                                                         }}
@@ -140,16 +202,28 @@ const AddPost = () => {
                                                         classNames={{
                                                             inputWrapper: "group-data-[focus-visible=true]:outline-foreground",
                                                         }}
-                                                        label="Enter post title"
+                                                        label="Enter post summary"
+                                                        name={"summary"}
+                                                        onChange={handleChange}
                                                         labelPlacement="outside"
                                                         placeholder="E.g. ACME123"
                                                     />
                                                 </div>
+                                                <Switch isSelected={postState.isTop} onValueChange={onIsTopChange}
+                                                        name={"isTop"}>
+                                                    isTop
+                                                </Switch>
+                                                <Switch isSelected={postState.isPrivate}
+                                                        onValueChange={onIsPrivateChange}
+                                                        name={"isPrivate"}>
+                                                    isPrivate
+                                                </Switch>
                                                 <Autocomplete
                                                     defaultItems={rootCategories?.data}
                                                     label="Favorite Animal"
                                                     placeholder="Search an animal"
                                                     className="max-w-xs"
+                                                    onSelectionChange={handeCategoryIdChange as any}
                                                 >
                                                     {(category) => <AutocompleteItem
                                                         key={category.id}>{category.name}</AutocompleteItem>}
@@ -157,49 +231,30 @@ const AddPost = () => {
                                                 <div className="my-auto flex max-w-lg flex-col gap-2">
                                                     <h3 className="text-medium font-medium leading-8 text-default-600">Tags</h3>
                                                     <CheckboxGroup aria-label="Select amenities" className="gap-1"
-                                                                   orientation="horizontal">
-                                                        <TagGroupItem icon="ic:baseline-apple" value="wifi">
-                                                            Apple
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:fridge-bold" value="kitchen">
-                                                            Kitchen
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="uil:android" value="washer">
-                                                            Washer
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:washing-machine-minimalistic-bold"
-                                                                      value="dryer">
-                                                            Dryer
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:tv-bold" value="tv">
-                                                            TV
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:wheel-bold" value="free_parking">
-                                                            Free Parking
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:swimming-bold" value="pool">
-                                                            Pool
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:treadmill-bold" value="gym">
-                                                            Gym
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:bath-bold" value="spa">
-                                                            Spa
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:sun-bold" value="beachfront">
-                                                            Beachfront
-                                                        </TagGroupItem>
-                                                        <TagGroupItem icon="solar:cat-bold" value="pet_friendly">
-                                                            Pet Friendly
-                                                        </TagGroupItem>
+                                                                   orientation="horizontal"
+                                                                   value={postState.tagId}
+                                                                   onChange={handeTagChange as any}>
+                                                        {
+                                                            tags?.data.map((item, index) => {
+                                                                return (
+                                                                    <TagGroupItem icon="ic:baseline-apple"
+                                                                                  value={String(item.id)} key={item.id}>
+                                                                        {item.name}
+                                                                    </TagGroupItem>
+                                                                )
+                                                            })
+                                                        }
                                                     </CheckboxGroup>
+                                                    <RatingRadioGroup className="mt-2 w-72" value={postState.rating}
+                                                                      setValue={setRating}/>
+                                                    <p>{postState.cover}</p>
                                                 </div>
                                                 <Divider className="mb-8 mt-10"/>
 
                                                 <Button color="danger" variant="light" onPress={onClose}>
                                                     Close
                                                 </Button>
-                                                <Button color="primary" onPress={onClose}>
+                                                <Button color="primary" onPress={onClose} onClick={addPost}>
                                                     Publish
                                                 </Button>
                                             </div>

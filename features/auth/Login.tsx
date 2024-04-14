@@ -30,7 +30,7 @@ export const Login = () => {
     const {currentUser} = useAuth()
     const dispatch = useAppDispatch()
     const [loginState, setLoginState] = useState<UserLoginType>({
-        username: '',
+        email: '',
         password: '',
     })
     const [registerState, setRegisterState] = useState<UserRegisterType>(
@@ -48,9 +48,9 @@ export const Login = () => {
     const validateEmail = (value: string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
     // 校验用户名格式
     const isInvalid = useMemo(() => {
-        if (loginState.username === "") return false;
-        return !validateEmail(loginState.username);
-    }, [loginState.username]);
+        if (loginState.email === "") return false;
+        return !validateEmail(loginState.email);
+    }, [loginState.email]);
 
     const handleLoginChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => setLoginState((prev) => ({
         ...prev,
@@ -72,7 +72,7 @@ export const Login = () => {
             console.error(err)
         } finally {
             setLoginState({
-                username: '',
+                email: '',
                 password: '',
             })
         }
@@ -139,9 +139,9 @@ export const Login = () => {
                                     <p className="pb-2 text-xl font-medium">Log In</p>
                                     <form className="flex flex-col gap-3" onSubmit={(e)=>Login(e)}>
                                         <Input
-                                            value={loginState.username}
+                                            value={loginState.email}
                                             onChange={handleLoginChange}
-                                            name="username"
+                                            name="email"
                                             label="Email Address"
                                             errorMessage={isInvalid && "Please enter a valid email"}
                                             placeholder="Enter your email"
