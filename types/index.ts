@@ -35,7 +35,8 @@ export type ColumnType = {
     name: string,
     description: string,
     avatar: string,
-    Posts: Post[],
+    rating: number,
+    posts: Post[],
 }
 export type UserLoginType = {
     email: string,
@@ -72,7 +73,8 @@ export type PostDTO = {
     cover: string,
     categoryId: string,
     tagId: string[],
-    isPrivate: boolean
+    isPrivate: boolean,
+    columnId: number
 }
 export type Tag = {
     id: number,

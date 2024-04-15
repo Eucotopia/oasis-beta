@@ -12,17 +12,16 @@ import RatingRadioItem from "./rating-radio-item";
 export type RatingRadioGroupProps = RadioGroupProps & {
     hideStarsText?: boolean;
     value: string,
-    setValue: (value: string) => void
+    setValue?: (value: string) => void,
 };
 
 const RatingRadioGroup = React.forwardRef<HTMLDivElement, RatingRadioGroupProps>(
-    ({className, label,value,setValue, hideStarsText, ...props}, ref) => {
+    ({className, label, value, setValue, hideStarsText, ...props}, ref) => {
         const starsText = React.useMemo(() => {
             // Special case for 5 stars
             if (value === "5") {
                 return "5 stars";
             }
-
             // For 1 to 4 stars, use a generic approach
             return `${value} stars & up`;
         }, [value]);

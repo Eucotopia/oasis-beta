@@ -23,7 +23,6 @@ export default function App() {
     return (
         <>
             <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 w-screen ">
-                <CardDis/>
                 <AddPost/>
                 {/*<div className={"flex flex-col items-center"}>*/}
                 {/*    <h1 className={title({color: "pink"})}>technology stack</h1>*/}

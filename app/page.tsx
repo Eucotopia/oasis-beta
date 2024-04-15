@@ -11,13 +11,27 @@ import SpotlightCard from "@/components/schedule/App"
 import {Spacer} from "@nextui-org/react";
 import Horizontal from "@/components/pitcure/horizontal/Horizontal"
 import Github from "@/components/github/App"
+import ColumCard from "@/components/card/ColumCard";
+import {useGetHotColumnsQuery} from "@/features/api/columnApi";
 
 export default function Home() {
+    const {data: hotColumns} = useGetHotColumnsQuery();
+    console.log("hot", hotColumns)
     return (
         <section
-            className="flex flex-col items-center justify-center gap-4 overflow-hidden">
+            className="flex flex-col items-center justify-center gap-4">
             {/*流星雨*/}
             {/*<FUIMeteor/>*/}
+            {/*热门专栏*/}
+            <div className={"flex flex-row gap-6 "}>
+                {
+                    hotColumns?.data.map((item, index) => {
+                        return (
+                            <ColumCard isReverse={index % 2 === 0} key={index} columns={item}/>
+                        )
+                    })
+                }
+            </div>
             <Spacer y={10}/>
             <Horizontal/>
             <LeftLoginWithImageBackground/>

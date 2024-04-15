@@ -1,6 +1,6 @@
 'use client'
-import Card_1 from "@/components/card/Card_1";
-import Card_2 from "@/components/card/Card_2";
+import Colum from "@/components/card/Colum";
+import ColumCard from "@/components/card/ColumCard";
 import React, {Suspense, useRef, useState} from 'react';
 import SwiperTest from "@/components/pitcure/SwiperTest"
 import CardTest11 from "@/components/pitcure/CardTest11";

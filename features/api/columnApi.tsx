@@ -23,8 +23,11 @@ export const columnApi = createApi({
         }),
         getColumns: builder.query<ResultResponse<ColumnType[]>, void>({
             query: () => ({url: ''}),
+        }),
+        getHotColumns: builder.query<ResultResponse<ColumnType[]>, void>({
+            query: () => ({url: '/hot'})
         })
     }),
 })
 
-export const {useGetColumnByIdQuery,useGetColumnsQuery} = columnApi
+export const {useGetColumnByIdQuery, useGetColumnsQuery,useGetHotColumnsQuery} = columnApi

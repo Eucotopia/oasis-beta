@@ -27,7 +27,7 @@ const AddPost = () => {
         setSelectedFile(e.target.files[0]);
     };
     const [uploadFile] = useUploadMutation();
-
+    const [isColumn, setIsColumn] = useState<boolean>(false)
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleUpload = async () => {
@@ -63,7 +63,8 @@ const AddPost = () => {
         categoryId: '',
         rating: "5",
         isPrivate: false,
-        tagId: []
+        tagId: [],
+        columnId: 0
     })
     const setRating = (value: string) => {
         // @ts-ignore
@@ -113,7 +114,8 @@ const AddPost = () => {
             categoryId: '',
             rating: "5",
             isPrivate: false,
-            tagId: []
+            tagId: [],
+            columnId: 0
         }))
         setSelectedFile(null)
     }
@@ -218,6 +220,12 @@ const AddPost = () => {
                                                         name={"isPrivate"}>
                                                     isPrivate
                                                 </Switch>
+                                                <Switch isSelected={isColumn} onValueChange={setIsColumn}>
+                                                    isColumn
+                                                </Switch>
+                                                {
+                                                    isColumn && <div>选择专栏</div>
+                                                }
                                                 <Autocomplete
                                                     defaultItems={rootCategories?.data}
                                                     label="Favorite Animal"
@@ -247,7 +255,6 @@ const AddPost = () => {
                                                     </CheckboxGroup>
                                                     <RatingRadioGroup className="mt-2 w-72" value={postState.rating}
                                                                       setValue={setRating}/>
-                                                    <p>{postState.cover}</p>
                                                 </div>
                                                 <Divider className="mb-8 mt-10"/>
 

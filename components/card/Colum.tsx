@@ -1,7 +1,7 @@
 import {Card, Image, CardBody} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-const Card_1 = () => {
+const Colum = () => {
     return (
         <>
             <Card
@@ -29,4 +29,4 @@ const Card_1 = () => {
         </>
     )
 }
-export default Card_1
+export default Colum
